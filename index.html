@@ -8,25 +8,266 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
 
     <style type="text/css">
       div {
-        font-family: 'Modern Antiqua', cursive;
+        font-family: 'Inconsolata', monospace;
       }
       p { 
-        font-family: 'Modern Antiqua', cursive;
+        font-family: 'Inconsolata', monospace;
+      }
+      .ar {
+        font-family: 'Tajawal', sans-serif;
+      }
+      .code {
+        font-family: 'Inconsolata', monospace;
+      }
+      .head{
+        font-family: 'Playfair Display', serif;
       }
     </style>
+
+    <textarea id="bibtex_input" style="display:none;">
+    @article{DBLP:journals/tifs/AlmohriWE18,
+        author    = {Hussain M. J. Almohri and
+                     Layne T. Watson and
+                     David Evans},
+        title     = {Misery Digraphs: Delaying Intrusion Attacks in Obscure Clouds},
+        journal   = {{IEEE} Trans. Information Forensics and Security},
+        volume    = {13},
+        number    = {6},
+        pages     = {1361--1375},
+        year      = {2018},
+        url       = {https://doi.org/10.1109/TIFS.2017.2779436},
+        doi       = {10.1109/TIFS.2017.2779436},
+        timestamp = {Tue, 13 Mar 2018 15:08:55 +0100},
+        biburl    = {https://dblp.org/rec/bib/journals/tifs/AlmohriWE18},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+
+      @inproceedings{DBLP:conf/codaspy/Almohri018,
+        author    = {Hussain M. J. Almohri and
+                     David Evans},
+        title     = {Fidelius Charm: Isolating Unsafe Rust Code},
+        booktitle = {Proceedings of the Eighth {ACM} Conference on Data and Application
+                     Security and Privacy, {CODASPY} 2018, Tempe, AZ, USA, March 19-21,
+                     2018},
+        pages     = {248--255},
+        year      = {2018},
+        crossref  = {DBLP:conf/codaspy/2018},
+        url       = {https://doi.org/10.1145/3176258.3176330},
+        doi       = {10.1145/3176258.3176330},
+        timestamp = {Wed, 21 Nov 2018 12:44:10 +0100},
+        biburl    = {https://dblp.org/rec/bib/conf/codaspy/Almohri018},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+
+      @inproceedings{DBLP:conf/chase/AlmohriCYA17,
+        author    = {Hussain M. J. Almohri and
+                     Long Cheng and
+                     Danfeng Yao and
+                     Homa Alemzadeh},
+        title     = {On Threat Modeling and Mitigation of Medical Cyber-Physical Systems},
+        booktitle = {Proceedings of the Second {IEEE/ACM} International Conference on Connected
+                     Health: Applications, Systems and Engineering Technologies, {CHASE}
+                     2017, Philadelphia, PA, USA, July 17-19, 2017},
+        pages     = {114--119},
+        year      = {2017},
+        crossref  = {DBLP:conf/chase/2017},
+        url       = {https://doi.org/10.1109/CHASE.2017.69},
+        doi       = {10.1109/CHASE.2017.69},
+        timestamp = {Mon, 23 Apr 2018 13:16:24 +0200},
+        biburl    = {https://dblp.org/rec/bib/conf/chase/AlmohriCYA17},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+
+      @inproceedings{DBLP:conf/icse/AlmohriA17,
+        author    = {Hussain M. J. Almohri and
+                     Sayed A. Almohri},
+        title     = {Security Evaluation by Arrogance: Saving Time and Money},
+        booktitle = {1st {IEEE/ACM} International Workshop on Software Engineeting for
+                     Startups, SoftStart@ICSE 2017, Buenos Aires, Argentina, May 21, 2017},
+        pages     = {12--16},
+        year      = {2017},
+        crossref  = {DBLP:conf/icse/2017softstart},
+        url       = {https://doi.org/10.1109/SoftStart.2017.1},
+        doi       = {10.1109/SoftStart.2017.1},
+        timestamp = {Wed, 06 Sep 2017 13:05:43 +0200},
+        biburl    = {https://dblp.org/rec/bib/conf/icse/AlmohriA17},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+      @article{DBLP:journals/tdsc/AlmohriWYO16,
+        author    = {Hussain M. J. Almohri and
+                     Layne T. Watson and
+                     Danfeng Yao and
+                     Xinming Ou},
+        title     = {Security Optimization of Dynamic Networks with Probabilistic Graph
+                     Modeling and Linear Programming},
+        journal   = {{IEEE} Trans. Dependable Sec. Comput.},
+        volume    = {13},
+        number    = {4},
+        pages     = {474--487},
+        year      = {2016},
+        url       = {https://doi.org/10.1109/TDSC.2015.2411264},
+        doi       = {10.1109/TDSC.2015.2411264},
+        timestamp = {Sun, 28 May 2017 13:21:02 +0200},
+        biburl    = {https://dblp.org/rec/bib/journals/tdsc/AlmohriWYO16},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+
+      @article{DBLP:journals/tdsc/AlmohriYK14,
+        author    = {Hussain M. J. Almohri and
+                     Danfeng Yao and
+                     Dennis G. Kafura},
+        title     = {Process Authentication for High System Assurance},
+        journal   = {{IEEE} Trans. Dependable Sec. Comput.},
+        volume    = {11},
+        number    = {2},
+        pages     = {168--180},
+        year      = {2014},
+        url       = {https://doi.org/10.1109/TDSC.2013.29},
+        doi       = {10.1109/TDSC.2013.29},
+        timestamp = {Sun, 28 May 2017 13:21:02 +0200},
+        biburl    = {https://dblp.org/rec/bib/journals/tdsc/AlmohriYK14},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+      @inproceedings{DBLP:conf/codaspy/AlmohriYK14,
+        author    = {Hussain M. J. Almohri and
+                     Danfeng (Daphne) Yao and
+                     Dennis G. Kafura},
+        title     = {DroidBarrier: know what is executing on your android},
+        booktitle = {Fourth {ACM} Conference on Data and Application Security and Privacy,
+                     CODASPY'14, San Antonio, TX, {USA} - March 03 - 05, 2014},
+        pages     = {257--264},
+        year      = {2014},
+        crossref  = {DBLP:conf/codaspy/2014},
+        url       = {https://doi.org/10.1145/2557547.2557571},
+        doi       = {10.1145/2557547.2557571},
+        timestamp = {Tue, 06 Nov 2018 11:07:47 +0100},
+        biburl    = {https://dblp.org/rec/bib/conf/codaspy/AlmohriYK14},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+      @inproceedings{DBLP:conf/codaspy/AlmohriYK12,
+        author    = {Hussain M. J. Almohri and
+                     Danfeng (Daphne) Yao and
+                     Dennis G. Kafura},
+        title     = {Identifying native applications with high assurance},
+        booktitle = {Second {ACM} Conference on Data and Application Security and Privacy,
+                     {CODASPY} 2012, San Antonio, TX, USA, February 7-9, 2012},
+        pages     = {275--282},
+        year      = {2012},
+        crossref  = {DBLP:conf/codaspy/2012},
+        url       = {https://doi.org/10.1145/2133601.2133635},
+        doi       = {10.1145/2133601.2133635},
+        timestamp = {Tue, 06 Nov 2018 11:07:47 +0100},
+        biburl    = {https://dblp.org/rec/bib/conf/codaspy/AlmohriYK12},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+      @inproceedings{DBLP:conf/oopsla/AlmohriB10,
+        author    = {Hussain M. J. Almohri and
+                     Osman Balci},
+        title     = {A simulation-based software design framework for network-centric and
+                     parallel systems},
+        booktitle = {{SPLASH} Workshop on Programming Support Innovations for Emerging
+                     Distributed Applications {(PSI} EtA - {\(\Psi\)}{\textTheta} 2010),
+                     October 17, 2010, Reno/Tahoe, Nevada, {USA}},
+        pages     = {5},
+        year      = {2010},
+        crossref  = {DBLP:conf/oopsla/2010psieta},
+        url       = {https://doi.org/10.1145/1940747.1940752},
+        doi       = {10.1145/1940747.1940752},
+        timestamp = {Tue, 06 Nov 2018 16:57:15 +0100},
+        biburl    = {https://dblp.org/rec/bib/conf/oopsla/AlmohriB10},
+        bibsource = {dblp computer science bibliography, https://dblp.org}
+      }
+    </textarea>
 
 
     <title>Personal website for Hussain Almohri, Ph.D. (Kuwait University)</title>
   </head>
   <body>
-    <div class="container">
-      <p>Hussain Almohri, Ph.D. </p>
-      <p>Assistant Professor of Computer Science at Kuwait University</p>
-      
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">H</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#M1">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#M2">Research</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#M3">Teaching</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#M4">Schedule</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <div class="container-fluid">
+
+      <div class="card">
+        <div class="card-header" id="M0">
+          Who Am I?
+        </div>
+        <div class="card-body" style="margin-top: 10px; margin-bottom: 10px; font-size: x-large" >
+           <p>Hussain Almohri, Ph.D. (<a href="https://cs.vt.edu" target="_blank">Virginia Tech</a>) </p>
+      <p>Assistant Professor of <a href="http://cs.ku.edu.kw" target="_blank">Computer Science</a> at <a href="http://kuniv.edu/" target="_blank">Kuwait University</a></p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="card-header" " id="M1">
+          How to reach me?
+        </div>
+        <div class="card-body" >
+          <p class="code">[My Last Name]@ cs.ku.edu.kw </p>
+          <p class="code">Phone: ‭+965 249-85332‬</p>
+          <p class="code">Mail: P.O. Box 5969, Safat 13060</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 10px">
+        <div class="card-header" id="M2">
+          What do I work on?
+        </div>
+        <div class="card-body" style="height: 1000">
+          <div id="bibtex_display"></div>
+          <!--<iframe src="https://dblp.org/pers/hd/a/Almohri:Hussain_M=_J="  height=' 1000' style="border: 0; width: 95%;"></iframe>-->
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="card-header" " id="M3">
+          What do I teach?
+        </div>
+        <div class="card-body" >
+          <p>I regularly teach Security, Computer Programming in <a href="http://python.org" target="_blank">Python</a>, Software Engineering, and Computer Systems courses. </p>
+
+          <p>Summer 2019: TBA </p>
+          <p>Spring 2019: Software Engineering (undergraduate), Systems and Network Security (graduate) </p>
+          <p>Fall 2018: Software Engineering (undergraduate), Cryptography (graduate) </p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 10px">
+        <div class="card-header" id="M4">
+          What's my current time schedule?
+        </div>
+        <div class="card-body" style="height: 1000">
+          <iframe src="https://calendar.google.com/calendar/b/0/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=athm2ejpruq6lrdi4os28bh12o%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=Asia%2FRiyadh" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
