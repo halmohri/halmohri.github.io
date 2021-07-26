@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+</head>
+<body>
+  <div id="content"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    let contents = '';
+    $.get('/python/01.html', function(data){ 
+      document.getElementById('content').innerHTML =
+      marked(data);
+    }); 
+  </script>
+</body>
+</html>
