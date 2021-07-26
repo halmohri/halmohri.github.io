@@ -7,8 +7,12 @@
     .clickable {
       color: navy;
     }
+
   </style>
-  <style type="text/css" src="https://github.com/halmohri/halmohri.github.io/blob/master/python/style.css"></style>
+
+  <link rel="stylesheet" type="text/css" href="https://almohri.io/python/style.css">
+
+
 </head>
 <body>
   <div id="content"></div>
@@ -17,7 +21,7 @@
 
   <script>
     page = '00';
-    url = '/python/'+page+'.md';
+    url = 'https://almohri.io/python/'+page+'.md';
       console.log(url); 
       $.get(url, function(data){ 
       document.getElementById('content').innerHTML =
