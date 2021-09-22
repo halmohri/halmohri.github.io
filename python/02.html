@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+  <style type="text/css">
+    .clickable {
+      color: navy;
+    }
+  </style>
+    <link rel="stylesheet" type="text/css" href="https://almohri.io/python/style.css">
+
+</head>
+<body>
+  <div id="content"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    page = '02';
+    url = '/python/'+page+'.md';
+      console.log(url); 
+      $.get(url, function(data){ 
+      document.getElementById('content').innerHTML =
+      marked(data);
+      });
+  </script>
+  
+</body>
+</html>
