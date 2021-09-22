@@ -1,18 +1,3 @@
-@font-face {
-  font-family: KohSantepheap-Regular;
-  src: url(KohSantepheap-Regular.ttf);
-}
-
-@font-face {
-  font-family: BonheurRoyale-Regular;
-  src:  url(BonheurRoyale-Regular.ttf);
-}
-
-
-@font-face {
-  font-family: PlayfairDisplay-VariableFont_wght;
-  src:  url(PlayfairDisplay-VariableFont_wght.ttf);
-}
-* {
-  font-family: PlayfairDisplay-VariableFont_wght;
+* { 
+font-family: Roboto;
 }
