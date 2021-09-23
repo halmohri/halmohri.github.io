@@ -1,21 +1,43 @@
-div {
-  font-family: 'Inconsolata', monospace;
+a { 
+  color:  #0099cc;
 }
-p { 
-  font-family: 'Inconsolata', monospace;
+
+.theme-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-top: 2%;
+  height: 20%;
 }
-.ar {
-  font-family: 'Tajawal', sans-serif;
+
+.profile-box {
+  width: 80%;
+  padding-top: 5%;
+  align-content: center;
 }
-.code {
-  font-family: 'Inconsolata', monospace;
+
+.description-main { 
+  width: 80%;
+  padding-top: 5%;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+  font-family: 'Roboto', serif;
+  /*font-style: italic;*/
 }
-.head{
-  font-family: 'Playfair Display', serif;
+
+.description {
+  width: 80%;
+  align-content: center;
+  padding-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px;
+  font-family: 'Roboto', serif;
+  /*font-style: italic;*/
 }
-.source {
-  color: Maroon; 
-}
-.note {
-  color: gray;
+
+.divider {
+  padding-top: 5px;
 }
