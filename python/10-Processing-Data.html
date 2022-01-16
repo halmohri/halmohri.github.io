@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <p>Processing data is the main reason behind the design of modern digital computers and programming languages. We are often faced with large datasets for which we have methods to produce the necessary information. However, executing those methods without digital computers is nearly impossible. Imagine if you&#39;re given the task of computing the average grade in the final mathematics exam for the students of the 12th grade in an entire country. You will take a long time, get tired soon, and make a lot of mistakes. Instead, we can write a few lines of code to load the data for all students from the long-term memory (also called secondary storage) to the short-term memory (such as RAM), followed by a few more instructions for the computer to compute the average of the grades for all students in a much smaller fraction of time compared to a human as a computer. 
+Here, we will learn about a basic file structure called the Comma Separated Format (CSV) used to store data on secondary storage. We will write a program to load data from a CSV file into memory (represented by a list variable) and then compute an average. </p>
+<p>The CSV file format is simple. Each line has values that are separated by commas. Each value represents a column and each line represents a column. Thus, we can have a simple matrix structure in a CSV file. Python has a nice way of reading a CSV file by using the CSV library. Whenever we need to load data from a file into memory, we need to tell the computer to <em>open</em> the file for reading. Then, we will tell the CSV library to prepare for reading from the opened file by creating a reader object. Once we do that, we can loop through the reader object to reach each row from the CSV file and store it into a list we call <code>data</code>. Each row itself is stored as a list. Thus, we can think of the <code>data</code> list as a list of lists. That is, each element of the list <code>data</code> is itself a list that captures a row from the file we loaded into the memory. </p>
+<h2 id="reading-one-line-of-a-file">Reading one line of a file</h2>
+<pre><code class="language-python">f = open(&#39;data.csv&#39;,&#39;r&#39;)
+line = f.readline() 
+f.close()
+</code></pre>
+<p>This simple program opens a file called <code>data.csv</code>. The method <code>readline()</code> can read one single line from a file as a <em>string</em> value and return it. Therefore, the variable <code>line</code> has a string value, which is the first line of data in the file <code>data.csv</code>. We could print this line, split it into a list (if it contains multiple items), or convert it to a numeric value (if the line only has a number). In the remaining of this section, we will dive deeper into reading and writing files.  </p>
+<h2 id="reading-csv-files">Reading CSV files</h2>
+<p>Suppose that the file we want to read is called <code>students.csv</code> and is stored in the folder in which we will store our program. </p>
+<pre><code class="language-python">import csv
+f=open(&#39;students.csv&#39;,&#39;r&#39;)
+reader = csv.reader(f)
+data=[]
+for row in reader:
+   data.append(row)
+</code></pre>
+<p>This program opens the file, prepares a <em>reader</em> object to read the CSV file, defines the data variable, and loops through the file to store all the rows in <code>data</code>. 
+Assume that each row has values for two columns, one is the student name and another is the student exam grade. Our job is now to compute the average of all grades and display it on the screen. </p>
+<pre><code class="language-python">import csv
+f=open(&#39;students.csv&#39;,&#39;r&#39;)
+reader = csv.reader(f)
+s = 0 
+n = 0 
+for row in reader:
+   n+=1 
+   s+= row[1] 
+print(s/n) 
+</code></pre>
+<p>We change the program a little bit to compute the average directly. Instead of storing all the data in a variable, we only read each row, add the current grade to a sum variable and count the number of records we&#39;re reading. Finally, we compute and print the result of <code>s/n</code>, which exactly gives us the average of all grades. </p>
+<h2 id="using-eval-and-list-comprehension">Using eval and list comprehension</h2>
+<p>Another way to read a CSV file that only contains numbers is to use the <code>eval</code> function.</p>
+<pre><code class="language-python">f=open(&#39;students.csv&#39;,&#39;r&#39;)
+data = [eval(x) for x in f]
+</code></pre>
+<p>Assuming the file students.csv only has only numbers separated by a comma in each line, one can <em>evaluate</em> each line to a tuple using the <code>eval</code> function. In the code above, notice that we&#39;re also using a special Python statement called <em>list comprehension</em>. A list comprehension is a handy way of constructing a list without the use of append or extend. That is, inside the list brackets, we will specify each element of the list and specify which sequence is used to construct the list. For example, when we have <code>L = [x for x in file]</code>, assuming <code>file</code> points to a file that has multiple lines ready to be read, the for loop goes through each line of the file and names it <code>x</code>. In each iteration, <code>x</code> is stored as an element of the list <code>L</code>. We could modify <code>x</code> such as the one in the code above. In this case, <code>[eval(x) for x in f]</code> also applies the <code>eval</code> function to each element. </p>
+<h2 id="with-keyword">with keyword</h2>
+<p>We can also use the <code>with</code> keyword to help us in opening a file: </p>
+<pre><code class="language-python">data = [] 
+with open(&#39;students.csv&#39;,&#39;r&#39;) as f:
+    for line in f:
+        data.append(eval(line))
+f.close()
+</code></pre>
+<h2 id="how-can-we-write-to-a-file">How can we write to a file?</h2>
+<p>It&#39;s simple. We can either use the <code>csv</code> library or directly write a line to a file. Suppose that we have a list of numbers that we would like to write to a file. </p>
+<pre><code class="language-python">f=open(&#39;numbers.csv&#39;,&#39;w&#39;)
+for num in L: 
+   print(num, file=f)
+f.close()
+</code></pre>
+<p>Here, we should first open the file for writing using <code>&#39;w&#39;</code>. Then, we will loop through the list and use the <code>print</code> function with the optional parameter <code>file</code> to write a <code>num</code> to <code>f</code> in each iteration. </p>
+<p>Another way is to use the <code>csv</code> library. </p>
+<pre><code class="language-python">import csv
+f=open(&#39;numbers.csv&#39;,&#39;w&#39;)
+writer = csv.writer(f)
+for record in L: 
+   writer.writerow(record)
+f.close()
+</code></pre>
+<p>The <code>csv</code> library helps in organizing the file as a comma-separated format file. If each <code>record</code> is a sequence, then <code>csv</code> writes the sequence separated by commas on a line. </p>
+<p>Note that we can also open a file for writing using <code>f=open(&#39;numbers.csv&#39;,&#39;a&#39;)</code> instead of <code>f=open(&#39;numbers.csv&#39;,&#39;w&#39;)</code>, then we will see a different behavior. When using <code>w</code>, if the file does not exist it will be created. If the file exists, its contents will be deleted and we will start afresh. When using <code>a</code>, if the file does not exist it will be created. If the file exists, when writing to it, the new records will be <em>appeneded</em> to the end of the file instead of deleting its contents. The difference between the two can be best observed with a program to test and compare their differences. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h2 id="what-type-of-problems-do-computers-solve">What type of problems do computers solve?</h2>
+<p>Computers fundamentally solve problems that require <a href="https://github.com/csdeptku/CS126-Python/wiki/06-Conditional-Statements">decision making</a> and <a href="https://github.com/csdeptku/CS126-Python/wiki/06-Conditional-Statements">repetition</a>. In many cases, computers are used to execute instructions that eventually find solutions to hard problems. For example, one can use computers to find the result of dividing x by y or find the square root of a number x. These are among the many fundamentally numerical problems that computers are here to solve. However, as we may already know, computers do not think and do not have intrinsic intelligence. We need to tell computers what to do and how to do it. Depending on the programming language used to program a computer, our own thinking and problem-solving skills differ. With Python, we need to write down a detailed sequence of instructions for the computer to follow to come up with the results we want. Thus, the kind of problem-solving skills that we need is not limited to solving a numerical problem by pencil and paper. We also need to figure out a method to <em>teach</em> the computer to automatically produce the results as we would expect. </p>
+<h2 id="how-should-we-think-about-numerical-problems">How should we think about numerical problems?</h2>
+<p>A good way to think about solving problems with computer programs is to go back in time. Imagine you live several hundred years ago with access only to a pen and a set of papers. How would you solve a numerical problem such as finding the root of a function? You need to come up with a <em>procedure</em> or an <em>algorithm</em> that you can use now and in the future to find the root of a particular function. You can write that algorithm on paper (in terms of steps required to produce the results) so that someone else who has the same goal but hasn&#39;t thought about a way to solve the problem can follow your steps and produce the results. This is the type of problem-solving skill that we would like to develop in this section. As we will see below, we can use a simple recipe for <em>designing</em> solutions for computers to solve problems for us. </p>
+<p>We will summarize the simple recipe for producing programs in four steps.  </p>
+<ol>
+<li>Understand the problem, the available input <strong>X</strong>, and the required output <strong>Y</strong>. </li>
+<li>Design a solution involving the use of input/output, decision-making, and repetition. </li>
+<li>Translate your solution in the programming language you want to use. </li>
+<li>Test your program with various inputs to ensure the required output <strong>Y</strong> is produced.</li>
+</ol>
+<p>If we follow these steps correctly, we can surely improve our programming results. 
+The programmer should follow the steps in the given order. First, we start with understanding what is required from us. This helps to avoid so many mistakes that could arise from misunderstanding the required solution. Second, we will need to imagine a solution for the problem, often thinking there was no digital computer to solve it. How would we approach the problem as humans? We can also write down some sketches of the <em>design</em> or write in plain natural language the steps we need to solve. It often helps to take a few example inputs and workout the output on them. Third, once we have a clear plan for our solution, we can write it down in the Python programming language (or some other language of choice). This requires mastering basic elements and tools available in the language. At this point, when a programmer tries to solve problems using computers, we&#39;d assume the programmer is comfortable with using various language tools. Finally, when we have our code, we need to check if it works. This is what we call the testing stage. There is a lot of science in testing, but we will need to go into those details at this point. We need to ensure no compile or runtime errors and that our program works with obvious input examples. </p>
+<h2 id="sum-of-a-list-of-numbers">Sum of a list of numbers</h2>
+<p>Python has a built-in function <code>sum</code>, which receives a sequence value and produces the sum of all values in the sequence (given that the sequence is numeric). That is, given the sequence <em>X</em>, the computed sum is Σxᵢ for xᵢ∈ X. If we did not have such a function, we&#39;d be given the problem of computing the sum of all elements in a numeric sequence using repetition. </p>
+<p><strong>Application of Step 1</strong>: We have a sequence of numbers <code>X</code> that start with index 0 and end with index <code>len(X)</code>. We would like to know what their sum is according to the formula above. We know that the sequence has at least one element and is finite, and is provided by the user on the keyboard. We are required to print the sum of <code>X</code>.</p>
+<p><strong>Application of Step 2</strong>: How would we solve this problem with pencil and paper? Imagine having the numbers written horizontally on paper. We start by writing a zero somewhere on the paper to <em>memorize</em> the sum. Then, we add the first number on the list to the current sum 0. Next, we check if there are more numbers to add. If so, we add the next number to the previous sum. We <em>repeat</em> this process until there are no more values in the list. 
+Then, the last value of our sum is the sum of all elements in <code>X</code>. </p>
+<p><strong>Application of Step 3</strong>: We now have to write the solution in Python.</p>
+<pre><code class="language-python">X = input().split()
+X = list(map(eval,X))
+s = 0 
+i = 0 
+n = len(X) 
+while i &lt; n: 
+   s+= X[i] 
+   i+=1 
+print(s)
+</code></pre>
+<p>This program first takes the numbers in the form of a list from the keyboard. Next, it allocates three variables. <code>s</code> is used to accumulate the sum, <code>i</code> is used for iterating over the list <code>X</code>, and <code>n</code> is the number of values in <code>X</code>. Next, we set a while loop that only stops if <code>i</code> becomes equal to <code>n</code>. In each iteration, we add the current list element to the sum and increment the iterator variable by one. 
+Once we&#39;re out of the loop, we will print the sum. </p>
+<p><strong>Application of Step 4</strong>: Once we&#39;re done with the Python program, we first check if it has no compile issues. Next, we run the program, provide some values to the list, and see the sum. Is the sum correct? If not, we will need to go back and check if we did not understand the problem correctly, or we had an issue with our design, or the Python program was not correct. Fix any issues, and then test again. </p>
+<h2 id="finding-the-maximum-number">Finding the maximum number</h2>
+<p>Given a list of numeric values <em>X</em> from the user, we&#39;re asked to write a Python program to compute the maximum value in the list <em>X</em>.</p>
+<p><strong>Application of Step 1</strong>: Like the summation problem, we should ask the user to enter the keyboard&#39;s values. We know that the values are numbers, and we assume the user does not enter anything but numbers. We&#39;re required to print the maximum value among those entered by the user. Also, we&#39;re restricted from solving the problem using loops. </p>
+<p><strong>Application of Step 2</strong>: If we were to solve the problem using pencil and paper, we start by assuming that the user&#39;s first number is the maximum. We need to memorize one single number in each iteration until the user finishes giving us numbers. The number that we memorize is the <em>current</em> maximum. That is the maximum number we have seen so far. After receiving the first number, we check if the user wants to enter another number. If so, we compare the new number with the current maximum. We would replace the current maximum if the given number were greater. We continue this process until the user enters a sentinel value. Let&#39;s say the sentinel value is <code>@</code>. That is, when the user enters <code>@</code>, we will stop asking for more values. </p>
+<p><strong>Application of Step 3</strong>: Here&#39;s the translation of our design into Python code. </p>
+<pre><code class="language-python">value = input(&#39;Enter a value: &#39;)
+from math import inf
+m = -inf
+while value.find(&#39;@&#39;) == -1:
+   if value &gt; m:
+      m = value
+   value = input(&#39;Enter a value: &#39;)
+
+print(&#39;Maximum is:&#39;,m)
+</code></pre>
+<p><strong>Application of Step 4</strong>: This program is intentionally flawed. There is no compile error, but the maximum computed by this program will not always be correct. As a testing exercise, try to figure out the problem and modify it to produce the correct result. </p>
+<h2 id="the-power-problem">The power problem</h2>
+<p>Suppose that we&#39;re given two integers <em>n</em> and <em>k</em>, and we are asked to write a program to compute nᵏ.  </p>
+<p><strong>Application of Step 1</strong>: The problem is straight-forward. We need to receive two integers from the user and compute and print nᵏ. The problem does not mention writing a function or creating a file, nor does it say anything about the way to receive the two integers. So, we will make our own assumptions. </p>
+<p><strong>Application of Step 2</strong>: First, we will need to receive <em>n</em> and <em>k</em> from the user on the keyboard. Next, we need to check if the <em>k</em> &lt; 0. In this case, the result would be 1/nᵐ, where m = -k. However, we will compute nᵏ, assuming k &gt;=0. If k is 0, then we need to print 1. If n is 0, we need to print 0.  We&#39;re now left with the case when neither n nor k is zeros. In this case, we need to multiple n with itself k times, which clearly needs a loop. </p>
+<p><strong>Application of Step 3</strong>: We now have a plan to write our Python code. We need the two variables <em>n</em> and <em>k</em>, and we need a variable to check if <em>k</em> &lt; 0 and remember that, and we need a variable that remembers the result of the multiplication. </p>
+<pre><code class="language-python">n = int(input(&#39;n: &#39;))
+k = int(input(&#39;k: &#39;))
+p = 1
+negative = False
+if k &lt; 0: 
+    negative = True
+    k = -k 
+while k &gt;= 1:
+    p*=n
+    k-=1
+if negative:
+    p = 1/p
+print(p) 
+</code></pre>
+<p>In this code, the variable negative is a Boolean variable set to False, assuming k &gt;=0. But, we will check and see if k &lt; 0 and, in that case, set it to True. Then, we will negate k to make it positive. Next, we will execute the loop downward, starting with k down until k is 1, each time decrementing k by 1. In each iteration, we will also do <code>p*=n</code>. The value of <code>p</code> is initially 1, and it will remain 1 if k was zero (see the condition of the while loop). Finally, if negative is true, we will need to take the inverse of <code>p</code>, and we are done. </p>
+<p><strong>Application of Step 4</strong>: As usual, we will try our program with several values of n and k and see if it works. If not, we will go back and check our understanding of the problem, the validity of our design, and our code&#39;s correctness. </p>
+<h2 id="the-long-division-problem">The long division problem</h2>
+<p>We are asked to write a program that divides x by y and computes the quotient and the remainder. Note that, for simplicity, we will make assumptions, and the program we will write is by no means complete. 
+Here&#39;s the description of the problem that we need to understand as required by Step 1: </p>
+<p><em>Given an integer N and a divisor integer D, write a Python program to produce a <a href="https://mathworld.wolfram.com/Quotient.html">quotient</a> q and a <a href="https://mathworld.wolfram.com/Remainder.html">remainder</a> r such that N=q×D+r.</em></p>
+<p><strong>Application of Step 1</strong>: The available inputs are two integers, <em>N</em> and <em>D</em>. The required outputs are two integers, <em>q</em>, and <em>r</em>. The problem is to divide <em>N</em> by <em>D</em> to produce <em>q</em> and <em>r</em>. </p>
+<p><strong>Application of Step 2</strong>: How should we think about solving this problem? Should we start by coding some Python? No! We will need to think about what sort of memory we need, what decisions we should make, and what needs to be repeated to solve it. The best way to design a solution is to imagine that we do not have access to any computers. How could we do this using paper and pencil? </p>
+<p>First, we need to hold the two input numbers in memory so the computer does not forget them. For this, we will need two simple variables. Second, we need to check (decision making) if <em>D</em> is zero. In that case, we cannot compute <em>q</em> or <em>r</em>. Next, we would like to see if <em>N</em> == <em>D</em>. In this case, <em>q = 1</em> and <em>r = 0</em>. After that, we need to know if <em>N</em> &lt; <em>D_. In this case, whatever the value of <em>D</em>, <em>r = N</em> and <em>q = 0</em>. We&#39;re now left with the case that _N &gt; D</em>.  <strong>Assume</strong> that both <em>N</em> and <em>D</em> are nonnegative. How should we find <em>q</em> and <em>r</em>? Here, we need to find the number <em>q</em> such that <em>q+1 &gt; N</em>. This is a perfect repetition problem. We need to start with some initial value <em>i</em> and increment <em>i</em> until <em>i</em> is no longer less than <em>N</em>. At this point, we have found both <em>q</em> and <em>r</em>. </p>
+<p>Here&#39;s a simple example: 
+Imagine you are given <em>N=17</em> and <em>D=3</em>. Start with <em>i = 1</em>. We know that <em>i×D &lt; N_. So, it&#39;s safe to increment _i_. Now, with _i = 2_, we have _i×D = 6 &lt; 17_. We can now go to _i = 3_ so that _i×D = 9 &lt; 17_. We continue this until we have _i = 6_ and that _i×D = 18 &gt; N</em>. Now that we exceeded <em>N</em>, we know that <em>q = 5</em> and <em>r = N - q×D = 2</em>. </p>
+<p>Now that we have a design for our solution, we can start coding it. </p>
+<p><strong>Application of Step 3</strong>: To translate the design above into Python code, we will search for the language tools we have at our disposal and construct it. </p>
+<pre><code class="language-python">def divider(N,D):
+   q,r=0,0
+   if D==0: 
+      raise ValueError(&#39;Division by zero!&#39;)
+   if N &lt; D:
+      return 0,N
+   if N == D: 
+      return D,0 
+   i = 1
+   while i*D &lt;= N: 
+      i+=1
+   q=i-1
+   r=N-q*D 
+   return q,r
+</code></pre>
+<p>The first few lines in the program above are responsible for the cases that we discussed earlier. One noticeable language feature is the exception that we have used using the <code>raise</code> statement. This exception stops the program execution and displays the error message that we have specified in the string &#39;Divison by zero!&#39; so we tell the user that we cannot continue because the given input is invalid. 
+The core of the solution is in the <code>while</code> loop that we have introduced. This <code>while</code> loop iterates to find the quotation as we have defined in our solution design. Based on the quotation, we compute the remainder, and then we can return the results. </p>
+<p><strong>Application of Step 4</strong>: Now that we have a program, we must first check if there are no syntax errors. If none, we will provide various values for <em>N</em> and <em>D</em> and execute the function to see if it produces the desired outcome. This way of testing is called unit testing, where we test a unit of our program. It&#39;s not proof that our program works with all values for <em>N</em> and <em>D</em>, but as we do more testing, we would gain more confidence that our program works correctly or find cases where our program fails to produce the right results. In those cases, we will need to revise our design and code to fix the problems we face and redo the testing. </p>
+<h2 id="converting-a-decimal-number-to-a-binary-number">Converting a decimal number to a binary number</h2>
+<p>Sometimes programmers need to know the representation of a decimal number as a binary string. For example, we know that the decimal number 1 is represented as 0000 0001. Also, the decimal number 26 is represented as 0001 1010. </p>
+<p><strong>Problem:</strong> Given an integer value <em>n</em> in decimal format, write a Python program to produce a string <em>s</em> that represents n in binary. </p>
+<p><strong>Step 1:</strong> Notice that we are required to receive a number <em>n</em> and produce the binary string that is equal to <em>n</em>. This requires us to know that binary strings have a special meaning. A binary string such as 0011 can be seen as 
+0&#xd7;2<sup>3</sup>+0&#xd7;2<sup>2</sup>+1&#xd7;2<sup>1</sup>+1&#xd7;2<sup>0</sup>.</p>
+<p><strong>Step 2:</strong> Solving this problem requires that we write the number <em>n</em> in terms of powers of 2 since binary representations are powers of 2 as we saw in the previous step. Let&#39;s take n = 26. In this case, what will be the biggest power of 2 that is less than 26? 2<sup>5</sup> = 32 so it should be 2<sup>4</sup> = 16. The next one is 2<sup>3</sup> = 8. If 16 + 8 &lt; 26, then we also add 8. But we know that 16 + 8 = 24, so we&#39;re short only 2 from 26. Thus, we have 26 = 16 + 8 + 2, which can be written in binary as: 11010. This solution requires us to write a loop that keeps finding powers of 2 less than n that in total do not exceed n. </p>
+<p><strong>Step 3:</strong> We&#39;re now ready to translate the solution above into code. We need two while loops here. One is to find the power of 2 below or equal n. We will have a variable <code>v</code> to hold that number. The next while loop will produce the binary bits as we proceed. Note that the second while loop decreases <code>n</code> with <code>v</code>, divides <code>v</code> by 2 to find the next power of 2, and adds ones when <code>n</code> is still bigger than or equal to <code>v</code>. </p>
+<pre><code class="language-python">#This code is based on a code from book by Sedgewick et al. 
+#Assume n &gt;=0 and n is integer.
+n = int(input())
+
+#What is the biggest power, less than n?
+v = 1
+while True:
+   t=v*2
+   if t &gt; n: 
+      break
+   v = t
+
+#Find the binary string
+s = &#39;&#39;
+while v &gt; 0:
+   if n &lt; v: 
+      s += &#39;0&#39;
+   else:
+      s += &#39;1&#39;
+      n -= v
+   v //=2  
+</code></pre>
+<p><strong>Step 4:</strong> Try the code with a variety of numbers such as 26, 890, 0, and 14 and see if it works as you expect. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h2 id="a-bit-of-history">A bit of history</h2>
+<p>Humanity has always needed to use <em>computation</em> to solve some of the real-life problems. Computations could be as simple as adding two numbers or more complicated such as <a href="https://mathworld.wolfram.com/NewtonsMethod.html">methods</a> for finding the <a href="https://mathworld.wolfram.com/Root.html">root</a>s of a function. Virtually all scientific and engineering fields rely on some computational methods to solve their problems. If you are an educator, a physician, an engineer, or even a philosopher, you need to <em>process</em> data and produce information. For example, a teacher may want to know the average grades in a class or all school students. There could be hundreds of numbers, which need to be added up to compute their average. In the old days, some companies and governments recruited people whose jobs were described as <a href="https://en.wikipedia.org/wiki/Computer_(job_description)">computer</a>s. A computer used to be a person who received large piles of data and produced information using pencil and paper. As the volume of data and the need for computation grew, the human&#39;s job, the error produces, and the long hours needed to do simple computation did not make sense anymore. Motivated by money, and sometimes by <a href="https://en.wikipedia.org/wiki/Enigma_machine">winning over enemies</a>, eventually scientists designed <a href="https://www.britannica.com/technology/digital-computer">digital computers</a>, which used a simple <a href="https://mathworld.wolfram.com/Binary.html">binary system</a> of electrical signals to encode and operate on data. Today, these powerful machines are available as watches, mobile phones, large supercomputers, small devices that are <a href="https://en.wikipedia.org/wiki/Microchip_implant_(human)">embedded</a> in a human body, and a <a href="https://www.medtronic.com/covidien/en-us/products/capsule-endoscopy/pillcam-sb-3-system.html">Pillcam</a> that can monitor cancer tumor in a patient&#39;s gut.  In these notes, we will study the basics of dealing with computers by writing simple programs that instruct computers to do some tasks. These notes assume no prior computer knowledge except basic usage and assume the reader has a basic college-level understanding of algebra and calculus.  </p>
+<h2 id="computer-components">Computer Components</h2>
+<p>A computer is a device that has multiple <em>hardware</em> components. Each component performs a distinct task. The computer&#39;s brain is its Central Processing Unit (CPU) and memory. The CPU performs basic arithmetic and logical operation using the Arithmetic and Logic Unit (ALU). The memory is of two kinds. One is the short-term memory that is cleared out when your program is terminated. Usually, one way to implement short-term memory is using Random Access Memory (RAM). Another type is secondary storage. Modern computers use solid-state drives (SSD), which are very fast but slower than RAM. Larger data is stored on the secondary storage. When needed, parts of the data can be loaded into the RAM. Programming languages often have ways to use both the <a href="https://github.com/csdeptku/CS126-Python/wiki/02---Simple-Programs#a-simple-io-program">RAM</a> and <a href="https://github.com/csdeptku/CS126-Python/wiki/09-Processing-Data">secondary storage</a>. </p>
+<img src='https://github.com/csdeptku/CS126-Python/blob/main/images/cpu.jpg' width="300" height="240" >
+
+<img src='https://github.com/csdeptku/CS126-Python/blob/main/images/dram.jpg' width="300" height="166" >
+
+<h2 id="the-role-of-languages-and-translators">The Role of Languages and Translators</h2>
+<p>We use programming languages to communicate with computers. We construct sentences that translate to commands for a computer&#39;s CPU to execute. These sentences are not immediately understandable by the computer. To bridge this gap, we use a program called the <strong>compiler</strong> or the <strong>translator</strong> to translate our program (written in Python) to <strong>machine code</strong>. As programmers, we write programs, which the compiler will translate to machine code. When we would like to execute the program, the <strong>operating system</strong> helps us load our program into short-term memory (RAM). When the program is in RAM, the CPU starts executing our program&#39;s instructions until the last instruction is executed. </p>
+<p><img src="https://github.com/csdeptku/CS126-Python/blob/main/images/python-logo.png" alt=""></p>
+<h2 id="sequential-execution">Sequential Execution</h2>
+<p>Programs consist of lines of code. Each line is an <strong>instruction</strong> for the CPU to execute to achieve a specific goal. For example, an instruction can be to compute <code>x/y</code>. As a programmer, we specify that we would like to know how to divide <code>x</code> by <code>y</code>. The CPU starts executing these instructions starting with the first line of code in our program. Once the first line of code is executed (without any problems), the CPU goes to the next code line. This <strong>sequential</strong> execution continues until the last line of code is executed. As we may imagine, the CPU will not correct our mistakes or do things that we did not specify in a computer program. Instead, the CPU will do what we ask, even though what we ask may not be correct. Therefore, it is the program&#39;s job to ensure that the program performs what it should do. </p>
+<h2 id="data-to-information">Data to Information</h2>
+<p>A major benefit of computer programs is to transform <strong>data</strong> into <strong>information</strong>. Data can be in many forms. For example, you could collect all students&#39; grades at the 10th grade&#39;s mathematics course across all public high schools. We may write a simple program to produce the average of all the grades and their standard deviations. Further, we may print the maximum, the median, and the minimum grade for all students. These (and more complicated applications) are the information produced from the programs we write. Special to the Python language, we have many simple and efficient tools in the language that can help us collect and store data in memory, perform the computation that we need, and then print the final information used in our daily work. </p>
+<h2 id="syntax-and-grammar">Syntax and grammar</h2>
+<p>Similar to natural (human) languages, computer programming languages have specific grammar. Those who develop these languages specify how the programmer must write a program&#39;s statement correctly. The compiler&#39;s major duty is to check the program against the language grammar to conclude if the program has correct <strong>syntax</strong> (written correctly). If our program is not written correctly, the compiler will produce a <strong>syntax error</strong> and not translate our program into machine code. Therefore, we will not be able to execute our program. </p>
+<h2 id="basic-ingredients">Basic Ingredients</h2>
+<p>The basic ingredients of a computer program are the software and the language tools available to us to write_ and _ _ execute_ programs. A program is a file that contains <em>instructions</em> for a computer to be executed. Executing an instruction means performing the task that was required. For example, we may want the computer to produce the result of dividing 1200 by 67. To do this, we need to write a program that tells the computer to divide. Sometimes we can use existing tools in a programming language to ask the computer to perform a specific operation like division. Sometimes we need to give the computer complex instructions that cannot be expressed simply by tools available in a language. In those cases, we need to supply the computer with detailed step-by-step instructions to execute the task. Once we write the program, we will need to ask the compiler to translate it to machine language and then ask the operating system to execute our program. When executing our instructions, the CPU will not understand what our intentions are. The CPU will perform exactly what we have asked it to do even if our program contained the wrong instructions sequence. For example, we may want to write a program to receive two numbers, <code>x</code> and <code>y</code> from the user and display their sum on the screen. If we, instead, by mistake, ask the CPU to compute <code>x-y</code> and display it on the screen, the CPU will do that. Thus, it&#39;s important to make sure that we write programs that follow the correct grammar of the language we are using, and they also ask the CPU to perform what we wish to see as the outcome exactly. </p>
+<p>The basic ingredients that we would like to know about are: </p>
+<ol>
+<li>Python statements that describe the instructions,</li>
+<li>variables and their roles in using the RAM, </li>
+<li>expressions to compute values from other values, </li>
+<li>conditionals that allow us to tell the computer how to make decisions, </li>
+<li>repetition statements that allow us to tell the computer how to repeat some statements, and</li>
+<li>files and their roles in utilizing the secondary storage.</li>
+</ol>
+<h2 id="python-statements">Python Statements</h2>
+<p>A sentence in the Python programming language is called a statement. There are various kinds of statements. The most basic ones that we study first are expressions, which result in values and assignment statements. An assignment has a left-hand side (LHS) and a right-hand side (RHS) and the <code>=</code> in the middle. For example, <code>x = 10</code> is an assignment statement. This statement asks the CPU to reserve some memory in RAM, give the name <code>x</code> to that memory location, and put the value <code>10</code> in <code>x</code>. This does not exactly mean the equality sign we know from <strong>algebraic expressions</strong>. </p>
+<h2 id="python-expressions">Python Expressions</h2>
+<p>A program must be written in the correct syntax to be translated by the compiler. The correct syntax follows the rules of the programming language. For example, how can a programmer define a name in a program? Naming rules are defined based on the programming language.
+In addition to rules, there are tools that the Python language gives us to write programs. These tools are keywords, names, constants, and comments. We also learned that names can contain any letter, digit, or _ but cannot start with a digit. Python has a nice shell program, which we can use as a calculator. Starting to write simple programs, we learned that a Python program consists of statements. We learned that there are assignment statements and expressions. Each assignment looks like this: name = expression. For example, <code>x = 52</code> is correct assignment statement. Each expression must evaluate to a single value, which has a type. </p>
+<p>An expression can have arithmetic operators, which are: <code>**, *, /, //, %, +, -</code> (given in the order of precedence). Operator precedence means when we have several operations in one expression, those operations with higher precedence are evaluated first. Expressions can include parentheses <code>()</code>, which have the highest possible precedence. When two or more operators of the same level of precedence show up in one expression, we will prioritize left to right. Note that <code>+</code> and <code>-</code> each have two meanings. When <code>+</code> or <code>-</code> are used as unary operators, they mean positive and negative and have precedence just below <code>**</code>. When used as binary operators, they are treated as addition and subtraction operators and have precedence just below <code>*</code>. </p>
+<p>In addition to regular assignments, Python allows for augmented assignments. For example, we can say: <code>x+=5</code> instead of <code>x = x+5</code>. Do not forget that an assignment does <em>not</em> mean equality. Remember that the value of any variable can change, but constants remain as they are forever.</p>
+<p>As an exercise, without using Python, find out what is the value of <code>y</code> and what is the value of <code>x</code> when the CPU finishes the execution of the program below: </p>
+<pre><code class="language-python">x = 1
+x = x+1
+x = x-2
+x = x*2
+x/= 2
+y = 5
+y = y+x
+</code></pre>
+<p>To run this program, we should write it in a Python editor (such as <a href="https://docs.python.org/3/library/idle.html">IDLE</a>), save the file, and click on Run. </p>
+<p><img src="https://github.com/csdeptku/CS126-Python/blob/main/images/sequence.png" alt="Sequence of execution"></p>
+<p>Note that you can have two types of <strong>errors</strong> in your Python programs. An error is a mistake from the programmer in violating a rule. A syntax error is when you make a mistake in the way you write the program. For example, </p>
+<pre><code class="language-python">x = 2 3
+  File &quot;&lt;stdin&gt;&quot;, line 1
+    x = 2 3
+          ^
+SyntaxError: invalid syntax
+</code></pre>
+<p>is a syntax error because the program has no meaning to the compiler in terms of the language grammar. Another type of error that prevents the program from continuing execution is the <strong>runtime error</strong>. Programs with runtime errors do not have grammar errors but would like to do things that the CPU cannot do. For example, the code below has a runtime error because one cannot divide a number by zero (undefined operation). </p>
+<pre><code class="language-python">5 / 0
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ZeroDivisionError: division by zero
+</code></pre>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

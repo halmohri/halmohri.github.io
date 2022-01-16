@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h2 id="boolean-values">Boolean values</h2>
+<p>The CPU executes the instructions of a program as a sequence in the order written by the programmer. Execution of a Python program starts with the first line of code and ends with the last line of code; each line is executed. In many programs, the programmer wants to <em>control the flow</em>, that is, to change the order of execution according to some specific logic. This happens in our real lives. For example, when we are offered a dish, ideally, we would eat only <em>if</em> we feel hungry (assuming we never eat if we&#39;re full!). Therefore, some of our actions depend if a specific condition is <em>true</em>. Another example is that we go to work everyday <em>if</em> there is no holiday and we are not on leave. Thus, sometimes our conditions are complex and consist of multiple subparts. Many programming languages do allow us to specify conditions based on <em>truth values</em>. If a condition is <em>true</em> something happens, and if a condition is <em>false</em> something <em>else</em> happens. </p>
+<p>To write conditional statements, we must first understand how truth is specified in Python. 
+In Python, we have a simple type for specifying truth, which we call the <a href="https://en.wikipedia.org/wiki/George_Boole"><em>Boolean</em></a> type. A variable can have a Boolean type. Some expressions evaluate to Boolean values. There are two Boolean values: <strong>True</strong> and <strong>False</strong> (both keywords). We can assign a Boolean value to a variable, and we can also construct Boolean expressions. </p>
+<pre><code class="language-python">x = True 
+y = 1 &gt; 2 
+</code></pre>
+<p>A binary relational operator (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) specifies a relation between two objects and results in a Boolean value. As shown in the example above, the value of <code>x</code> is <code>True, </code> but the value of <code>y</code> is <code>False</code> because 1 is not greater than 2.
+We can also specify compound relations. In this case, a condition may consist of two or more sub-conditions. </p>
+<pre><code class="language-python">z = a &gt; b and a &gt; c
+</code></pre>
+<p>In the program above, we&#39;re using the <code>and</code> operator, a logical operator. There are three of them: <code>and</code>, <code>or</code>, and <code>not</code>. We can use the logical operators to connect multiple conditions and create a <em>single</em> final Boolean value. The value of <code>z</code> in the statement above depends on the numeric values of <code>a</code>, <code>b</code>, and <code>c</code>. </p>
+<p>We can also use <em>membership</em> operators: <code>in</code> and <code>not in</code>. These are used with sequence types. For example, we can use <code>in</code> to check if a particular element is in a list. </p>
+<pre><code class="language-python">x = &#39;a&#39; in &#39;hello&#39;
+y = 1 in [1,2,3,4]
+</code></pre>
+<p>The value of <code>x</code> is <code>False</code>, but <code>y</code> is <code>True</code>. Having these operators helps in establishing conditional statements, which we will study next. </p>
+<h2 id="conditional-statements">Conditional statements</h2>
+<p>A conditional statement has several forms. One simple conditional statement is the <code>if</code>-statement. One can <em>specify</em> for the computer to check if a specific condition is true and do something accordingly. For example, the following program asks the user to guess the value of <code>x</code>, a nonnegative integer less than 10. If the user answers correctly, the program cheers the user.  </p>
+<pre><code class="language-python">x = 3 
+guess = int(input(&#39;Guess the value of x: &#39;))
+if guess == x: 
+   print(&#39;You made it!&#39;)
+</code></pre>
+<p>As you can see, we should use the <code>if</code> keyword followed by a condition that evaluates to a Boolean value (either <code>True</code> or <code>False</code>) followed by a colon. If the condition is true, we want to tell the computer to execute some statements. These statements are below the <code>if</code>-statement with a mandatory indentation. Note that the <code>print</code> statement is only executed if <code>guess</code> is equal to <code>x</code>. The double equal sign indicates <em>equality</em> instead of the single equal sign, which means <em>assignment</em>. </p>
+<p>We want to make our program more interesting. We want to say something to the user when the user&#39;s guess is <em>not</em> correct. In that case, Python&#39;s <code>if</code>-statement can be completed with an <code>else</code>-statement. </p>
+<pre><code class="language-python">x = 3 
+guess = int(input(&#39;Guess the value of x: &#39;))
+if guess == x: 
+   print(&#39;You made it 😄&#39;)
+else: 
+   print(&#39;Try harder 🧐&#39;) 
+</code></pre>
+<p>If <code>guess</code> is equal to <code>x</code>, the first <code>print</code> statement is executed. Otherwise, the second <code>print</code> statement is executed. It&#39;s impossible that both statements are executed since <code>else</code> is the opposite of <code>if</code>. 
+This program can be even more interesting. We want to hint to the user that even though the guess was not correct, the value of <code>guess</code> was very close to <code>x</code>. So, if the difference between <code>guess</code> and <code>x</code> is less than two, the user is very close. Otherwise, the user must try harder. In this case, we have three cases, so we need something more than <code>if</code> and <code>else</code>. We can use an <code>elif</code> to accomplish this task. </p>
+<pre><code class="language-python">x = 3 
+guess = int(input(&#39;Guess the value of x: &#39;)) 
+if guess == x: 
+   print(&#39;You made it 😄&#39;)
+elif abs(guess - x) &lt;= 2: 
+   print(&quot;You&#39;re very close 😅&quot;)
+else:
+   print(&#39;Try harder 🧐&#39;) 
+</code></pre>
+<p>In this program, the computer first checks if <code>guess == x</code>. If this was true, both <code>elif</code> and <code>else</code> will not be executed as if they did not exist. If <code>guess</code> is not equal to <code>x</code>, the computer first checks if <code>abs(guess - x) &lt;= 2</code> is true. If it was true, it will execute the <code>print</code> statement beneath it and will forget about <code>else</code>. If both <code>if</code> and <code>elif</code> were not true, the program <em>will</em> execute the <code>else</code> statement for sure. 
+Another version of the program adds one more <code>elif</code> to tell the user that the guessed value is too far from the actual value. We assume if the difference between <code>guess</code> and <code>x</code> is 8 or more, then the user is way too far away. </p>
+<pre><code class="language-python">x = 3 
+guess = int(input(&#39;Guess the value of x: &#39;)) 
+if guess == x: 
+   print(&#39;You made it 😄&#39;)
+elif abs(guess - x) &lt;= 2: 
+   print(&quot;You&#39;re very close 😅&quot;)
+elif abs(guess - x) &gt;= 8: 
+   print(&quot;You&#39;re very far away 🙃&quot;)
+else:
+   print(&#39;Try harder 🧐&#39;) 
+</code></pre>
+<p>Finally, we will add a little bit of randomness to this program. We won&#39;t fix the value of <code>x</code> to 3. Instead, we&#39;d like to pick a random integer in a specific range and assign it to <code>x</code>. Luckily, Python has a library for that, which is called <code>random</code>. We can use one of the functions defined in <code>random</code> to pick an integer value in a specific range of our choice. </p>
+<pre><code class="language-python">import random 
+x = random.randint(0,10) 
+guess = int(input(&#39;Guess the value of x: &#39;)) 
+if guess == x: 
+   print(&#39;You made it 😄&#39;)
+elif abs(guess - x) &lt;= 2: 
+   print(&quot;You&#39;re very close 😅&quot;)
+elif abs(guess - x) &gt;= 8: 
+   print(&quot;You&#39;re very far away 🙃&quot;)
+else:
+   print(&#39;Try harder 🧐&#39;) 
+</code></pre>
+<p>This program first picks a random integer in the range [0,10] and assign it to <code>x</code>. Then, it continues as before and checks the user&#39;s guess. Try it on your computer and have fun. </p>
+<h2 id="string-and-list-comparisons">String and List Comparisons</h2>
+<p>We can compare two strings using relational operators. This is because characters are represented as numbers in memory. Each character that we can include in a string is stored as a number. For example, &#39;a&#39; is 97, &#39;b&#39; is 98, and so on. Since small letters and capital letters are different in Python, their numeric values are also different. For example, &#39;A&#39; is 65. To know the numeric representation of characters we can use a built-in function called <code>ord(x)</code>, where <code>x</code> is a single-character string. The value returned from <code>ord(x)</code> is the numeric representation of the character in <code>x</code>. The numeric representation is based on the <a href="https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html">ASCII table</a>, which designates an integer to represent a character. Even emojis are represented as numeric values because they are made of several ASCII characters. </p>
+<p>Given that strings are actually numbers in memory, Python allows us to compare them. Try the following <code>if</code>-statements to know how they are compared. </p>
+<pre><code class="language-python">if &#39;a&#39; &gt; &#39;A&#39;: 
+   print(&#39;a is greater than A&#39;)
+if &#39;z&#39; &lt; &#39;x&#39;:
+   print(&#39;z is less than x&#39;) 
+</code></pre>
+<p>What if we want to compare strings with multiple characters? To compare a string <code>T</code> with a string <code>S</code>, Python compares the first <code>n = min(len(T),len(S))</code> characters of <code>T</code> with those of <code>S</code> starting from the first character on the left. If the compared characters are equal, then <code>T</code> and <code>S</code> are equal. Otherwise, the relationship between <code>S</code> and <code>T</code> is based on the first character of the <code>n</code> characters that are different in <code>T</code> and <code>S</code>. When two strings have the same <code>n</code> characters, the one with <em>more</em> characters becomes the bigger. </p>
+<pre><code class="language-python">T = &#39;abc&#39;
+S = &#39;az&#39;
+x = T &lt; S
+y = &#39;1200&#39; &gt; &#39;160&#39;
+</code></pre>
+<p>In the program above, the value of <code>x</code> is <code>True</code> because <code>T</code> and <code>S</code> differ in the second character where <code>b</code> is less than <code>z</code>. Therefore, <code>T</code> is less than <code>S</code>. Similarly, the value of <code>y</code> is <code>False</code> because the two strings <code>1200</code> and <code>160</code> differ in <code>2</code> and <code>6</code> where <code>6 &gt; 2</code>. </p>
+<p>Lists are not different than strings in relational comparisons. The following program shows this. </p>
+<pre><code class="language-python">T = [1,2,6]
+S = [1,2]
+x = T &gt; S
+y = [1,6] &lt; [1,2]
+</code></pre>
+<p>The value of <code>x</code> is <code>True</code> here because <code>[1,2,6]</code> has more elements than <code>[1,2]</code> although the first two elements of <code>T</code> are equal to the elements of <code>S</code>. The value of <code>y</code> is <code>False</code> because <code>6 &gt; 2</code>. </p>
+<h2 id="using-boolean-valued-methods">Using Boolean-valued methods</h2>
+<p>There are methods that return Boolean values. Strings have such methods, which can be very useful. Suppose that we would like to write a program to decide if a given string has a numeric value (either integer or a float value). This can be done using some String methods. 
+First, as usual, we&#39;d receive the string from the user. Then, we can simply check if the string contains only digits by using a method called <code>S.isdigit()</code>, which returns <code>True</code> only if all the characters in the string <code>S</code> are digits. </p>
+<pre><code class="language-python">S = input()
+if S.isdigit():
+   print(S,&#39;is a number&#39;)
+else:
+   print(S,&#39;is not a number&#39;)
+</code></pre>
+<p>If you try this program with the string <code>&quot;10&quot;</code>, it will print <code>10 is a number</code>, but what if we enter <code>10.5</code>? It will print <code>10.5 is not a number</code>. The reason is that <code>10.5</code> has the decimal point in it, which is not a digit. To go around this problem, we can use another method <code>S.replace(x,y)</code>, where <code>S</code>, <code>x</code>, and <code>y</code> are all strings. This method replaces <em>every</em> occurrence of <code>x</code> with <code>y</code> in the string <code>S</code> and returns the resulting string as a <em>new</em> value. </p>
+<pre><code class="language-python">S = input()
+if S.replace(&#39;.&#39;,&#39;&#39;).isdigit() and s.count(&#39;.&#39;) &lt; 2:
+   print(S,&#39;is a number&#39;)
+else:
+   print(S,&#39;is not a number&#39;)
+</code></pre>
+<p>This time, with an input of <code>10.5</code>, we will get <code>10.5 is a number</code>. We replaced every occurrence of <code>&#39;.&#39;</code> with an empty string <code>&#39;&#39;</code>. The resulting string only includes the digits so we can decide if <code>S</code> is a numeric value. The program also prevents strings with more than one dot to be reported as numeric. This is done with the condition <code>s.count(&#39;.&#39;) &lt; 2</code>, which checks if the number of dots in the string is less than 2. </p>
+<p>Other useful Boolean-valued methods for strings: </p>
+<ul>
+<li><code>str.endswith(x)</code> does <code>str</code> end with <code>x</code>? </li>
+<li><code>str.isalnum()</code> does <code>str</code> contain only English alphabet characters or numeric characters?</li>
+<li><code>str.isalpha()</code> does <code>str</code> contain only English alphabet characters?</li>
+<li><code>str.isdigit()</code> is <code>str</code> a digit?</li>
+<li><code>str.islower()</code> is <code>str</code> lower case?</li>
+<li><code>str.isupper()</code> is <code>str</code> upper case?</li>
+<li><code>str.isspace()</code> does <code>str</code> contain only spaces?</li>
+<li><code>str.startswith(x)</code> does <code>str</code> start with <code>x</code>?</li>
+</ul>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

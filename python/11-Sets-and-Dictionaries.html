@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h2 id="sets">Sets</h2>
+<p>We can define sets in Python, which resemble the <a href="https://mathworld.wolfram.com/Set.html">set</a> theory from mathematics. Sets are simple types but are <em>expensive</em> to use and they can slow down the program because of their time-consuming operations for the CPU. To construct a set, one can use the <code>set()</code> function to do so, which can also optionally receive arguments. </p>
+<pre><code class="language-python">L = [1,2,3,4,4]
+S = set(L)
+T = {3,4,5,6} 
+</code></pre>
+<p>Sets do not have orders and do not allow repeated elements. For example, the set <code>S</code> above only contains <code>1,2,3,4</code> in no particular order. One can <em>add</em> values to a set or <em>pop</em> an arbitrary value from a set. When popping from a set, an element is deleted from the set and is returned as a value, which can be either used in an expression or stored in a variable. Note that we cannot add lists, tuples, or sets to a set. When working on sets, we often store numbers or strings in them. Also, because there is no order in a set, we cannot use indexing with sets. </p>
+<pre><code class="language-python">T.add(7)
+x = T.pop()
+</code></pre>
+<p>Standard set operations are available for Python sets. One can <a href="https://mathworld.wolfram.com/Intersection.html">intersect</a> or <a href="https://mathworld.wolfram.com/Union.html">union</a> two sets. It&#39;s also possible to compute the <a href="https://mathworld.wolfram.com/SetDifference.html">difference</a> between two sets. </p>
+<pre><code class="language-python">A = T &amp; S #T.intersection(S)
+B = T | S #T.union(S)
+C = T - S #T.difference(S)
+D = T ^ S #T.symmetric_difference(S)
+</code></pre>
+<p>Here is the description of these operations:</p>
+<ul>
+<li><code>T &amp; S</code> gives the values that are in both <code>T</code> and <code>S</code>. </li>
+<li><code>T | S</code> gives the values that are either in <code>T</code> or <code>S</code>. </li>
+<li><code>T - S</code> gives the values that are in <code>T</code> but not in <code>S</code>. </li>
+<li><code>T ^ S</code> gives the values that are either in <code>T</code> or <code>S</code> but not in both (exclusive or).</li>
+</ul>
+<p>Each of the three basic set operations can either be done using an operator (<code>&amp;</code>, <code>|</code>, <code>-</code>, <code>^</code>) or using a corresponding set method. 
+Try the operations above and see the elements that are stored in <code>A</code>, <code>B</code>, and <code>C</code>. </p>
+<h2 id="dictionaries">Dictionaries</h2>
+<p>A dictionary is a type that can hold multiple items of key and value pairs. Each item in a dictionary has a key that can be a string (or some other types) and a corresponding value that can be of any type. Dictionaries can be best explained using an example. Suppose that we would like to construct a dictionary to hold the records of a student, including name, GPA, current courses, major, and the number of credits passed so far. </p>
+<pre><code class="language-python">student = dict() 
+student[&#39;name&#39;]    = &#39;Ahmad&#39;
+student[&#39;GPA&#39;]     = 3.7
+student[&#39;courses&#39;] = {111,126,201,301}
+student[&#39;major&#39;]   = &#39;Mathematics&#39; 
+student[&#39;credits&#39;] = 60 
+</code></pre>
+<p>The dictionary above has five items of keys and values. We can similarly add more. We can also delete an item by using the <code>del</code> operator followed by the dictionary name and a valid key. We could also write a for loop that iterates over all the items in a dictionary.</p>
+<pre><code class="language-python">for key, value in student.items():
+   print(key,&#39;:&#39;,value) 
+</code></pre>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

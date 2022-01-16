@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <p>A string is a <em>sequence of characters</em>. A character could be an English letter, a digit, or a symbol. Emojis, characters of languages other than the English language are all characters. The collection of all possible characters is in the <a href="https://ascii.cl/">ASCII</a> standard. In Python we can construct a <strong>string literal</strong>, that is, a value of type string. Thus, we can also store strings in variables similar to the numeric types. However, strings are different than numeric types. First, strings consist of a collection of characters. Numeric values can be constructed only from digits and the decimal point. Operations of strings are also different. Some operators that work for numeric types also work for strings but have different meanings. </p>
+<p>To define a string literal, we should use a single or a double quotation mark: </p>
+<pre><code class="language-python">s = &#39;This is a string&#39;
+t = &quot;This is also a string&quot;
+</code></pre>
+<p>Note that a string starts with a quotation mark and ends with it. Each character in a string has an index and indexes start with 0 and end with the <em>N</em>-1, where <em>N</em> is the number of characters in the string.</p>
+<h2 id="string-indexing">String Indexing</h2>
+<p>Strings are values and could be stored in any variable. One can work with parts of a string by using indexing: the string <code>&quot;Kuwait&quot;</code> has the following indexes: 0, 1, 2, 3, 4, 5 and -1, -2, -3, -4, -5, -6. For example, <code>&quot;Kuwait&quot;[-1]</code> evaluates to the string <code>&quot;t&quot;</code>. One can get more than one character of a string by defining a range: <code>&quot;Kuwait&quot;[:2]</code> which evaluates to <code>&quot;Ku&quot;</code>.</p>
+<table>
+<tr>
+    <td>-6</td>
+    <td>-5</td>
+    <td>-4</td>
+    <td>-3</td>
+    <td>-2</td>
+    <td>-1</td>
+  </tr>
+  <tr>
+    <td>K</td>
+    <td>u</td>
+    <td>w</td>
+    <td>a</td>
+    <td>i</td>
+    <td>t</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+</table>
+
+
+
+<h2 id="string-functions-and-methods">String Functions and Methods</h2>
+<p>We can apply functions and methods to strings. For example, we can check how many characters are in a string and print it for the user: </p>
+<pre><code class="language-python">x = input(&quot;Enter your name: &quot;)
+print(&quot;Your name has&quot;, len(x), &quot;characters.&quot;)
+</code></pre>
+<p>This program receives a string and stores it in x. Then, <code>len(x)</code> produces an integer value <em>N</em> equal to the number of characters in <code>x</code>. The print function displays this value on the screen. </p>
+<p>What if we want to know if a string exists in another string? We can use a string <strong>method</strong>, which is a function that applies to a value of type string. To find if a string is part of another string, we can use the <code>find</code> method, which returns the index of <code>s</code> if <code>s</code> is in <code>t</code> or -1 otherwise: </p>
+<pre><code class="language-python">&#39;hello world&#39;.find(&#39;l&#39;) #returns 2
+&#39;hello world&#39;.find(&#39;x&#39;) #returns -1 
+</code></pre>
+<p>The <code>find</code> method searches for <code>s</code> in <code>t</code> from left to right and returns the first index of <code>s</code> in <code>t</code>. 
+We can reverse this by using the <code>rfind</code> method, which searches for <code>s</code> in <code>t</code> but from the right to the left: </p>
+<pre><code class="language-python">&#39;hello world&#39;.rfind(&#39;l&#39;) #returns 9
+&#39;hello world&#39;.rfind(&#39;o&#39;) #returns 7
+</code></pre>
+<p>Note that <code>find</code> and <code>rfind</code> <em>only</em> use nonnegative indexes except when <code>s</code> is not found. </p>
+<p>We can also count the occurrences of a string <code>s</code> in another string <code>t</code> using the <code>count</code> method: </p>
+<pre><code class="language-python">x = t.count(s) 
+</code></pre>
+<p>In this program, <code>x</code> is an integer equal to the number of times <code>s</code> appeared in <code>t</code>. </p>
+<p>Other useful string functions, assuming <code>s</code> is a string: </p>
+<pre><code class="language-python">s.upper()
+s.lower()
+s.captialize()
+s.title()
+</code></pre>
+<p>Strings can be <strong>sliced</strong>. That is, we can extract a part of a string (a slice) and store it in a variable or print it on the screen. 
+String slicing works with string indexes. We can specify a range of indexes to represent a new slice of a string to be extracted. For example, if we want to slice the first half of a string <code>s</code>, we can do the following: </p>
+<pre><code class="language-python">n = len(s) //2 
+t = s[0:n] 
+</code></pre>
+<p>In general, a slice <code>s[x:y]</code> is all the characters in <code>s</code> starting with index <code>x</code> until before (excluding) the index <code>y</code>. 
+Example: </p>
+<pre><code class="language-python">s = &#39;hello world&#39;
+t = s[0:5]
+print(t) #This will print &#39;hello&#39;
+</code></pre>
+<p>We can use default slicing values. If we are starting with index 0, we can just omit 0. For example, <code>s[0:5]</code> becomes <code>s[:5]</code>. If we want to go from index <code>x</code> to the last index in the string, we can write <code>s[x:]</code>. We can also use negative indexes for slicing with the same effect. </p>
+<p>We can use a trick to <em>reverse</em> the characters of a string: </p>
+<pre><code class="language-python">s = &#39;hello&#39;
+print(s[::-1]) #This will print &#39;olleh&#39;
+</code></pre>
+<p>Other types can be converted to strings. For example, we may need to convert a number from a numeric type to a string type. The following program tries to print the first digit of an integer <code>x</code> by converting it to a string. Note that to convert a numeric value to a string, we can use the built-in <code>str</code> function. </p>
+<pre><code class="language-python">x = 100
+s = str(x) 
+print(s[0]) 
+</code></pre>
+<h2 id="python-strings-and-input">Python Strings and Input</h2>
+<p>To receive input from the user, programmers can use the <code>input()</code> function, for example, <code>s = input()</code>, which will cause the program to wait for something to be provided by the user using the keyboard. As soon as the user hits on enter, the program collects all the characters that the user entered on the keyboard and stores them as a <strong>string</strong> in the variable <code>s</code> (or whatever variable you want to have). </p>
+<h2 id="converting-input-to-useful-types">Converting input to useful types</h2>
+<p>When receiving an input <code>x = input()</code>, the value stored in <code>x</code> is always a string. If the user enters a number on the keyboard, the number will also be stored as a string. For example, say the user wants to run the following program:</p>
+<pre><code class="language-Python">x = input()
+y = input()
+z = x + y  
+</code></pre>
+<p>When prompted for <code>x</code> and <code>y</code>, the user enters <code>10</code> and <code>20</code>. What would be the result in <code>z</code>? We expect the result to be <code>30</code> but the result will be <code>1020</code>. This is because <code>+</code> on a string does NOT add the two strings together but <em>concatenates</em> the two strings; that is, it puts them together in a single string. If we want to add two numbers that we received from the user on the keyboard, we need to <em>convert</em> the two strings <em>containing</em> user numbers to numeric types: </p>
+<pre><code class="language-Python">x = input()
+y = input()
+x = float(x) #or int(x)
+y = float(y) #or int(y)
+z = x + y  
+</code></pre>
+<p>When running this program, if the user enters <code>10</code> and <code>20</code> for <code>x</code> and <code>y</code>, the result in <code>z</code> will be <code>30</code>. This is because the function <code>int</code>, when applied to a string containing only numbers, generates a value of type integer. Similarly, <code>float</code> generates a value of type <code>float</code>. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

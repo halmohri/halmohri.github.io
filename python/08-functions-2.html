@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+
+<link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+<script src="../lib/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
+    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+  </head>
+</head><body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class="post-text" id="post-text" style="width: fit-content; ">
+    <h2 id="overview">Overview</h2>
+<p>Functions are subprograms that package a sequence of program statements for execution when needed. A function must be defined before it can be used. Some of the functions are <a href="https://docs.python.org/3/library/functions.html">built-in</a> functions that are already defined in Python and we can just use them. Others come from the standard <a href="https://docs.python.org/3/library/">libraries</a> or libraries that can be installed using package managers such as <a href="https://docs.python.org/3/installing/index.html">pip</a>. Here, we will see how we can define a <em>programmer-defined</em> function and what it means to <em>return</em> values from functions and <em>call</em> functions.</p>
+<h2 id="defining-functions">Defining functions</h2>
+<p>To define a function, we will need a way to tell the compiler that here is a definition of a function. This is done by using the keyword <code>def</code>, which means define.</p>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span>:</span>
+   <span class="hljs-keyword">return</span> x**<span class="hljs-number">2</span>
+</code></pre>
+<p>The square function above is a programmer-defined function that is named <code>square</code> (according to Python naming rules) takes a single <em>parameter</em> <code>x</code> and <em>returns</em> x<sup>2</sup>. This is only the definition of the function. When we run the program above, nothing happens because we did not tell the CPU when and how to execute the function <code>square</code>. To do that, we should call <code>square</code> and supply it with a numeric value to get the square of that numeric value.</p>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span>:</span>
+   <span class="hljs-keyword">return</span> x**<span class="hljs-number">2</span>
+
+value = eval(input(<span class="hljs-string">'Enter a number: '</span>))
+print(<span class="hljs-string">'Squared:'</span>, square(value))
+</code></pre>
+<p>In this program, we take a <code>value</code> from the user and print value<sup>2</sup> by <em>calling</em> <code>square</code>. When executing the program above, the CPU starts the execution by asking the user for <code>value</code> and converting it to a numeric type using <code>eval</code>. Then, when executing <code>print</code>, to get the value that must be printed, the CPU jumps to the execution of <code>square</code> as specified by our program. Only at this time, the CPU fully executes <code>square</code>, evaluates the expression ahead of the <code>return</code> statement, and <em>returns</em> the result back to where the function was called. The returned result is then given to <code>print</code> to be displayed on the screen. </p>
+<h2 id="functions-with-no-return">Functions with no return</h2>
+<p>There could be functions that do not return anything. One such function is the <code>print</code> function, which only takes its input arguments and displays them on the screen. For example, a statement such as <code>x = print(1)</code> has no special effect beyond printing <code>1</code> on the screen. The variable <code>x</code> will not contain any value after executing the statement. These functions have no return statement. </p>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">()</span>:</span>
+   print(<span class="hljs-string">'Hello and welcome to my program. Below are the instructions on how to proceed.'</span>)
+</code></pre>
+<p><code>f</code> is only used to print a message when needed. This is useful to only call <code>f</code> to produce the message instead of repeating the message throughout the program. When we need to change the message, we only have to change the <em>body</em> of the function <code>f</code> to include the updated message. </p>
+<h2 id="rules-for-defining-functions">Rules for defining functions</h2>
+<p>These rules are true (except for some details that may not be important at the moment) when defining functions:</p>
+<ol>
+<li>You can define any number of functions in a program.</li>
+<li>A function has a name and can have any number of parameters.</li>
+<li>Function names follow the rules of variable names.</li>
+<li>A function may or may not return a value. </li>
+<li>Function body is not executed until the function is called.</li>
+<li>The values of function call arguments are copied to function parameters with numeric and string types.</li>
+<li>When a function call argument is a list, a pointer to the list is copied to function parameters. Changing the list inside the function changes the list in the caller.</li>
+</ol>
+<h2 id="a-function-to-split-a-string">A function to split a string</h2>
+<p>We&#39;re required to write a function that receives a string <code>S</code> and a separator string <code>sep</code> and returns a list by splitting <code>S</code> according to the separator <code>sep</code>. For example, given <code>&quot;hello-world&quot;</code> as <code>S</code> and <code>&quot;-&quot;</code> as <code>sep</code>, the function returns <code>[&#39;hello&#39;,&#39;world&#39;]</code>. This function works similarly to the <code>split</code> method for strings. </p>
+<p>To solve this problem, after understanding it, we must design a solution for it. Our design is realized in the following steps. 
+Assume <code>L</code> is an empty list and <code>T</code> is an empty string. </p>
+<ol>
+<li>For each character <code>c</code> in <code>S</code>.</li>
+</ol>
+<ul>
+<li>If <code>c</code> is not <code>sep</code>, add it to a temporary variable <code>T</code>. </li>
+<li>If <code>c</code> is <code>sep</code>, add <code>T</code> to the list <code>L</code> and reset <code>T</code> to an empty string.</li>
+</ul>
+<ol start="2">
+<li>Return <code>L</code></li>
+</ol>
+<p>Our design is now ready to be translated to Python. </p>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">split</span><span class="hljs-params">(S,sep)</span>:</span>
+   L=[]
+   T=<span class="hljs-string">''</span>
+   S+=sep
+   <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> S:
+      <span class="hljs-keyword">if</span> c != sep:
+         T+=c
+      <span class="hljs-keyword">else</span>:
+         L.append(T)
+         T=<span class="hljs-string">''</span>
+   <span class="hljs-keyword">return</span> L
+</code></pre>
+<h2 id="optional-parameters">Optional parameters</h2>
+<p>A function can have optional parameters. That is, parameters that have default values do not need to receive arguments from a function call. </p>
+<pre><code class="python hljs">
+<span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt, inf
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x,y,a=inf,b=inf)</span>:</span>
+   s,t = <span class="hljs-number">0</span>,<span class="hljs-number">0</span>
+   <span class="hljs-keyword">if</span> a &lt; inf:
+      s = x+y*a
+   <span class="hljs-keyword">if</span> b &lt; inf:
+      t = x+y*<span class="hljs-number">2</span>*sqrt(b)
+   <span class="hljs-keyword">return</span> s,t,x+y
+
+print(f(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>))
+print(f(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,b=<span class="hljs-number">4</span>))
+print(f(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,a=<span class="hljs-number">2</span>,b=<span class="hljs-number">4</span>))
+</code></pre>
+<p>In this program, <code>a</code> and <code>b</code> are optional parameters. If the call does not supply arguments for either <code>a</code> or <code>b</code>, they&#39;d be assigned ∞. Otherwise, they will receive the value of the provided arguments. For example, in the first print, no value is provided for <code>a</code> or <code>b</code>. In this case, both are assumed to be ∞. In the second print, only <code>b</code> has an argument while <code>a</code> remains ∞. Finally, in the last print, both <code>a</code> and <code>b</code> receive values from the call. </p>
+<p>Notice that this function can return multiple variables. The <code>return</code> statement constructs a tuple with the value of <code>s</code>, <code>t</code>, and <code>x+y</code> and returns it to the call. The value received by the call is a tuple and can be used accordingly. </p>
+<h2 id="scope-of-variables">Scope of variables</h2>
+<p>Python has a way to tell which variables are <em>visible</em> where. That is, if a specific variable name <code>x</code> appears in multiple locations in the program, we&#39;d like to know if each appearance points to a different location in memory. The <em>scope</em> of a variable determines when a variable is visible. This concept is directly related to functions. This is because a function creates a new scope in which we can reuse variable names from other scopes. This can be easier to understand with an example. </p>
+<pre><code class="python hljs">x = <span class="hljs-number">10</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x)</span>:</span>
+   x = <span class="hljs-number">2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">g</span><span class="hljs-params">()</span>:</span>
+   print(x)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">h</span><span class="hljs-params">()</span>:</span>
+   <span class="hljs-keyword">global</span> x
+   x = <span class="hljs-number">4</span>
+
+g()
+f(x)
+print(x)
+h()
+print(x)
+</code></pre>
+<p>This program outputs 10 10 2. We can observe that <code>x</code> appears in multiple scopes. First, <code>x</code> is a global variable with a value of 10. This variable occupies a memory cell, which holds 10. Next, when we call <code>g()</code>, we see that <code>g()</code> can <em>see</em> the variable <code>x</code> because <code>x</code> is global. If <code>g</code> had defined a variable with the same name, then <code>g</code> would only see its own <em>local</em> copy, which we call a <em>local variable</em>. 
+Next, we see that calling <code>f(x)</code> does not affect the value of the global variable <code>x</code>. Although, <code>f</code> appears to modify <code>x</code>, since <code>x = 2</code> is seen by the compiler as the definition of a new variable, then <code>f</code> can only see its local variable <code>x</code>, which points to a memory location holding 2, but cannot see the global variable <code>x</code>, which points to a memory location holding 10. After that, we see that <code>h</code> uses the keyword <code>global</code>. This is used only when a function wants to <em>modify</em> the value of a global variable. In this case, the function declares that a variable is used as a global variable and can change its value using an assignment. This is why the last <code>print</code> outputs 4 on the screen. </p>
+<p>The basic scope rules are summarized below. </p>
+<ol>
+<li>A variable defined outside any function is a global variable. </li>
+<li>Each function can reuse the names of global variables for its own local variables.</li>
+<li>A function <code>g</code> can use the value of a global variable if <code>g</code> itself does not declare a (local) variable with the same name.</li>
+<li>A function <code>g</code> can declare that a variable <code>x</code> is global using the <code>global</code> keyword. Then, any assignment to <code>x</code> would change the value of the global variable <code>x</code>.</li>
+</ol>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+
+
+</div></body>
+
+</html>
