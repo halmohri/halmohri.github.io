@@ -38,7 +38,12 @@
     <div class="container-fluid">
 
     <div class='post-text' id='post-text' style="width: fit-content; ">
+    <a href="/python/">Book Index</a>
+    </div>
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
     <p><a href="/python/05-Lists-&amp;-Tuples">Previous</a> - <a href="/python/07-Repetition">Next</a></p>
+<h1 id="conditional-statements">Conditional Statements</h1>
 <h2 id="boolean-values">Boolean values</h2>
 <p>The CPU executes the instructions of a program as a sequence in the order written by the programmer. Execution of a Python program starts with the first line of code and ends with the last line of code; each line is executed. In many programs, the programmer wants to <em>control the flow</em>, that is, to change the order of execution according to some specific logic. This happens in our real lives. For example, when we are offered a dish, ideally, we would eat only <em>if</em> we feel hungry (assuming we never eat if we&#39;re full!). Therefore, some of our actions depend if a specific condition is <em>true</em>. Another example is that we go to work everyday <em>if</em> there is no holiday and we are not on leave. Thus, sometimes our conditions are complex and consist of multiple subparts. Many programming languages do allow us to specify conditions based on <em>truth values</em>. If a condition is <em>true</em> something happens, and if a condition is <em>false</em> something <em>else</em> happens. </p>
 <p>To write conditional statements, we must first understand how truth is specified in Python. 
@@ -56,7 +61,7 @@ We can also specify compound relations. In this case, a condition may consist of
 y = 1 in [1,2,3,4]
 </code></pre>
 <p>The value of <code>x</code> is <code>False</code>, but <code>y</code> is <code>True</code>. Having these operators helps in establishing conditional statements, which we will study next. </p>
-<h2 id="conditional-statements">Conditional statements</h2>
+<h2 id="conditional-statements-1">Conditional statements</h2>
 <p>A conditional statement has several forms. One simple conditional statement is the <code>if</code>-statement. One can <em>specify</em> for the computer to check if a specific condition is true and do something accordingly. For example, the following program asks the user to guess the value of <code>x</code>, a nonnegative integer less than 10. If the user answers correctly, the program cheers the user.  </p>
 <pre><code class="language-python">x = 3 
 guess = int(input(&#39;Guess the value of x: &#39;))

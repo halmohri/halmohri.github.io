@@ -38,7 +38,11 @@
     <div class="container-fluid">
 
     <div class='post-text' id='post-text' style="width: fit-content; ">
-    <p><a href="/python/09-Problem-Solving">Previous</a> - <a href="/python/11-Sets-and-Dictionaries">Next</a></p>
+    <a href="/python/">Book Index</a>
+    </div>
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h1 id="processing-data-with-secondary-storage-files">Processing Data with Secondary Storage (files)</h1>
 <p>Processing data is the main reason behind the design of modern digital computers and programming languages. We are often faced with large datasets for which we have methods to produce the necessary information. However, executing those methods without digital computers is nearly impossible. Imagine if you&#39;re given the task of computing the average grade in the final mathematics exam for the students of the 12th grade in an entire country. You will take a long time, get tired soon, and make a lot of mistakes. Instead, we can write a few lines of code to load the data for all students from the long-term memory (also called secondary storage) to the short-term memory (such as RAM), followed by a few more instructions for the computer to compute the average of the grades for all students in a much smaller fraction of time compared to a human as a computer. 
 Here, we will learn about a basic file structure called the Comma Separated Format (CSV) used to store data on secondary storage. We will write a program to load data from a CSV file into memory (represented by a list variable) and then compute an average. </p>
 <p>The CSV file format is simple. Each line has values that are separated by commas. Each value represents a column and each line represents a column. Thus, we can have a simple matrix structure in a CSV file. Python has a nice way of reading a CSV file by using the CSV library. Whenever we need to load data from a file into memory, we need to tell the computer to <em>open</em> the file for reading. Then, we will tell the CSV library to prepare for reading from the opened file by creating a reader object. Once we do that, we can loop through the reader object to reach each row from the CSV file and store it into a list we call <code>data</code>. Each row itself is stored as a list. Thus, we can think of the <code>data</code> list as a list of lists. That is, each element of the list <code>data</code> is itself a list that captures a row from the file we loaded into the memory. </p>
