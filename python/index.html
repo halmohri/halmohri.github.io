@@ -42,6 +42,10 @@
     </div>
 
     <div class='post-text' id='post-text' style="width: fit-content; ">
+    <a href="https://almohri.io">Author's homepage</a>
+    </div>
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
     <h1 id="the-python-programming-open-book">The Python Programming Open book</h1>
 <h3 id="edition-1-last-updated-feb-2022">Edition 1. Last updated Feb 2022.</h3>
 <h2 id="preface">Preface</h2>
@@ -95,7 +99,12 @@ available functions and methods in Python. </p>
 
 
     <script type="text/javascript">
-      
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
     </script>
 </body>
 
