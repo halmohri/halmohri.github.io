@@ -164,7 +164,12 @@ Next, we see that calling <code>f(x)</code> does not affect the value of the glo
 
 
     <script type="text/javascript">
-      
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
     </script>
 </body>
 

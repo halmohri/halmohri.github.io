@@ -180,7 +180,12 @@ for x in L:
 
 
     <script type="text/javascript">
-      
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
     </script>
 </body>
 
