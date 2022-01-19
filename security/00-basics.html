@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
+    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>The Python Programming Open Book - Hussain Almohri</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <a href="/python/">Book Index</a>
+    </div>
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h1 id="what-is-security">What is security?</h1>
+<p>A good way to start thinking about security is to understand the term security problem. Any system has a set of usage requirements. For example, a road connecting two locations has an allowed speed range in one specific direction, sometimes during particular time intervals, along with registration and technical requirements regarding the type of vehicle that uses the road. There are many such requirements in a traffic system or other similar systems that we use in our daily lives. When traveling, airport authorities require travel documents, a ticket, and security monitoring before allowing passengers to board the flight. </p>
+<p>There are ways to go around the system&#39;s requirement in any scenario, and <em>violate</em> the rules under which the system operates. 
+For example, a driver chooses to go in the wrong direction, or a passenger attempts to bypass the security monitoring procedures at the airport. Both are <em>users</em> of the system, know the rules that users must follow, and aim for violating the rules to achieve a specific objective. The violator could have financial motivations or aim to disrupt the system. In the context of security, we call these violations <em>attacks</em> and the violators are either <em>adversaries</em> or <em>attackers</em>. 
+Adversaries use a procedure, a set of steps, to operate the system while violating the rules. For example, suppose that an adversary aims to bypass the security monitoring at the airport. To proceed to the gate for boarding, passengers must only have a single path that goes through the security monitoring area. If the airport security system has a flaw that allows two paths towards the gate, one with security monitoring and one without, the adversary can search for the second path, exploit it, and proceed to the gate without ever going through security monitoring. The system is thus vulnerable to an attack, and the attacker&#39;s path is an exploit for the vulnerability in the system design. </p>
+<p>To perform a systematic study of the concepts behind security, we use the definitions below. </p>
+<p><strong>System.</strong> A <em>system</em> provides services to a set of rules subject to regulations (rules). </p>
+<p><strong>Vulnerability.</strong> Provided a system user exploits and operates a system by violating the rules that govern the system, the procedure that operates the system under the condition as mentioned earlier is a <em>vulnerability</em>. </p>
+<p><strong>Attacker.</strong> An <em>attacker</em> is a system user that aims to violate the system&#39;s rules by exploiting a weakness intentionally.  </p>
+<p>Note that an attacker does not have to be a person. An attacker could be a person or a computer program that exploits the system. Also, a system does not need to be software. It could be a combination of software, hardware, and human operators. However, systems of interest here are primarily made of software components. For example, a web server has underlying hardware, a software stack, and a system administrator (human in the loop). Most of the problems we deal with concern vulnerabilities in the software stack and methods to provide security. </p>
+<p>Security is a relative term. We cannot have absolute security or say we want to improve security without a contextual definition. Our approach in defining security is to start with a vulnerability and make our way towards security. That is, suppose that a system has no rules (for the sake of argument). For instance, we have a building that anyone could use at any time with no limit on usage. Then, our system is always secured against attacks since no attacks can be initiated (in the context of accessing the building) in the first place. But if we had to specify that anyone who enters the building must leave by 9 PM. If we leave the system description, any user can attack the system and remain past 9 PM. We have a security vulnerability if we install a security guard that forces users to leave before 9 PM, and our security guard does not strictly enforce the rule. With this system, the problem is to secure the system against intrusions that remain past 9 PM. If we could achieve that, we would have a relatively secure system. 
+Systems are usually a lot more complicated. There are multiple ways to enter a system (e.g., ports to connect to a server), and thus there are various ways to bypass an <em>authentication</em> guard. For example, a naive design of a mobile operating system may have a mechanism to unlock the system&#39;s screen using a personal identification number (PIN) code while leaving the system vulnerable to unauthenticated access through a universal serial bus (USB). This design fault leads to a severe vulnerability, allowing an adversary with physical access to the device to attack it. The mobile operating system can even be vulnerable to more <em>attack vectors</em>. For example, the system can run services to receive notifications, text messages, or mail. These services allow <em>remote intrusion</em> to succeed if they suffer from authentication vulnerabilities.</p>
+<p>According to <a href="https://ieeexplore.ieee.org/document/1451869">Saltzer &amp; Shroeder</a>,<br>&quot;the term security describes techniques that control who may use or modify the computer or the information contained in it.&quot; </p>
+<p>Saltzer &amp; Shroeder&#39;s definition of security is concise and elegant, but we need to establish more and limit security in terms of adversaries&#39; abilities. Thus, we will modify the definition above to connect security with classes of vulnerabilities. </p>
+<p><strong>Security</strong>. Techniques to protect a system&#39;s functions and data against specific classes of vulnerabilities that adversaries can exploit.</p>
+<p>Vulnerabilities can be the results of two sources, a design flaw that leads to an open door for the attacker to enter and an implementation flaw that hasn&#39;t been captured by proper system testing. Design flaws lead to vulnerabilities because the system is not well-thought at the design stage. For example, the design of a communication protocol may have a vulnerability, allowing the attacker to misuse both ends of the communication to their advantage. The system can be well tested in implementation while suffering from severe design flaws. In other cases, a system may be well-thought, have a clean and robust design, and have no major vulnerability. For example, one may <em>encrypt</em> the traffic between a client and a server under the best possible design. Still, the network layer responsible for encrypted data transfer may mistakenly allow some of the data to be transferred in <em>plaintext</em>. This is not a design flaw but an implementation error that has not strictly abided by the design rules. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      
+    </script>
+</body>
+
+</html>
