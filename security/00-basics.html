@@ -59,6 +59,18 @@ Systems are usually a lot more complicated. There are multiple ways to enter a s
 <p>Vulnerabilities can be the results of two sources, a <strong>design flaw</strong>, or an <strong>implementation flaw</strong>. A design flaw leads to an open door for the attacker to enter and an implementation flaw that hasn&#39;t been captured by proper system testing. Design flaws lead to vulnerabilities because the system is not well-thought at the design stage. For example, the design of a communication protocol may have a vulnerability, allowing the attacker to misuse both ends of the communication to their advantage. The system can be well tested in implementation while suffering from severe design flaws. </p>
 <p>In other cases, a system may be well-thought, have a clean and robust design, and have no major vulnerability. But the system may still suffer from an implementation flaw. For example, one may <em>encrypt</em> the traffic between a client and a server under the best possible design. Still, the network layer responsible for encrypted data transfer may mistakenly allow some of the data to be transferred in <em>plaintext</em>. This is not a design flaw but an implementation flaw that hasn&#39;t <em>executed</em> the design principles as they should. </p>
 <p>In practice, we often deal with a mixture of design and implementation flaws that result in vulnerable systems. Avoiding this mixture requires that security requirements are built-in at the very early stages of system design. With existing (or commodity) systems we also need analytical tools and protection mechanisms that would find vulnerabilities to be fixed or protect against vulnerabilities that cannot be fixed at production level.</p>
+<h2 id="security-principles-that-guide-design">Security principles that guide design</h2>
+<p>Security revolves around three basic principles: <em>integrity</em>, <em>confidentiality</em>, and <em>availability</em>. The point of following these principles is to guide the engineering and testing processes to avoid potential vulnerabilities or to fix them when they appear. To get a better idea, imagine we&#39;re designing an e-government platform for patient registration. The system design process must follow integrity as a general property. Integrity means that the system protects functions and data provided to patients and does not allow unauthorized access to sensitive functions or data. Confidentiality guides the design to keep all users (patients) isolated from each others, all data remains secret unless with the consent of the user, and no unauthorized, unprotected data exchange is allowed in the data. Finally, all patients must always have access to the system at any time. Disruption in functions or availability of data undermines system security so our design has to maintain availability at all times. </p>
+<h2 id="how-to-protect-systems">How to protect systems?</h2>
+<p>From a high-level perspective, we need to follow three fundamental approaches to protect systems. </p>
+<ol>
+<li><p>Design systems based on strong threat models and use state-of-the-art architectural and theoretical techniques to provide integrity, confidentiality, and availability. </p>
+</li>
+<li><p>Provide protective environments that enable a multi-layer approach to detecting potential  vulnerabilities. </p>
+</li>
+<li><p>Continuously test systems for flaws and use an efficient re-engineering process to fix vulnerabilities.</p>
+</li>
+</ol>
 
     </div>
 
