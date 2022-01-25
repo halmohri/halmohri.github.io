@@ -79,6 +79,8 @@ Systems are usually a lot more complicated. There are multiple ways to enter a s
 <li><p>Continuously test systems for flaws and use an efficient re-engineering process to fix vulnerabilities.</p>
 </li>
 </ol>
+<p>In the first approach, the assumption is that the system is in development. Following a proper software engineering process, the security requirements are integrated with system requirements early on. The requirements must be the results of a threat modeling process, leading to an understanding of the adversary, the attack vectors, and the possible points of failures. Threat modeling must be coupled with other processes during the design. This means that system developers should take into consideration performance and functionality requirements of the system. With a proper threat model, requirements can be set to secure the system against the foreseen attack vectors. The potential points of failure are identified for which security measures are designed. </p>
+<p>An example scenario is with the healthcare system described earlier. Threat modeling results in <em>denial of service</em> (DoS) and <em>data leak</em> attacks as major attack vectors. The adversary may use client-side entry point to find data leak exploits (such as a SQL-injection exploit) or find weaknesses in one of the layers of the software stack to cause denial of service. System developers can incorporate the results of threat modeling into the requirements engineering process. We know that client-side entry points are potential points of failure. We could use filtration and sanitization as security measures. Further, we could employ an <em>intrusion prevention system</em> at the web server layer to filter messages that are likely to cause DoS. </p>
 
     </div>
 
