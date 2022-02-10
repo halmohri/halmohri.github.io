@@ -14,7 +14,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
     </style>
 
-
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 
     <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
 
@@ -24,36 +26,30 @@
     
 
     <meta charset="UTF-8">
-    <meta name="description" content="Personal website of Hussain Almohri, Ph.D.">
-    <meta name="keywords" content="Computer Science, Security, Network Security, Optimization, Kuwait University">
+    <meta name="description" content="Course page and lecture notes for computer security and privacy by Dr. Hussain Almohri. ">
+    <meta name="keywords" content="Security, Privacy, Integrity, Confidentiality, Authenticity">
     <meta name="author" content="Hussain Almohri, Ph.D.">
 
-    <title>Hussain Almohri, Ph.D. - Secure Systems - Computer Science - Kuwait University</title>
+    <title>Computer Security & Privacy - Hussain Almohri</title>
   </head>
 <body style="background-color: #FAF0DC; ">
     <div id="navbar_load"></div>
 
     <div class="container-fluid">
-      
-    <div class="description" style="padding-bottom: 1%; padding-top: 2%; font-size: xx-large;">
-      Behind the Scene With Academic Writing
-    </div>
-    <div>
-    	Written by Hussain Almohri on Sep 24, 2021. 
-    </div>
 
 
     <div class='post-text' id='post-text' style="width: fit-content; ">
-    <p>I asked a successful researcher about his secrets of publishing in prestigious Computer Science conferences. He looked at me and said, <em>it’s all about writing</em>, but of course, you should have also done an excellent job developing the idea you want to present. In a prestigious conference, I asked another colleague who had an impressive publication record in the same conference about his secret sauce. He told me that you need an idea that nobody had touched before, make it look good, and write about all different aspects of the problem, but you don’t have to do all that work. So, after all, how should we approach the problem of writing and publishing a research paper in a reputable venue? In this article, I will go through a few points to help in picking the right problem, keeping in mind the type of problems in terms of community interest and the psychology of reviewers.</p>
-<h2 id="myexperience">My experience</h2>
+    <h1 id="behind-the-scenes-with-academic-writing">Behind the scenes with academic writing</h1>
+<p>I asked a successful researcher about his secrets of publishing in prestigious Computer Science conferences. He looked at me and said, <em>it’s all about writing</em>, but of course, you should have also done an excellent job developing the idea you want to present. In a prestigious conference, I asked another colleague who had an impressive publication record in the same conference about his secret sauce. He told me that you need an idea that nobody had touched before, make it look good, and write about all different aspects of the problem, but you don’t have to do all that work. So, after all, how should we approach the problem of writing and publishing a research paper in a reputable venue? In this article, I will go through a few points to help in picking the right problem, keeping in mind the type of problems in terms of community interest and the psychology of reviewers.</p>
+<h2 id="my-experience">My experience</h2>
 <p>My experience is mainly with publishing in Computer Science journals. The reason is not that journals matter more in the community as a whole, but this is because my employer only wants to see journal publication to promote me to the next level. If you’re a graduate student in Computer Science or a researcher with a Ph.D., you already know that journals are no longer the best places to archive your work and get credit for it; it’s the conference proceedings that matter the most.</p>
-<h2 id="choiceoftheproblem">Choice of the problem</h2>
+<h2 id="choice-of-the-problem">Choice of the problem</h2>
 <p>A research problem can be outdated, ongoing, or fresh. An outdated problem is a mine that was dug for a long time by several strong research groups and all sorts of interesting problems around it were already addressed in detail. An ongoing problem is one that is still not exhausted and has some more opportunities to work on. It’s still attractive to the research community because they still believe that it can be solved and can result in useful applications. In reality, attractive usually means the ones that get funded heavily by large funding agencies such as the American NSF or the European ERC. A hot problem is a mine that has just been discovered by the top names in the community that it belongs to. It won’t be a long time before NSF, ERC, or other agencies announce funding opportunities for the problem, and the conferences will be flooded with papers in the area. There’s a psychology to all this that you should understand before picking your choices. I will not be talking about what you should do but I’ll give you my experience dealing with the reviewers and choices of writing styles.</p>
-<h2 id="psychologyofreviewers">Psychology of Reviewers</h2>
+<h2 id="psychology-of-reviewers">Psychology of Reviewers</h2>
 <p>First, there are reviewers that are fully focused on the trend. If your work is within an ongoing or a fresh area, they have a positive attitude towards your work. Second, some reviewers will be more tolerant about solutions that are on fresh problems unless they are competitors. A competitor will inevitably be biased and wants to kill your chances (I need to be honest here). A reviewer that is not a competitor will be the reverse. They may accept anything that was really “presented well” (it’s all about writing) in a way that you give a sense of quality, expertise, and nerdiness so the reviewer thinks the author has a superior mind and thus the work must be good. Third, the style of writing can switch off the reviewer’s aggression. If you treat the reviewer badly by not defining your work properly and sounding too opaque, the reviewer’s aggression gauge will rise. If you over-simplify the solution for the sake of making a good explanation of your work, then the reviewer’s interest gauge will drop. If you are too honest about your work, you will highlight all the weak points and then give all the reasons for the review to reject your work. But, you can sound honest without being honest by stating some minor limitations of your work and hiding the big ones.</p>
 <p>A reviewer once wrote for one of my manuscripts just this: “the results are not innovative enough…” The entire review was less than three sentences and about 20 words. When a reviewer writes something like that, there are three possibilities: (i) the reviewer was pissed off with some of the writing choices I had made, (ii) the reviewer was not knowledgeable in the area, and (iii) the reviewer had forgotten about the review deadline and received a notification from the associate editor that the review is due in one week. (I have to confess, though, that the manuscript was not rejected, but this requires a very wise associate editor, which is a rare commodity.)</p>
 <p>Reviewers can be pissed off for a variety of reasons. The choice of writing style (for example writing in active/passive voice), claims made by the authors, and poor descriptions of the core contributions are among the reasons that I can think of. Claims can be very harmful. You could say stupid things such as “to the best of our knowledge, this is the first article to introduce a probabilistic finite-state automaton” for doing such and such. It wouldn’t require bad luck to have a reviewer that knows probabilistic finite-state automata have been around for a long while. Your manuscript could very well include valuable new content that slightly extends the state of the art with useful results. However, you failed to highlight the new content. Trust me, you could commit these mistakes without noticing them.</p>
-<h2 id="thesecondparagraph">The Second Paragraph</h2>
+<h2 id="the-second-paragraph">The Second Paragraph</h2>
 <p>But how can we mitigate the reviewer that is not knowledgeable in the area we try to publish in? The answer lies in choosing to balance clarity and maintaining rigor and some degree of complexity. You need clarity of thoughts and an overview of the background early in your manuscript, best done in the second paragraph of the introduction. There is your chance to get the attention of a vulnerable reviewer who doesn’t know the area very well but is too cocky to admit it. Take these two examples:</p>
 <p><strong>Example 1:</strong>
 “In recent years researchers have investigated the problem of remote intrusion detection, producing various solution approaches to mitigate remote attacks. While the problem is an active area of research, there are challenging issues that require careful consideration. We introduce a new design that utilizes mixed-integer programming to develop security mitigation plans on the fly, as new data from the network emerges. Our design benefits from…”</p>
@@ -61,21 +57,40 @@
 “We introduce a dynamic remote attack mitigation planner based on a connectivity digraph, which formalizes firewall rules in the network. For example, an attack mitigation plan in a network is a set of firewall rules that designate narrow connectivity among machines in the network, isolating potential targets from machines that are exposed to unknown external traffic.”</p>
 <p>Which one of the two gives a better idea about the actual work being introduced in the manuscript? We might need some more sentences to clarify many other points about the work, but Example 1 is clearly more general and wastes a lot more time on unnecessary small talk when compared to Example 2. We could of course refine Example 2 to be more lively and easier to grasp. The more confusing the second paragraph in the introduction, the more likely you get one of those careless reviewer feedbacks that only pushes your manuscript closer to rejection than acceptance.</p>
 <p>Stay tuned for more. For now, you could also follow me on <a href="https://twitter.com/halmohri">Twitter</a>.</p>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    
+
 
     <script type="text/javascript">
       $( document ).ready(function() {
-            $.get( "https://almohri.io/navbar.html", function( data ) {
+            $.get( "https://almohri.io/security/navbar.html", function( data ) {
                 $('#navbar_load').html(data);
                 
                 });
         });
     </script>
+
+    <style>
+    table {
+        border-collapse: collapse;
+    }
+    table {
+      width: 50%;
+    }
+    table, th, td {
+       border: 1px solid black;
+    }
+    blockquote {
+        border-left: solid blue;
+      padding-left: 10px;
+    }
+    </style>
 </body>
 
 </html>
