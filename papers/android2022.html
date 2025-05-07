@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lightweight, Effective Detection and Characterization of Mobile Malware Families</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Lightweight, Effective Detection and Characterization of Mobile Malware Families</h1>
+    <div class="abstract" id="paper-abstract">
+      Android malware is an ongoing threat to billions of smart devices’ security, ranging from mobile phones to car infotainment systems. Despite numerous approaches and previous studies to develop solutions for detecting and preventing Android malware, the rapid continuous development of new malware variants requires a careful reconsideration and the development of effective methods to identify malware families given a meager number of malware instances. In this paper, we present DroidMalVet, a novel Android malware family classification and detection approach that does not require to perform complex program analyses or utilize large feature sets. DroidMalVet is the first to use a promising, diverse, and small set of software metrics as features in a supervised learning platform to classify and detect various Android malware families. Our extensive empirical evaluations on two large public malware datasets show that DroidMalVet accurately detects both small and large malware families with F-Score accuracy of 94.4% and 96%, and AUC equal to 99.5% and 99.7% on the malware families in Drebin and AMD datasets, respectively. Moreover, our results demonstrate the superior performance of DroidMalVet in detecting small families (i.e., families with few samples). DroidMalVet complements existing approaches and presents an early warning tool for detecting known and emerging malware families.</div>
+    <div class="mla-citation" id="mla-citation">
+      Elish, Karim O., Elish, Mahmoud O., and Almohri, H. M. J. “Lightweight, Effective Detection and Characterization of Mobile Malware Families.” IEEE Transactions on Computers, vol. 71, no. 11, 2022, pp. 2982–2995.
+    </div>
+    <div class="links">
+      <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9682574" target="_blank"><button>Download Article</button></a>
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@article{elish2022lightweight,
+  title={Lightweight, Effective Detection and Characterization of Mobile Malware Families},
+  author={Elish, Karim O and Elish, Mahmoud O and Almohri, Hussain MJ},
+  journal={IEEE Transactions on Computers},
+  volume={71},
+  number={11},
+  pages={2982--2995},
+  year={2022},
+  publisher={IEEE},
+  doi={10.1109/TC.2022.3143439},
+  url={https://ieeexplore.ieee.org/document/9682574}
+}`;
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
