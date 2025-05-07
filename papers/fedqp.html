@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FedQP: Large-Scale Private and Flexible Federated Query Processing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">FedQP: Large-Scale Private and Flexible Federated Query Processing</h1>
+    <div class="abstract" id="paper-abstract">
+          State-of-the-art federated learning coordinates stochastic gradient descent across clients to
+          refine shared model parameters while protecting individual datasets. Current methods require a uniform
+          data model and are vulnerable to privacy attacks such as model inversion. The key challenge is in designing
+          algorithms that efficiently aggregate client input, minimize data exposure, and maximize model adaptability.
+          We propose a new scheme for aggregating local, diverse, and independent data models, addressing data
+          inconsistency and model-inversion attacks. The proposed scheme, federated query processing FedQP,
+          enables clients to build local models independently, without coordinating with the server or other clients.
+          The server communicates with selected clients only to predict future values. Our scheme only requires one
+          communication round between each client and the server for model initialization without the need for a
+          training phase.
+          This article presents the methodology, design, and evaluation of a performance-efficient implementation of
+          FedQP. We show that the caching algorithm in FedQP reduces redundant client communications during query
+          processing. In addition, we present a privacy analysis that shows that our method outperforms prominent
+          gradient-based approaches to federated learning.
+          Our experiments show that FedQP consistently achieves higher classification accuracy in non-IID settings
+          and demonstrates stronger resilience to reconstruction attacks compared to gradient-based methods such as
+          federated averaging (FedAvg).
+    </div>
+    <div class="mla-citation" id="mla-citation">
+      Almohri, H. M. J., and Layne T. Watson. “FedQP: Large-Scale Private and Flexible Federated Query Processing.” <i>IEEE Access</i>, accepted, 2025.
+    </div>
+    <div class="links">
+      <a href=""><button>Download Article</button></a>
+    
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@article{almohri2025fedqp,
+                      title={FedQP: Large-Scale Private and Flexible Federated Query Processing},
+                      author={Almohri, Hussain M. J. and Watson, Layne T.},
+                      journal={IEEE Access},
+                      year={2025},
+                      publisher={IEEE}
+                    }
+              }`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+</script>
+
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
