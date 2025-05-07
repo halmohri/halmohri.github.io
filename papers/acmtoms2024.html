@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remark on Algorithm 1012: Computing projections with large data sets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Remark on Algorithm 1012: Computing projections with large data sets</h1>
+    <div class="abstract" id="paper-abstract">
+      In ACM TOMS Algorithm 1012, the DELAUNAYSPARSE software is given for performing Delaunay interpolation
+      in medium to high dimensions. When extrapolating outside the convex hull of the training set, DELAUNAYSPARSE
+      calls the nonnegative least squares solver DWNNLS to compute projections onto the convex hull. However,
+      DWNNLS and many other available sum of squares optimization solvers were not intended for usage with many
+      variable problems, which result from the large training sets that are typical in machine learning applications.
+      Thus, a new PROJECT subroutine is given, based on the highly customizable quadratic program solver BQPD. This
+      solution is shown to be as robust as DELAUNAYSPARSE for projection onto both synthetic and real-world data
+      sets, where other available solvers frequently fail. Although it is intended as an update for DELAUNAYSPARSE,
+      due to the difficulty and prevalence of the problem, this solution is likely to be of external interest as well.
+    </div>
+    <div class="mla-citation" id="mla-citation">
+      Chang, Tyler H., Layne T. Watson, Sven Leyffer, Thomas C. H. Lux, and Almohri, H. M. j.. “Remark on Algorithm 1012: Computing Projections with Large Data Sets.” ACM Transactions on Mathematical Software, vol. 50, no. 2, 2024, Article 2, pp. 1–8.
+    </div>
+    <div class="links">
+      <a href="https://almohri.io/papers/DelaunaySparseRemark.pdf"><button>Download Article</button></a>
+    
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@article{DBLP:journals/toms/ChangWLLA24,
+  author       = {Tyler H. Chang and
+                  Layne T. Watson and
+                  Sven Leyffer and
+                  Thomas C. H. Lux and
+                  Hussain M. J. Almohri},
+  title        = {Remark on Algorithm 1012: Computing Projections with Large Datasets},
+  journal      = {{ACM} Trans. Math. Softw.},
+  volume       = {50},
+  number       = {2},
+  pages        = {12:1--12:8},
+  year         = {2024},
+  url          = {https://doi.org/10.1145/3656581},
+  doi          = {10.1145/3656581},
+  timestamp    = {Sun, 19 Jan 2025 15:02:19 +0100},
+  biburl       = {https://dblp.org/rec/journals/toms/ChangWLLA24.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+</script>
+
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
