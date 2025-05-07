@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic System Diversification for Securing Cloud-based IoT Subnetworks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Dynamic System Diversification for Securing Cloud-based IoT Subnetworks</h1>
+    <div class="abstract" id="paper-abstract">
+      Remote exploitation attacks use software vulnerabilities to penetrate 
+      through a network of Internet of Things (IoT) devices. 
+      This work addresses defending against remote exploitation attacks on 
+      vulnerable IoT devices. As an attack mitigation strategy, 
+      we assume it is not possible to fix all the vulnerabilities and propose 
+      to diversify the open-source software used to manage IoT devices. 
+      Our approach is to deploy dynamic cloud-based virtual machine proxies 
+      for physical IoT devices. 
+      Our architecture leverages virtual machine proxies with diverse 
+      software configurations to mitigate vulnerable and static software 
+      configurations on physical devices. We develop an algorithm for 
+      selecting new configurations based on network anomaly detection 
+      signals to learn vulnerable software configurations on IoT devices, 
+      automatically shifting towards more secure configurations. 
+      Cloud-based proxy machines mediate requests between application 
+      clients and vulnerable IoT devices, facilitating a dynamic diversification system. 
+      We report on simulation experiments to evaluate the dynamic system. 
+      Two models of powerful adversaries are introduced and simulated against 
+      the diversified defense strategy. 
+      Our experiments show that a dynamically diversified IoT architecture can 
+      be invulnerable to large classes of attacks that would succeed against 
+      a static architecture.  
+    </div>
+    <div class="mla-citation" id="mla-citation">
+      Almohri, H. M. J., Watson, L. T., Evans, D., and Billups, S. “Dynamic System Diversification for Securing Cloud-based IoT Subnetworks.” ACM Transactions on Autonomous and Adaptive Systems, vol. 17, no. 1–2, 2022, Article 2, pp. 1–23.
+    </div>
+    <div class="links">
+      <a href="https://dl.acm.org/doi/pdf/10.1145/3547350" target="_blank"><button>Download Article</button></a>
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@article{almohri2022dynamic,
+  title={Dynamic system diversification for securing cloud-based IoT subnetworks},
+  author={Almohri, Hussain and Watson, Layne and Evans, David and Billups, Stephen},
+  journal={ACM Transactions on Autonomous and Adaptive Systems (TAAS)},
+  volume={17},
+  number={1-2},
+  pages={1--23},
+  year={2022},
+  publisher={ACM New York, NY},
+  doi={10.1145/3547350},
+  url={https://dl.acm.org/doi/abs/10.1145/3547350}
+}`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
