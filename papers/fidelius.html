@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidelius Charm: Isolating Unsafe Rust Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Fidelius Charm: Isolating Unsafe Rust Code</h1>
+    <div class="abstract" id="paper-abstract">
+      The Rust programming language has a safe memory model that
+      promises to eliminate critical memory bugs. While the language is
+      strong in doing so, its memory guarantees are lost when any unsafe
+      blocks are used. Unsafe code is often needed to call library functions
+      written in an unsafe language inside a Rust program. We present
+      Fidelius Charm (FC), a system that protects a programmer-specified
+      subset of data in memory from unauthorized access through vulner-
+      able unsafe libraries. FC does this by limiting access to the program’s
+      memory while executing unsafe libraries. FC uses standard features
+      of Rust and utilizes the Linux kernel as a trusted base for splitting
+      the address space into a trusted privileged region under the control
+      of functions written in Rust and a region available to unsafe exter-
+      nal libraries. This paper presents our design and implementation
+      of FC, presents two case studies for using FC in Rust TLS libraries,
+      and reports on experiments showing its performance overhead is
+      low for typical uses.
+    </div>
+    <div class="mla-citation" id="mla-citation">
+      Almohri, H. M. J., and Evans, D. “Fidelius Charm: Isolating Unsafe Rust Code.” ACM Conference on Data and Application Security and Privacy, Mar. 2018, pp. 248–255.
+    </div>
+    <div class="links">
+      <a href="https://almohri.io/papers/fc.pdf"><button>Download Article</button></a>
+    
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@inproceedings{almohri2018fidelius,
+  title={Fidelius charm: Isolating unsafe rust code},
+  author={Almohri, Hussain MJ and Evans, David},
+  booktitle={Proceedings of the Eighth ACM Conference on Data and Application Security and Privacy},
+  pages={248--255},
+  year={2018}
+}`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+</script>
+
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
