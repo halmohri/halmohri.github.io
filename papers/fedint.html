@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model-Agnostic Federated Learning for
+    Privacy-Preserving Systems</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Model-Agnostic Federated Learning for Privacy-Preserving Systems</h1>
+    <div class="abstract" id="paper-abstract">
+      This study presents an innovative aggregation
+      scheme for model-agnostic, local, heterogeneous data models
+      within the domain of Federated Learning. The proposed ap-
+      proach imposes minimal constraints on local models, only ne-
+      cessitating local model parameters and distances from local data
+      centroids for a particular query. These requirements facilitate
+      the design of privacy-preserving learning systems. We intro-
+      duce a system architecture based on federated interpolation
+      to operationalize the proposed scheme. The accuracy of our
+      proposed scheme is evaluated using two distinct real-world
+      datasets. We compare our results to the extreme case of a
+      single-client scenario having complete access to all data points.
+      Our findings indicate that, on average, federated interpolation
+      maintains robust accuracy, experiencing a slight reduction of
+      less than 10% compared to the single-client model with full data
+      access.
+    </div>
+    <div class="mla-citation" id="mla-citation">
+      Almohri, H. M. J., and Watson, L. T. “Model-Agnostic Federated Learning for Privacy-Preserving Systems.” IEEE Secure Development Conference (SecDev), Oct. 2023, pp. 99–105.
+    </div>
+    <div class="links">
+      <a href=""><button>Download Article</button></a>
+    
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@inproceedings{almohri2023model,
+                      title={Model-Agnostic Federated Learning for Privacy-Preserving Systems},
+                      author={Almohri, Hussain MJ and Watson, Layne T},
+                      booktitle={2023 IEEE Secure Development Conference (SecDev)},
+                      pages={99--105},
+                      year={2023},
+                      organization={IEEE}
+                    }`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+</script>
+
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
