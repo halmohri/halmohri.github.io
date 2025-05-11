@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
+    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>The Python Programming Open Book - Hussain Almohri</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <p><a href="/python/04-Libraries">Previous</a> - <a href="/python/06-Conditional-Statements">Next</a></p>
+<h1 id="organizing-data-in-main-memory">Organizing Data in Main Memory</h1>
+<h2 id="basics">Basics</h2>
+<p>Data is often in the form of a sequence, a collection of <em>things</em> that are in a particular order. In Python, data can be in the form of a string, a sequence of characters. Data can also be in the form of a <strong>list</strong>, which is a sequence of <strong>data objects</strong>. Each <em>element</em> in a list can be of <em>any</em> type. The syntax for creating a list is quite simple. You can create an empty list or a list with several elements in it.  </p>
+<pre><code class="language-python">L = [] #Empty list
+M = list() #Empty list
+L = [2,4,6,8] 
+L = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;]
+L = [&#39;C&#39;,&#39;S&#39;,1,2,6]
+</code></pre>
+<p>Notice the difference between defining a list and a string. A string is defined using quotations. A string can only contain a sequence of characters, which are also strings, individually. Lists are elements of any type. As you can see in the example above, a list can be empty, it can only contain numbers, it can only contain strings, it can have a combination of strings and integers, or it can include any combination of data objects. </p>
+<p>One practical application of using strings is in the example below. Here, we have a program that takes a list of numbers from the user, calculates their statistical average, and then prints the average on the screen. In this program, we will learn several new Python tools. </p>
+<pre><code class="language-python">S = input()
+S = S.split(&#39; &#39;)
+L = list(map(eval, S)) 
+avg = round(sum(L)/len(L), 2)
+print(avg)
+</code></pre>
+<p>First, we are using the <code>input</code> function. The user is supposed to enter the numbers one after the other, separated by <strong>spaces</strong>. For example, the user enters <code>2 4 5 6 8 10 11 19</code>. This value is stored as a string in <code>S</code> since the <code>input</code> function always returns a string. Next, we will use a <code>split</code> to <em>split</em> a string into a list of elements. To tell the <code>split</code> method how to split the string, we will specify that a space separates each element. Thus, we write <code>S.split(&#39; &#39;)</code>, which specifies the space as a separator argument for <code>split</code>. The result is now a list, which we will store in <code>S</code>. The list looks like: <code>[&#39;2&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;8&#39;, &#39;10&#39;, &#39;11&#39;, &#39;19&#39;]</code>.</p>
+<p>But observe something special about the list above. Its elements are all strings. That means we cannot perform arithmetic operations on them to calculate their average. We will have to convert the type for each element from string to a numeric type. Luckily, there is a built-in function that can help us achieve this. The <code>map(f,v)</code> function takes two arguments. One is a function name <code>f, </code> and one is a sequence name <code>v</code>. The <code>map</code> function applies the given function <code>f</code> to each element in the sequence <code>v</code>. In our example, we apply the function <code>eval</code> to elements of <code>S</code>. <code>eval</code> is a more general form of <code>int</code> and <code>float</code>. If an element in <code>v</code> is a string with only an integer, <code>eval</code> will convert its type to integer. If otherwise, the element has a decimal point, its type will be converted to float. Finally, <code>map</code> returns a map object, which we do not want to deal with now. Thus, we will apply the <code>list</code> function to the result of <code>map</code>. In the end, the variable <code>L</code> will have the value <code>[2, 4, 5, 6, 8, 10, 11, 19]</code>.</p>
+<p>We are almost done. We have a list of numbers <code>L</code> for which we want to calculate the average. All we need is a function that gives us the sum of all values in <code>L</code>. This function is called <code>sum</code>. Thus, <code>sum(L)/len(L)</code> will give us what we need. We can finally print the results. </p>
+<h2 id="operations-on-lists">Operations on lists</h2>
+<p>We can use the concatenation and the repetition operators for lists, similar to strings. One can put two or more lists together using the <code>+</code> operator, and one can produce a new list by repeating the items of an existing list using the <code>*</code> operator. </p>
+<pre><code class="language-python">L = [1,2] + [3,4] #This produces [1,2,3,4]
+L = [0] * 4 #This produces [0,0,0,0]
+</code></pre>
+<p>We can also add or delete items to or from a list. The order of items in a list can be reversed. We can search for an item in a list. We can count the occurrences of an item in a list. Finally, we can find the maximum and the minimum value in a list. Without using the Python compiler, try to produce the values displayed by the following program to check the understanding of lists and their operations.</p>
+<pre><code class="language-python">L = [1,2]
+L.append(3) #Add element 3 to the end of L.
+L.extend([1,2,4,5]) #Add the list argument to the end of L.
+L.reverse() #Reverse the order of elements in L.
+L.remove(4) #Remove the element 4 from L.
+del L[0] #Delete the first element in L.
+print(L)
+print(max(L), min(L), L.count(1), L.index(2)) 
+</code></pre>
+<h2 id="list-slicing">List Slicing</h2>
+<p>A list slice is similar to a string slice. If we had to choose some of the elements in a list and create a new one, we could accomplish that using slicing. A slice specifies two arguments, <em>from</em> and <em>to</em>, which select the range of indexes from which the slice should be created.
+For example, if we want to slice elements of <code>L</code> from index 2 to index 5, including index 5, we have to write: <code>L[2:6]</code>.<br>Slicing can have a third optional argument, <code>k</code> as in <code>L[2:10:3]</code>. This code specifies elements from index 2 to index 9, every three elements. That is, the element on index 2 is included, and then the next element will be 5, the next will be 8, and that is it. </p>
+<h2 id="tuples-immutable-sequences">Tuples (immutable sequences)</h2>
+<p>Similar to lists, a tuple is a sequence of any objects. Tuples are different from lists in that they are <em>immutable</em>. That is, once we define a tuple, we cannot add to it or remove anything from it. </p>
+<pre><code class="language-python">t = tuple() #Empty tuple 
+t = (1,2,3,4)
+print(len(t))
+print(sum(t)) 
+s = 5,6,7,8 
+print(t+s) 
+print(t.index(2))
+</code></pre>
+<p>A tuple can be defined using parentheses, separating each object with a comma. However, parentheses are optional, and we can just use commas. 
+Standard concatenation and repetition operators do work with tuples, similar to lists and strings. However, methods such as <code>append</code> or <code>remove</code> are not defined for tuples. </p>
+<h2 id="the-operator-library">The operator library</h2>
+<p>There are cases where we need to use arithmetic operators as functions. We can do this by using the operator library. Suppose we want to add the elements of two lists L and M, using the map function. Adding two lists is possible using the addition operator imported from the operator library. </p>
+<pre><code class="language-python">from operator import add
+L = list(map(eval,input().split()))
+M = list(map(eval,input().split()))
+
+N = list(map(add,L,M)) 
+</code></pre>
+<p>In the program above, <code>N</code> contains the element-wise addition of two lists, <code>L</code> and <code>M</code>. Note that the map function receives three arguments here: the function, the first list, and the second list. The first list is used as the function&#39;s first argument, and the second list is used as the second argument of the function. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

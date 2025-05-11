@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
+    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>The Python Programming Open Book - Hussain Almohri</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <p><a href="/python/01-Programming-Fundamentals">Previous</a> - <a href="/python/03-Working-with-Python-Strings">Next</a></p>
+<h1 id="built-in-functions">Built-in functions</h1>
+<p>Python programs can use what we refer to as <em>functions</em>. A function in mathematics has a name, a set of parameters, and an output. For example, <code>f(x) = 2x</code> is a function that its output is twice as its input. In Python, there are built-in functions that look similar to mathematical functions but work differently. For example, we can <em>call</em> a function called <code>abs(x)</code>: </p>
+<pre><code class="language-Python">x = -1
+y = abs(x)
+</code></pre>
+<p>In this program, <code>y</code> will have the value <code>1</code> since <code>abs(x)</code> produces the absolute value of its input <code>x</code>. Thus, some functions like <code>abs</code> work as expressions, and they can produce values. 
+Here are some built-in functions to try: <code>int(x)</code>, <code>float(x)</code>, <code>abs(x)</code>. More functions will be covered later. </p>
+<h2 id="a-note-on-data-and-types">A note on data and types</h2>
+<p>Computer programs always work with data. But how can we give data to our program? There are two simple ways to do this. One is to give data using a keyboard and one is a <a href="https://github.com/csdeptku/CS126-Python/wiki/10-Processing-Data">file</a>. We will not get into the details of the files at this moment. Let us only focus on receiving data from the user on your computer&#39;s keyboard. Recall that two persons are involved in a computer program. One is the <strong>programmer</strong> who writes the program, and one is the <strong>user</strong> that <em>uses</em> the program. The user <em>interacts</em> with the program, mostly through a keyboard. The user&#39;s device with the program is called an I/O device (e.g., keyboard). We say that the user provides <strong>input</strong> to the program when entering data on the keyboard. How can the programmer let the program receive input from the user? This is done using a function called <code>input</code>, which we will study below. </p>
+<p>Data is first kept in (short memory) RAM. To know where the data is and work with the data, we define names in a program that points to the RAM data. These names refer to variables, and variables refer to data in memory. Each <em>data object</em> in a variable has a type. You can think of a type as a category or mathematically as set membership. There are several types that we will study during the course of these notes that are important for useful programs. Integers and floats are numeric types that are sets of integer and real numbers, respectively. </p>
+<pre><code class="language-Python">x = 1
+y = 1.0
+</code></pre>
+<p>In the program above, <code>x</code> is the type integer, and <code>y</code> is the type float (real number). To ask Python about the type of a variable, you can use the <code>type</code> function. Open the Python shell and write the following. </p>
+<pre><code class="language-Python">x = 1
+type(x)
+</code></pre>
+<p>When executing the two lines above, the shell outputs <code>&lt;class int&gt;</code>, which means <code>x</code> belongs to <code>integers.</code> Another important type is the <a href="https://github.com/csdeptku/CS126-Python/wiki/03---Working-with-Python-Strings">string</a> type. When the user enters a value on a string, that value is first stored in the form of a string. </p>
+<pre><code class="language-Python">x = input(&#39;Enter a value: &#39;)
+type(x)
+</code></pre>
+<p>When executing the two lines above on the Python shell, you will see that the shell outputs <code>&lt;class str&gt;</code>, which means the type of <code>x</code> is a <code>str</code>ing. We will study many more times in later chapters and examine their relationships and possible operations on these types. </p>
+<h2 id="a-simple-io-program">A Simple I/O Program</h2>
+<p>I/O refers to input and output. Programs generally receive input and produce output. Here, we will build a program that receives two numbers <code>n</code> and <code>k</code> and outputs the result of <code>n ÷ k</code>. This program must use the <code>input()</code> function to receive the user&#39;s value of <code>n</code> and <code>k</code>. If we do not use <code>input()</code>, we will have to use a fixed value for <code>n</code> and one for <code>k</code>. We can do that, but it will not be a useful program. When using <code>input()</code>, we should always remember that the type of values returned by <code>input()</code> is always <code>string</code>. So, if we want to deal with numbers, we will have to convert the value we receive on <code>input()</code> to one of a <strong>numeric</strong> (<code>int</code> or <code>float</code>) type. Here&#39;s how we should write the program. First, receive the two values: </p>
+<pre><code class="language-python">x = float(input())
+y = input()
+y = float(y)
+</code></pre>
+<p>This program uses the <code>input()</code> function and immediately gives the value of the <code>input()</code> function to the <code>float()</code> function. This is to convert thevalue type ( <code>string</code>) to <code>float</code>. 
+Note that <code>x</code> and <code>y</code> are both variables that receive their input from the keyboard and the type of input is converted to <code>float</code>. There is no difference between <code>y = float(input())</code> and <code>y = input()</code> followed by <code>y = input(y)</code>. The <code>input</code> function always produced a string value that the user enters on the keyboard. The <code>float</code> function converts a value of type string to a value of type float. To see the difference between a float and a string, try these lines on the Python shell: </p>
+<pre><code class="language-python">x = input()
+type(x) 
+x = float(x)
+type(x) 
+</code></pre>
+<p>You will see that after executing the second line <code>type(x)</code>, the Python shell says <code>&lt;class &#39;str&#39;&gt;</code>, and after executing the fourth line, the Python shell says <code>&lt;class &#39;float&#39;&gt;</code>. Also, note that after executing the first line <code>x = input()</code>, you are required to enter something on the keyboard. Try to enter something that is not a number and see what will happens after executing the third line. </p>
+<p>Next, we will do the operation and print the results: </p>
+<pre><code class="language-python">print(x/y)
+</code></pre>
+<p>Remember that the type of division is always <code>float</code>. You cannot divide anything unless it is of a numeric type. </p>
+<p>We can improve this program to also <strong>round</strong> the results up to some decimal places. Luckily, there is a built-in function in Python to round real numbers to the nearest integer or to some <em>d</em> decimal places: </p>
+<pre><code class="language-python">z = round(x/y)
+print(z)
+</code></pre>
+<p>Here, the round function takes only a single argument, which is a value of type float. In this case, <code>round(x/y)</code> will round the result of <code>x/y</code> to the nearest integer with three cases. </p>
+<ol>
+<li>If the decimal part is less than 5, then it will round down.</li>
+<li>If the decimal part is more than 5, then it will round up. </li>
+<li>If the decimal is 5, then it will round to the nearest <em>even</em> number. Example: <code>round(1.5)</code> and <code>round(2.5)</code> will evaluate to 2.</li>
+</ol>
+<p>Another way to use the round function is to round the given value up to some decimal places: </p>
+<pre><code class="language-python">z = round(x/y, 2)
+print(z) 
+</code></pre>
+<p>The program above will round <code>x/y</code> to only two decimal places. For example, if <code>x/y</code> was 1.456, then <code>round(x/y,2)</code> is 1.46. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>

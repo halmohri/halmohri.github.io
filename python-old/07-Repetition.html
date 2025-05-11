@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
+    <script src="../lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+
+    <link href="../theme.css" rel="stylesheet">
+    <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="../icon" type="image/png" href="icon.png">
+    
+
+    <meta charset="UTF-8">
+    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
+    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
+    <meta name="author" content="Hussain Almohri, Ph.D.">
+
+    <title>The Python Programming Open Book - Hussain Almohri</title>
+  </head>
+<body style="background-color: #FAF0DC; ">
+    <div id="navbar_load"></div>
+
+    <div class="container-fluid">
+
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <p><a href="/python/06-Conditional-Statements">Previous</a> - <a href="/python/08-Functions">Next</a></p>
+<h1 id="repetition-loop">Repetition (loop)</h1>
+<p>Sometimes we wish to repeat something with a specific schedule and until a specific deadline. Repetition happens in our daily life. We wake up in the morning, attend our classes until we graduate from college. This is a schedule that repeats daily and finishes when the student graduates. There are many more things that we repeat at various speeds and deadlines. To solve problems with computers, we need ways to tell the CPU to repeat some of our instructors with a specific schedule. </p>
+<p>Repetition needs three components:  </p>
+<ol>
+<li>start of the repetition, </li>
+<li>steps towards completing the repetition, and</li>
+<li>the end of the repetition.</li>
+</ol>
+<p>For example, a computer program may be required to receive a list of numeric values from the user and print the average of those values on the screen. We have learned before that we can do <a href="https://github.com/csdeptku/CS126-Python/wiki/05-Lists">this</a> simply by calling the built-in <code>sum</code> and <code>len</code> functions. However, one might wonder how those functions work? How does <code>sum</code> compute the sum of the values in a list <code>L</code> and how does <code>len</code> count the number of elements in <code>L</code>? </p>
+<p>These and many other functions work using <em>repetition</em> statements, specifying the start of the repetition (start of the list), the progress towards the end of the repetition (examining each element in the list), ending with an end <em>condition</em> (end of the list). 
+If we wanted to describe how <code>sum</code> works without using a digital computer, we&#39;d follow the following procedure. Given a list of numbers <code>L</code>, a variable <code>s=0</code>, and a counter variable <code>i=0</code>, </p>
+<ol>
+<li>start with the ith element <code>e</code> of <code>L</code> and add it to <code>s</code>. </li>
+<li>Next, advance <code>i</code> with one. </li>
+<li>Check if <code>i &lt; len(L)</code>, repeat Step 1. Otherwise, stop.</li>
+</ol>
+<p>For example, given the following as the list <code>L</code>, we will start with <code>i=0</code> (the first index in the list) and <code>s=0</code>, a variable to keep track of the sum of the elements. Starting with the first element, we will add 5 to <code>s</code> and add one to <code>i</code>. Then, we check if <code>i &lt; len(L)</code>, which means checking if <code>1 &lt; 10</code>. The condition is true. Step 3 says that we now should go back to Step 1. We will now add 9 to <code>s</code>, which makes the value of <code>s</code> 14, and add one to <code>i</code>, making it 2. This continues until <code>i</code> becomes 10, in which case the condition <code>i &lt; len(L)</code> becomes false. </p>
+<table>
+<tr>
+<td>5</td>
+<td>9</td> 
+<td>0</td>
+<td>12</td>
+<td>3</td>
+<td>4</td>
+<td>8</td>
+<td>8</td>
+<td>6</td>
+<td>7</td>
+</tr>
+</table>
+
+<p>To write the steps above in Python, we need a way to write a <em>repetition</em> statement. One such statement is called a <em>while</em> loop: </p>
+<pre><code class="language-python">while condition: 
+   body 
+</code></pre>
+<p>A while-loop starts with a condition (an expression with a Boolean value). If the condition is true, similar to an if-statement, the <em>body</em> of the while loop is executed. The difference with an if-statement is that when the body of the if-statement is executed, the computer moves on to the statement after the if-statement. With the while loop, when the computer finishes the execution of the body, it checks the condition again. If the condition is <em>still</em> true, the body of the while loop is executed again. This is repeated until the condition of the while loop becomes false. </p>
+<p>One way to use a while loop is using an <em>iterator</em> variable. We set an initial value for the iterator variable, define the condition of the while loop for a limit on the value of the iterator, and <em>increment</em> the value of the iterator inside the body of the while loop. This way, we can start, increment, and end using the iterator variable. 
+Going back to the procedure above, we can write the program using an iterator-based while loop.  </p>
+<pre><code class="language-python">L = list(map(eval,input().split())) 
+s = 0 
+i = 0 
+N = len(L)
+while i &lt; N: 
+   s+= L[i]
+   i+=1
+</code></pre>
+<p>This program receives a list of numeric values from the user. Then, the variable <code>s</code>, called the accumulator, keeps track of the sum of the values in the list that we have checked so far. The iterator <code>i</code> helps us to go through each element in <code>L</code> as it starts with index 0 and ends with index <code>len(L)-1</code>. The end is specified in the condition of the while loop (<code>i &lt; N</code>). Inside the while loop, we add the current element in <code>L</code> to our accumulator <code>s</code>. To progress towards the end of the list, we advance the iterator by adding one to it. </p>
+<h2 id="infinite-loops">Infinite loops</h2>
+<p>An infinite loop is a loop that never ends. That means, the condition used in the loop never becomes <em>False</em>. Recall that we have to always specify how a loop proceeds towards the end. The end of the loop is when its condition is <em>False</em>.</p>
+<pre><code class="language-python">while True: 
+   value = int(input(&#39;Enter a value: &#39;)) 
+print(&#39;Good bye&#39;) 
+</code></pre>
+<p>This program has an infinite loop because the condition for the loop is <em>True</em>, which is impossible to become <em>False</em>. The reason is that <em>True</em> is a direct Boolean value, not an expression that can be changed. So, this program keeps asking for new input in each <em>iteration</em> of the loop. An iteration is a full execution of the body of the loop (that is, the statements inside the loop). Notice that the last statement in this program is never executed and the sentence &quot;Good bye&quot; will never be printed on the screen. </p>
+<h2 id="break--continue">Break &amp; Continue</h2>
+<p>There are ways to <em>break</em> an infinite loop, making infinite loops actually useful. One is the use of the <code>break</code> statement, which can be placed inside a loop, causing the loop iteration to stop and the execution to move to the statement after the loop. </p>
+<pre><code class="language-python">while True: 
+   value = int(input(&#39;Enter a value: &#39;)) 
+   if value == -1: 
+      break
+print(&#39;Good bye&#39;) 
+</code></pre>
+<p>In this program, the break statement is used after checking a <em>sentinel value</em>, which is a value that is used to determine whether we should end the execution of a while loop. The program keeps iterating until the user enters <code>-1</code>, making the <code>if</code>-statement to be executed. Inside the <code>if</code>-statement, the <code>break</code> statement stops the execution of the while loop immediately. Then, the computer executes the print function and terminates the program. </p>
+<p>Another way to change the way a loop is executed is to use the <code>continue</code> statement. The <code>continue</code> statement works similar to the <code>break</code> statement in that it will immediately stop the execution of the <em>current</em> statement. However, instead of breaking the loop and executing the statements after the loop, it will just <em>continue</em> to the next iteration. </p>
+<pre><code class="language-python">while True: 
+   value = int(input(&#39;Enter a value: &#39;)) 
+   if value &lt; 0: 
+      break
+   if value % 2 != 0:
+      continue
+   print(value)  
+print(&#39;Good bye&#39;) 
+</code></pre>
+<p>In this program, the loop is only broken when the value is negative. However, the <code>continue</code> statement breaks the iteration when the value is not divisible by 2. As a result, the <code>print</code> function inside the <code>while</code>-loop is only executed when the value of 2 is divisible by 2. </p>
+<h2 id="a-complete-guessing-game">A complete guessing game</h2>
+<p>Continuing the <a href="https://github.com/csdeptku/CS126-Python/wiki/06-Conditional-Statements">guessing game</a> that we described earlier, we would like to give the user a chance to play again and guess the number that the computer picks. To do this, we will have to use a loop. </p>
+<pre><code class="language-python">import random 
+x = random.randint(0,30) 
+while True: 
+   guess = int(input(&#39;Guess the value of x: &#39;)) 
+   if guess == x: 
+      print(&#39;You made it 😄&#39;)
+      break 
+   elif abs(guess - x) &lt;= 2: 
+      print(&quot;You&#39;re very close 😅&quot;)
+   elif abs(guess - x) &gt;= 8: 
+      print(&quot;You&#39;re very far away 🙃&quot;)
+   else:
+      print(&#39;Try harder 🧐&#39;) 
+</code></pre>
+<p>This program continues as long as the user has <em>not</em> guessed the value of <code>x</code> correctly. Notice the first condition where we check if <code>guess</code> is equal to <code>x</code>. In this case, the user has guessed the value correctly. Here, we break the loop as the game is over. However, if the user did not guess the value correctly, we keep giving the user a hint and asking for a new value until the user can correctly find the value that the computer randomly generated. 
+As an exercise, modify the program above to only give the user 5 attempts to guess the correct value. </p>
+<h2 id="for-loop">For-loop</h2>
+<p>Similar to the while loop, we can write a repetition using a for-loop, which works well with sequences. There are two ways of using a for-loop with sequences. One way is to loop through the elements of a sequence by making a copy of an element in each iteration. The other way is to use an index to loop through the elements of a sequence, similar to an index-based while-loop. 
+The <code>range</code> function can be used to produce a sequence that for-loop iterates through. One can write a simple for-loop to print all positive integers up to 100 using the <code>range</code> function.</p>
+<pre><code class="language-python">for i in range(1,101):
+   print(i)
+</code></pre>
+<p>This loop exactly does that. Note that the range function always produces a sequence of integers starting with the first parameter and ending with the integer before the last parameter. The range function can also be used with a third parameter to designate a step size in producing the integer sequence. If we wanted to modify the code above to only write the positive odd integers up to 100, we can use the third parameter to direct the <code>range</code> function to only produce odd integers. </p>
+<pre><code class="language-python">for i in range(1,101,2):
+   print(i)
+</code></pre>
+<p>Here, the third parameter is the step size. That is, we&#39;re telling <code>range</code> to start a sequence with 1 and add 2 to the next number until reaching 100. That is the sequence <code>1, 3, 5, 7, ..., 99</code>. </p>
+<p>We can also loop through the elements of a list using the for-loop. In this case, we do not need the range function anymore. </p>
+<pre><code class="language-python">x = input().split()
+for x in L:
+   print(x)
+</code></pre>
+<p>This code receives a list of elements from the user and then uses the for-loop to checkout each element in <code>x</code> in the order given by the user and print them on the screen. The for-loop <em>iterates</em> <em>n</em> times where <code>n = len(L)</code>. </p>
+<p>As a more advanced example, consider a loop that goes through the elements of a list of strings to convert each element to a numeric object. We could do <a href="/python/05-Lists-&amp;-Tuples">this</a> using the map function or we could do it using a for-loop.  </p>
+<pre><code class="language-python">L = input(&#39;Enter a list of numbers:&#39;).split()
+n = len(L)
+for i in range(0,n):
+   L[i] = eval(L[i]) 
+</code></pre>
+<p>Notice the use of the range function. Given the two arguments to the <code>range(x,y)</code> function, it generates a sequence of elements from <code>x</code> to <code>y</code> excluding <code>y</code>. The variable <code>i</code> in the for-loop refers to an element from the sequence produced by <code>range(0,n)</code>. The for loop starts with the first element in <code>range(x,y)</code>. After each iteration, the loop automatically checks if there are more elements in <code>range(x,y)</code>. If not, the loop stops. Otherwise, <code>i</code> is assigned to the next element of <code>range(x,y)</code> and continues with a new iteration. </p>
+<p>Another way to use for-loops is to work directly on a sequence. To do this for the program above, we need to loop through the elements of <code>L</code> and construct a new list with the converted type. </p>
+<pre><code class="language-python">L = input(&#39;Enter a list of numbers:&#39;).split()
+M = [] 
+for x in L:
+  M.append(eval(x))
+</code></pre>
+<p>The reason is to store the converted element in a new list is because the for-loop does not give us access to the actual elements of <code>L</code>. The variable <code>x</code> is only a <em>copy</em> of the current element of <code>L</code>. </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+            $.get( "https://almohri.io/python/navbar.html", function( data ) {
+                $('#navbar_load').html(data);
+                
+                });
+        });
+    </script>
+</body>
+
+</html>
