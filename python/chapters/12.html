@@ -1,0 +1,257 @@
+<div class='post-text' id='post-text' style="width: fit-content; ">
+<p>Below are the built-in functions and methods that are required from CS126 students to know about by the end of the semester. The function names that are in <em>italic</em> font do not return a useful value. </p>
+<h2 id="built-in-functions">Built-in functions</h2>
+<!-- <p>map, abs, type, pow, min, max, sum, len, int, str, float, round, bool, chr, ord, open, set, dict, list, tuple, input, <em>print</em>, sorted </p> -->
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>map()</code></td><td>Applies a function to each item</td><td><code>map(str, [1, 2, 3])</code></td></tr>
+      <tr><td><code>abs()</code></td><td>Absolute value</td><td><code>abs(-5)</code></td></tr>
+      <tr><td><code>type()</code></td><td>Returns the type of an object</td><td><code>type("hi")</code></td></tr>
+      <tr><td><code>pow()</code></td><td>Power calculation</td><td><code>pow(2, 3)</code></td></tr>
+      <tr><td><code>min()</code></td><td>Smallest item</td><td><code>min([4, 1, 9])</code></td></tr>
+      <tr><td><code>max()</code></td><td>Largest item</td><td><code>max([4, 1, 9])</code></td></tr>
+      <tr><td><code>sum()</code></td><td>Sum of items</td><td><code>sum([1, 2, 3])</code></td></tr>
+      <tr><td><code>len()</code></td><td>Length of item</td><td><code>len("hello")</code></td></tr>
+      <tr><td><code>int()</code></td><td>Convert to integer</td><td><code>int("4")</code></td></tr>
+      <tr><td><code>str()</code></td><td>Convert to string</td><td><code>str(42)</code></td></tr>
+      <tr><td><code>float()</code></td><td>Convert to float</td><td><code>float("3.14")</code></td></tr>
+      <tr><td><code>round()</code></td><td>Round a number</td><td><code>round(3.75)</code></td></tr>
+      <tr><td><code>bool()</code></td><td>Convert to boolean</td><td><code>bool(0)</code></td></tr>
+      <tr><td><code>chr()</code></td><td>Unicode to character</td><td><code>chr(65)</code></td></tr>
+      <tr><td><code>ord()</code></td><td>Character to Unicode</td><td><code>ord("A")</code></td></tr>
+      <tr><td><code>open()</code></td><td>Open a file</td><td><code>open("file.txt")</code></td></tr>
+      <tr><td><code>set()</code></td><td>Create a set</td><td><code>set([1, 2, 2])</code></td></tr>
+      <tr><td><code>dict()</code></td><td>Create a dictionary</td><td><code>dict(a=1, b=2)</code></td></tr>
+      <tr><td><code>list()</code></td><td>Create a list</td><td><code>list("abc")</code></td></tr>
+      <tr><td><code>tuple()</code></td><td>Create a tuple</td><td><code>tuple([1, 2])</code></td></tr>
+      <tr><td><code>input()</code></td><td>Read user input</td><td><code>input("Name: ")</code></td></tr>
+      <tr><td><code>print()</code></td><td>Output to screen</td><td><code>print("Hello")</code></td></tr>
+      <tr><td><code>sorted()</code></td><td>Sort iterable</td><td><code>sorted([3, 1, 2])</code></td></tr>
+      </tbody>
+  </table>
+
+  
+<h2 id="string-methods">String methods</h2>
+<!-- <p>capitalize, count, title, find, rfind, isdigit, islower, isupper, upper, lower, isspace, istitle, strip, replace, join, split</p> -->
+<table class="table table-bordered table-striped">
+  <thead class="thead-light">
+    <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>capitalize()</code></td><td>Capitalizes the first letter</td><td><code>"word".capitalize()</code></td></tr>
+    <tr><td><code>count()</code></td><td>Counts occurrences</td><td><code>"hello".count("l")</code></td></tr>
+    <tr><td><code>title()</code></td><td>Title-cases the string</td><td><code>"hello world".title()</code></td></tr>
+    <tr><td><code>find()</code></td><td>Finds first occurrence</td><td><code>"text".find("e")</code></td></tr>
+    <tr><td><code>rfind()</code></td><td>Finds last occurrence</td><td><code>"text".rfind("t")</code></td></tr>
+    <tr><td><code>isdigit()</code></td><td>Checks for digits</td><td><code>"123".isdigit()</code></td></tr>
+    <tr><td><code>islower()</code></td><td>Checks if all lowercase</td><td><code>"abc".islower()</code></td></tr>
+    <tr><td><code>isupper()</code></td><td>Checks if all uppercase</td><td><code>"ABC".isupper()</code></td></tr>
+    <tr><td><code>upper()</code></td><td>Converts to uppercase</td><td><code>"hi".upper()</code></td></tr>
+    <tr><td><code>lower()</code></td><td>Converts to lowercase</td><td><code>"HI".lower()</code></td></tr>
+    <tr><td><code>isspace()</code></td><td>Checks for spaces</td><td><code>" ".isspace()</code></td></tr>
+    <tr><td><code>istitle()</code></td><td>Checks title case</td><td><code>"My Book".istitle()</code></td></tr>
+    <tr><td><code>strip()</code></td><td>Removes whitespace</td><td><code>" hi ".strip()</code></td></tr>
+    <tr><td><code>replace()</code></td><td>Replaces substring</td><td><code>"a b".replace("a", "c")</code></td></tr>
+    <tr><td><code>join()</code></td><td>Joins items with string</td><td><code>"-".join(["a", "b"])</code></td></tr>
+    <tr><td><code>split()</code></td><td>Splits string into list</td><td><code>"a b".split()</code></td></tr>
+  </tbody>
+</table>
+
+
+<h2 id="list-methods">List methods</h2>
+<!-- <p>count, index, insert, pop, <em>remove</em>, <em>reverse</em>, <em>sort</em>, <em>append</em>, <em>clear</em>, <em>extend</em></p> -->
+<table class="table table-bordered table-striped">
+  <thead class="thead-light">
+    <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>count()</code></td><td>Counts item appearances</td><td><code>[1, 2, 2].count(2)</code></td></tr>
+    <tr><td><code>index()</code></td><td>Finds index of item</td><td><code>["a", "b"].index("b")</code></td></tr>
+    <tr><td><code>insert()</code></td><td>Inserts at index</td><td><code>lst.insert(1, "x")</code></td></tr>
+    <tr><td><code>pop()</code></td><td>Removes and returns item</td><td><code>lst.pop()</code></td></tr>
+    <tr><td><code>remove()</code></td><td>Removes first match</td><td><code>lst.remove("a")</code></td></tr>
+    <tr><td><code>reverse()</code></td><td>Reverses list</td><td><code>lst.reverse()</code></td></tr>
+    <tr><td><code>sort()</code></td><td>Sorts list in-place</td><td><code>lst.sort()</code></td></tr>
+    <tr><td><code>append()</code></td><td>Adds to end</td><td><code>lst.append(3)</code></td></tr>
+    <tr><td><code>clear()</code></td><td>Empties the list</td><td><code>lst.clear()</code></td></tr>
+    <tr><td><code>extend()</code></td><td>Adds multiple items</td><td><code>lst.extend([4, 5])</code></td></tr>
+  </tbody>
+</table>
+
+
+<h2 id="file-methods">File methods</h2>
+<!-- <p>readline, readlines, close, csv.reader, csv.writer, csv.writwrow </p> -->
+<table class="table table-bordered table-striped">
+  <thead class="thead-light">
+    <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>readline()</code></td><td>Reads one line</td><td><code>f.readline()</code></td></tr>
+    <tr><td><code>readlines()</code></td><td>Reads all lines</td><td><code>f.readlines()</code></td></tr>
+    <tr><td><code>close()</code></td><td>Closes the file</td><td><code>f.close()</code></td></tr>
+    <tr><td><code>csv.reader</code></td><td>Reads CSV file</td><td><code>csv.reader(f)</code></td></tr>
+    <tr><td><code>csv.writer</code></td><td>Writes to CSV</td><td><code>csv.writer(f)</code></td></tr>
+    <tr><td><code>writerow()</code></td><td>Writes one row</td><td><code>writer.writerow([1,2])</code></td></tr>
+  </tbody>
+</table>
+
+
+<h2 id="libraries">Common Libraries</h2>
+<!-- <p>math, statistics, random, operator, csv</p> -->
+<table class="table table-bordered table-striped">
+  <thead class="thead-light">
+    <tr><th>Library</th><th>Purpose</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>math</code></td><td>Math functions</td><td><code>math.sqrt(9)</code></td></tr>
+    <tr><td><code>statistics</code></td><td>Stats operations</td><td><code>statistics.mean([1,2])</code></td></tr>
+    <tr><td><code>random</code></td><td>Random numbers</td><td><code>random.randint(1, 10)</code></td></tr>
+    <tr><td><code>operator</code></td><td>Functional operators</td><td><code>operator.add(1, 2)</code></td></tr>
+    <tr><td><code>csv</code></td><td>Read/write CSV</td><td><code>csv.reader(f)</code></td></tr>
+  </tbody>
+</table>
+
+    </div>
+
+
+    <div class='post-text' id='post-text' style="width: fit-content; ">
+    <h2 id="suggested-14-week-timeline-fall-2024-classes-start-at-16-sep-2024">Suggested 14-week Timeline (Fall 2024, classes start at 16 Sep 2024)</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>Course Topic</th>
+    <th>Week</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/01---Programming-Fundamentals">Fundamental</a> concepts of computing and computers and history of computing as a discipline</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>Natural vs programming languages, programming lifecycle, compilers, operating systems, memory, I/O</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>Python expressions, Python shell, Python as a calculator, the concept of variables, syntax errors, runtime errors, sequence of execution, comments</td>
+    <td>2</td>
+    </tr>
+    <tr>
+    <td>Data types, data objects, the idea of functions, <code>print</code> and <code>input</code> functions, advanced expressions, <a href="https://github.com/csdeptku/CS126-Python/wiki/03---Working-with-Python-Strings">strings</a></td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td>Simple built-in functions, <a href="https://github.com/csdeptku/CS126-Python/wiki/05-Lists-&amp;-Tuples">lists</a>, list operations, list methods, <code>map</code> function</td>
+    <td>4</td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/06-Conditional-Statements">Boolean values</a>, relational operators, logical operators, membership operators, conditional statement</td>
+    <td>5</td>
+    </tr>
+    <tr>
+    <td>The <code>random</code> library, list and string comparisons, basic problem solving with conditional statements</td>
+    <td>6</td>
+    </tr>
+    <tr>
+    <td>Practice problems with Booleans, lists, and conditionals</td>
+    <td>7</td>
+    </tr>
+    <tr>
+    <td>Midterm 1 (07 Nov 2024, 18:30--19:45)</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/07-Repetition">Repetition statement</a>, the basic concept of problems that require repetition, basic components (start, progress, end condition), while-loop</td>
+    <td>8</td>
+    </tr>
+    <tr>
+    <td>flowcharts, Infinite loops, sentinel values, solving simple problems (sum,length, maximum, minimum)</td>
+    <td>9</td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/09-Problem-Solving#how-should-we-think-about-numerical-problems">Steps</a> to solve a problem, <code>break</code> and <code>continue</code>, more problem-solving examples, for-loops</td>
+    <td>10</td>
+    </tr>
+    <tr>
+    <td>Various forms of for-loops, comparison with while-loops, simple numerical problem-solving (prime test, long-division, etc.)</td>
+    <td>11</td>
+    </tr>
+    <tr>
+    <td>Midterm 2 (09 Dec 2024, 18:30--19:45)</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>Defining <a href="https://github.com/csdeptku/CS126-Python/wiki/08-Functions">functions</a>, introduction to <a href="https://github.com/csdeptku/CS126-Python/wiki/10-Processing-Data">data processing</a> with files, file opening, reading, writing, closing, comma-separated values</td>
+    <td>12</td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/11-Sets-and-Dictionaries">Sets &amp; dictionaries</a>, problem-solving with files</td>
+    <td>13</td>
+    </tr>
+    <tr>
+    <td>Problem Solving and data analysis applications with loops, files, and functions.</td>
+    <td>14</td>
+    </tr>
+    <tr>
+    <td>Classes end on 19 Dec 2024</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>Final exam (12 Dec 2024, 14:00--16:00)</td>
+    <td></td>
+    </tr>
+    </tbody></table>
+    <h2 id="suggested-6-week-timeline-summer-2022">Suggested 6-Week Timeline (Summer 2022)</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>Course Topic</th>
+    <th>Week</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/01---Programming-Fundamentals">Fundamental</a> concepts of computing and computers and history of computing as a discipline, natural vs programming languages, programming lifecycle, compilers, operating systems, memory, I/O, Python expressions, Python shell, Python as a calculator, the concept of variables, syntax errors, runtime errors, sequence of execution, comments</td>
+    <td>1</td>
+    </tr>
+    <tr>
+    <td>Data types, data objects, the idea of functions, <code>print</code> and <code>input</code> functions, advanced expressions, <a href="https://github.com/csdeptku/CS126-Python/wiki/03---Working-with-Python-Strings">strings</a>, Simple built-in functions, <a href="https://github.com/csdeptku/CS126-Python/wiki/05-Lists-&amp;-Tuples">lists</a>, list operations, list methods, <code>map</code> function</td>
+    <td>2</td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/06-Conditional-Statements">Boolean values</a>, relational operators, logical operators, membership operators, conditional statement, The <code>random</code> library, list and string comparisons, basic problem solving with conditional statements</td>
+    <td>3</td>
+    </tr>
+    <tr>
+    <td><strong>Midterm 1</strong> (Wednesday 20 July 2022 18:30--20:30)</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/07-Repetition">Repetition statement</a>, the basic concept of problems that require repetition, basic components (start, progress, end condition), flowcharts, Infinite loops, sentinel values, solving simple problems (sum, length, maximum, minimum)</td>
+    <td>4</td>
+    </tr>
+    <tr>
+    <td><a href="https://github.com/csdeptku/CS126-Python/wiki/09-Problem-Solving#how-should-we-think-about-numerical-problems">Steps</a> to solve a problem, <code>break</code> and <code>continue</code>, more problem-solving examples, for-loops, comparison with while-loops, simple numerical problem-solving (prime test, long-division, etc.)</td>
+    <td>5</td>
+    </tr>
+    <tr>
+    <td><strong>Midterm 2</strong> (01 August 2022 18:30--20:30)</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td>Defining <a href="https://github.com/csdeptku/CS126-Python/wiki/08-Functions">functions</a>, introduction to <a href="https://github.com/csdeptku/CS126-Python/wiki/10-Processing-Data">data processing</a> with files, file opening, reading, writing, closing, comma-separated values, <a href="https://github.com/csdeptku/CS126-Python/wiki/11-Sets-and-Dictionaries">Sets &amp; dictionaries</a>, problem-solving with files</td>
+    <td>6</td>
+    </tr>
+    <tr>
+    <td><strong>Final</strong> (15 August 2022 14:00--16:00)</td>
+    <td>7</td>
+    </tr>
+    </tbody></table>
+    
+        </div>

@@ -1,0 +1,6 @@
+.dropdown-item.active {
+    font-weight: bold;
+    background-color: #e9ecef;
+    color: #212529;
+  }
+  

@@ -1,0 +1,47 @@
+<div class='post-text' id='post-text' style="width: fit-content; ">
+<h1 id="libraries">Libraries</h1>
+<p>A library is a place we go to borrow books written by others and use them for many different purposes. The author of a book shares his ideas, findings, and work with others so we can benefit from the collection of works done by others and produce our own works. Similar to the idea of a physical library 📚, programming languages often have <strong>libraries</strong> that have a lot of programs we can borrow and use in our programs. This is to prevent writing the same programs over and over again. Python also has many libraries. We will explore some of those libraries that are basic and easy to use, especially for scientists. </p>
+<h2 id="the-math-library">The Math library</h2>
+<p>We can tell Python that we want to borrow programs from a specific library using the <code>import</code> keyword. After importing a library, we can use some of the functions or constants defined in the library. For example, we can borrow the <code>pi</code> number from the math library: </p>
+<pre><code class="language-python">import math
+print(math.pi)
+</code></pre>
+<p>The Math library has many other useful functions and constants: </p>
+<pre><code class="language-python">x = 1.6
+y = math.floor(x)
+y = math.ceil(x)
+
+x = 6
+y = math.factorial(x)
+y = math.exp(x)
+y = math.log(x,10)
+y = math.sqrt(x)
+
+r = math.radians(90) #convert from degrees to radians
+d = math.degrees(r) #convert from radians to degrees
+
+math.cos(r) #x is in radians
+math.sin(r)
+
+
+print(math.pi)
+print(math.e)
+print(math.tau)
+print(math.inf)
+print(math.nan) 
+</code></pre>
+<h2 id="other-ways-to-use-libraries">Other ways to use libraries</h2>
+<p>Sometimes we wish to import a specific function from a library. We can do this by using the <code>from</code> keyword. </p>
+<pre><code class="language-python">from math import pi 
+print(pi)
+</code></pre>
+<p>In this program, we imported the name <code>pi</code> from the <code>math</code> library. We can use <code>pi</code> directly since we used the <code>from</code> keyword. This can work with any library name.</p>
+<p>We could also import <em>all</em> the names in a library: </p>
+<pre><code class="language-python">from math import *
+print(pi)
+print(e) 
+print(factorial(4))
+</code></pre>
+<p>Using <code>*</code> we are telling the compiler to use all the names in the library directly without using the name of the library as we did earlier.</p>
+
+    </div>

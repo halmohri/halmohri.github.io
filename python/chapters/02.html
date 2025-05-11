@@ -1,45 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
-
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
-    </style>
-
-    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
-    <script src="../lib/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-
-    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
-
-    <link href="../theme.css" rel="stylesheet">
-    <head profile="http://www.w3.org/2005/10/profile">
-    <link rel="../icon" type="image/png" href="icon.png">
-    
-
-    <meta charset="UTF-8">
-    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
-    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
-    <meta name="author" content="Hussain Almohri, Ph.D.">
-
-    <title>The Python Programming Open Book - Hussain Almohri</title>
-  </head>
-<body style="background-color: #FAF0DC; ">
-    <div id="navbar_load"></div>
-
-    <div class="container-fluid">
-
-
-    <div class='post-text' id='post-text' style="width: fit-content; ">
-    <p><a href="/python/01-Programming-Fundamentals">Previous</a> - <a href="/python/03-Working-with-Python-Strings">Next</a></p>
+<div class='post-text' id='post-text' style="width: fit-content; ">
 <h1 id="built-in-functions">Built-in functions</h1>
 <p>Python programs can use what we refer to as <em>functions</em>. A function in mathematics has a name, a set of parameters, and an output. For example, <code>f(x) = 2x</code> is a function that its output is twice as its input. In Python, there are built-in functions that look similar to mathematical functions but work differently. For example, we can <em>call</em> a function called <code>abs(x)</code>: </p>
 <pre><code class="language-Python">x = -1
@@ -98,19 +57,40 @@ print(z)
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div>
 
+    <h1> A list of common built-in functions</h1>
 
-    <script type="text/javascript">
-      $( document ).ready(function() {
-            $.get( "https://almohri.io/python/navbar.html", function( data ) {
-                $('#navbar_load').html(data);
-                
-                });
-        });
-    </script>
-</body>
+<table class="table table-bordered table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Function</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>abs()</code></td><td>Returns the absolute value of a number.</td></tr>
+      <tr><td><code>bool()</code></td><td>Converts a value to a Boolean (True or False).</td></tr>
+      <tr><td><code>chr()</code></td><td>Returns the character for a Unicode code.</td></tr>
+      <tr><td><code>ord()</code></td><td>Returns the Unicode code of a character.</td></tr>
+      <tr><td><code>float()</code></td><td>Converts a number or string to float.</td></tr>
+      <tr><td><code>int()</code></td><td>Converts a number or string to an integer.</td></tr>
+      <tr><td><code>len()</code></td><td>Returns the number of items in an object.</td></tr>
+      <tr><td><code>list()</code></td><td>Converts an iterable to a list.</td></tr>
+      <tr><td><code>map()</code></td><td>Applies a function to each item in an iterable.</td></tr>
+      <tr><td><code>max()</code></td><td>Returns the largest item in an iterable or arguments.</td></tr>
+      <tr><td><code>min()</code></td><td>Returns the smallest item in an iterable or arguments.</td></tr>
+      <tr><td><code>pow()</code></td><td>Returns the power of a number (x^y).</td></tr>
+      <tr><td><code>print()</code></td><td>Prints output to the console.</td></tr>
+      <tr><td><code>range()</code></td><td>Generates a sequence of numbers.</td></tr>
+      <tr><td><code>reversed()</code></td><td>Returns a reversed iterator.</td></tr>
+      <tr><td><code>round()</code></td><td>Rounds a number to a given precision.</td></tr>
+      <tr><td><code>sorted()</code></td><td>Returns a sorted list from an iterable.</td></tr>
+      <tr><td><code>str()</code></td><td>Converts an object to a string.</td></tr>
+      <tr><td><code>sum()</code></td><td>Returns the sum of a sequence of numbers.</td></tr>
+      <tr><td><code>type()</code></td><td>Returns the type of an object.</td></tr>
+      </tbody>
+  </table>
+  
 
-</html>
+</div>

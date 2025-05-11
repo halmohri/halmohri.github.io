@@ -1,44 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Playfair+Display|Tajawal" rel="stylesheet">
-
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=EB+Garamond:wght@500&family=Libre+Baskerville:ital@1&family=Roboto&display=swap');
-    </style>
-
-    <link rel="stylesheet" href="../lib/highlight/styles/default.min.css">
-    <script src="../lib/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-
-    <script type="text/javascript" src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
-
-    <link href="../theme.css" rel="stylesheet">
-    <head profile="http://www.w3.org/2005/10/profile">
-    <link rel="../icon" type="image/png" href="icon.png">
-    
-
-    <meta charset="UTF-8">
-    <meta name="description" content="The Python Programming Open Book with a bottom-up approach. This book requires no prior knowledge and can be used by high-school or entry-level college students.">
-    <meta name="keywords" content="Python, Programming, Book, eBook, Beginner">
-    <meta name="author" content="Hussain Almohri, Ph.D.">
-
-    <title>The Python Programming Open Book - Hussain Almohri</title>
-  </head>
-<body style="background-color: #FAF0DC; ">
-    <div id="navbar_load"></div>
-
-    <div class="container-fluid">
-
-
-    <div class='post-text' id='post-text' style="width: fit-content; ">
+<div class='post-text' id='post-text' style="width: fit-content; ">
     <h1 id="processing-data-with-secondary-storage-files">Processing Data with Secondary Storage (files)</h1>
 <p>Processing data is the main reason behind the design of modern digital computers and programming languages. We are often faced with large datasets for which we have methods to produce the necessary information. However, executing those methods without digital computers is nearly impossible. Imagine if you&#39;re given the task of computing the average grade in the final mathematics exam for the students of the 12th grade in an entire country. You will take a long time, get tired soon, and make a lot of mistakes. Instead, we can write a few lines of code to load the data for all students from the long-term memory (also called secondary storage) to the short-term memory (such as RAM), followed by a few more instructions for the computer to compute the average of the grades for all students in a much smaller fraction of time compared to a human as a computer. 
 Here, we will learn about a basic file structure called the Comma Separated Format (CSV) used to store data on secondary storage. We will write a program to load data from a CSV file into memory (represented by a list variable) and then compute an average. </p>
@@ -105,20 +65,3 @@ f.close()
 <p>Note that we can also open a file for writing using <code>f=open(&#39;numbers.csv&#39;,&#39;a&#39;)</code> instead of <code>f=open(&#39;numbers.csv&#39;,&#39;w&#39;)</code>, then we will see a different behavior. When using <code>w</code>, if the file does not exist it will be created. If the file exists, its contents will be deleted and we will start afresh. When using <code>a</code>, if the file does not exist it will be created. If the file exists, when writing to it, the new records will be <em>appeneded</em> to the end of the file instead of deleting its contents. The difference between the two can be best observed with a program to test and compare their differences. </p>
 
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-    <script type="text/javascript">
-      $( document ).ready(function() {
-            $.get( "https://almohri.io/python/navbar.html", function( data ) {
-                $('#navbar_load').html(data);
-                
-                });
-        });
-    </script>
-</body>
-
-</html>
