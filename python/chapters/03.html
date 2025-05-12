@@ -8,32 +8,46 @@ t = &quot;This is also a string&quot;
 <p>Note that a string starts with a quotation mark and ends with it. Each character in a string has an index and indexes start with 0 and end with the <em>N</em>-1, where <em>N</em> is the number of characters in the string.</p>
 <h2 id="string-indexing">String Indexing</h2>
 <p>Strings are values and could be stored in any variable. One can work with parts of a string by using indexing: the string <code>&quot;Kuwait&quot;</code> has the following indexes: 0, 1, 2, 3, 4, 5 and -1, -2, -3, -4, -5, -6. For example, <code>&quot;Kuwait&quot;[-1]</code> evaluates to the string <code>&quot;t&quot;</code>. One can get more than one character of a string by defining a range: <code>&quot;Kuwait&quot;[:2]</code> which evaluates to <code>&quot;Ku&quot;</code>.</p>
-<table>
-<tr>
-    <td>-6</td>
-    <td>-5</td>
-    <td>-4</td>
-    <td>-3</td>
-    <td>-2</td>
-    <td>-1</td>
-  </tr>
-  <tr>
-    <td>K</td>
-    <td>u</td>
-    <td>w</td>
-    <td>a</td>
-    <td>i</td>
-    <td>t</td>
-  </tr>
-  <tr>
-    <td>0</td>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-    <td>4</td>
-    <td>5</td>
-  </tr>
+
+<h4>String Index Example: <code>"Kuwait"</code></h4>
+
+<p>
+  This is how a string looks like in memory. Each character takes a 
+  memory <b>cell</b> and will be given an <b>index</b> value automatically. 
+<br >
+  Programmers can use these index values to extract a character in a specific 
+  position from a string. 
+</p>
+<table class="table table-bordered text-center">
+ 
+  <tbody>
+    <tr>
+      <td><code>-6</code></td>
+      <td><code>-5</code></td>
+      <td><code>-4</code></td>
+      <td><code>-3</code></td>
+      <td><code>-2</code></td>
+      <td><code>-1</code></td>
+    </tr>
+    <tr>
+      <td><strong>K</strong></td>
+      <td><strong>u</strong></td>
+      <td><strong>w</strong></td>
+      <td><strong>a</strong></td>
+      <td><strong>i</strong></td>
+      <td><strong>t</strong></td>
+    </tr>
+    <tr>
+      <td><code>0</code></td>
+      <td><code>1</code></td>
+      <td><code>2</code></td>
+      <td><code>3</code></td>
+      <td><code>4</code></td>
+      <td><code>5</code></td>
+    </tr>
+  </tbody>
 </table>
+
 
 
 
