@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FedQP: Large-Scale Private and Flexible Federated Query Processing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../icon.png">
+  <style>
+    body {
+      font-family: 'Fira Sans', sans-serif;
+      background-color: #f4f6f8;
+      color: #2d3748;
+    }
+    .pub-wrapper {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+    .abstract {
+      font-size: 1.15rem;
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+    .mla-citation {
+      background-color: #edf2f7;
+      border-left: 4px solid #4299e1;
+      padding: 1rem;
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+    .links button {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .links button:hover {
+      background-color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar_load"></div>
+  <div class="pub-wrapper">
+    <h1 id="paper-title">Alohomora: Workflow-Aware Authentication and Authorization
+in Heterogeneous Systems</h1>
+    <div class="abstract" id="paper-abstract">
+    Current federated identity management systems lack contextual awareness of workflows2
+across independent systems, creating security gaps and workflow integrity challenges. This3
+article details the design and implementation of Alohomora, a distributed workflow-aware4
+authentication system that maintains cross-system workflow context through path-bound5
+tokens. Alohomora complements existing identity providers such as OAuth and SAML6
+by adding workflow orchestration capabilities while leveraging standard authentication7
+protocols for initial user verification. The system introduces workflow graphs as a formal8
+model for representing dependencies between functions across heterogeneous systems and9
+employs a distributed caching architecture with collaboration groups for scalable session10
+management. In a typical deployment scenario, an employee onboarding workflow across11
+human resources services, account provisioning, and benefits systems forms a trust group12
+where Alohomora enforces ordered step execution, validates prerequisite completion at13
+each transition, and generates cryptographic completion assertions upon workflow final-14
+ization. Extensive performance evaluation under concurrent user requests demonstrates15
+polynomial performance characteristics with superior scalability compared to centralized16
+OAuth introspection. The results show that Alohomora maintains high throughput under17
+heavy load while providing strong secure access control through workflow path binding18
+and distributed trust orchestration. The prototype implementation is available as open19
+source.
+	</div>
+    <div class="mla-citation" id="mla-citation">
+      Almohri, H. M. J. “Alohomora: Workflow-Aware Authentication and Authorization
+in Heterogeneous Systems.” <i>MDPI Network</i>, accepted, 2025.
+    </div>
+    <div class="links">
+      <a href=""><button>Download Article</button></a>
+    
+      <button onclick="generateBibtex()">Download BibTeX</button>
+    </div>
+  </div>
+
+  <script>
+  function generateBibtex() {
+    const bibtex = `@article{almohri2025alohomora,
+                      title={Alohomora: Workflow-Aware Authentication and Authorization
+in Heterogeneous Systems},
+                      author={Almohri, Hussain M. J.},
+                      journal={Network},
+                      year={2025},
+                      publisher={MDPI}
+                    }`;
+
+    const blob = new Blob([bibtex], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "citation.bib";
+    a.click();
+  }
+</script>
+
+
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#navbar_load').load('https://almohri.io/navbar.html');
+    });
+  </script>
+</body>
+</html>
