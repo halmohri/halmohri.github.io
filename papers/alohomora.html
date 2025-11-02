@@ -61,25 +61,9 @@
     <h1 id="paper-title">Alohomora: Workflow-Aware Authentication and Authorization
 in Heterogeneous Systems</h1>
     <div class="abstract" id="paper-abstract">
-    Current federated identity management systems lack contextual awareness of workflows2
-across independent systems, creating security gaps and workflow integrity challenges. This3
-article details the design and implementation of Alohomora, a distributed workflow-aware4
-authentication system that maintains cross-system workflow context through path-bound5
-tokens. Alohomora complements existing identity providers such as OAuth and SAML6
-by adding workflow orchestration capabilities while leveraging standard authentication7
-protocols for initial user verification. The system introduces workflow graphs as a formal8
-model for representing dependencies between functions across heterogeneous systems and9
-employs a distributed caching architecture with collaboration groups for scalable session10
-management. In a typical deployment scenario, an employee onboarding workflow across11
-human resources services, account provisioning, and benefits systems forms a trust group12
-where Alohomora enforces ordered step execution, validates prerequisite completion at13
-each transition, and generates cryptographic completion assertions upon workflow final-14
-ization. Extensive performance evaluation under concurrent user requests demonstrates15
-polynomial performance characteristics with superior scalability compared to centralized16
-OAuth introspection. The results show that Alohomora maintains high throughput under17
-heavy load while providing strong secure access control through workflow path binding18
-and distributed trust orchestration. The prototype implementation is available as open19
-source.
+Current federated identity management systems lack contextual awareness of workflows across independent systems, creating security gaps and workflow integrity challenges. This article details the design and implementation of Alohomora, a distributed workflow-aware authentication system that maintains cross-system workflow context through path-bound tokens. Alohomora complements existing identity providers such as OAuth and SAML by adding workflow orchestration capabilities while leveraging standard authentication protocols for initial user verification. The system introduces workflow graphs as a formal model for representing dependencies between functions across heterogeneous systems and employs a distributed caching architecture with collaboration groups for scalable session management. In a typical deployment scenario, an employee onboarding workflow across human resources services, account provisioning, and benefits systems forms a trust group where Alohomora enforces ordered step execution, validates prerequisite completion at each transition, and generates cryptographic completion assertions upon workflow finalization.
+Extensive performance evaluation under concurrent user requests demonstrates polynomial performance characteristics with superior scalability compared to centralized OAuth introspection. The results show that Alohomora maintains high throughput under heavy load while providing strong secure access control through workflow path binding and distributed trust orchestration. The prototype implementation is available as open source.
+
 	</div>
     <div class="mla-citation" id="mla-citation">
       Almohri, H. M. J. “Alohomora: Workflow-Aware Authentication and Authorization
