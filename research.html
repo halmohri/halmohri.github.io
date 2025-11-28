@@ -18,9 +18,63 @@
   <style>
     body {
       font-family: 'Open Sans', serif;
+      font-size: 18px;
     }
     .pdf-icon {
       margin-left: 10px;
+    }
+    #publication_list {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card-header {
+      background: #1f2937;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+      padding: 12px 16px;
+      border-bottom: none;
+    }
+    #publication_list .publication-year {
+      margin-bottom: 18px;
+    }
+    .pub-year-header {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 10px;
+      background: linear-gradient(90deg, #1f2937, #334155);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .pub-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .pub-list li {
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+    .pub-list li:last-child {
+      margin-bottom: 0;
+    }
+    #projects_list {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .project-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
     }
   </style>
 </head>
@@ -30,19 +84,18 @@
   <div class="container-fluid mt-4">
     <div class="card">
       <div class="card-header">Projects</div>
-      <div class="card-body">
-        <ol>
+      <div class="card-body" id="projects_list">
+        <ul class="pub-list project-list">
           <li>
-          <a href="https://almohri.io/dos.html">Denial of Service (DoS)</a> detection 
-            </li>
-            <li>
-          <a href="https://almohri.io/smishing.html">Smishing</a> detection 
-              </li>
-
-              <li>
-         Securing <a href="https://almohri.io/cloud.html">cloud</a> systems 
-              </li>
-        </ol>
+            <a href="https://almohri.io/dos.html">Denial of Service (DoS)</a> detection 
+          </li>
+          <li>
+            <a href="https://almohri.io/smishing.html">Smishing</a> detection 
+          </li>
+          <li>
+            Securing <a href="https://almohri.io/cloud.html">cloud</a> systems 
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -50,79 +103,152 @@
 
   <div class="container-fluid mt-4">
     <div class="card">
-      <div class="card-header">Journal Publications</div>
-      <div class="card-body">
-        <ol>
-	  <li><b>Almohri, H. M. J.</b><a href="https://almohri.io/papers/alohomora.html">“Alohomora: Workflow-Aware Authentication and Authorization
-in Heterogeneous Systems.”</a> <i>Network</i> 2025, 5, 51. <a href="https://www.mdpi.com/2673-8732/5/4/51"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
+      <div class="card-header">Publications</div>
+      <div class="card-body" id="publication_list">
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2025</div>
+          <ul class="pub-list">
+           <li>
+            Almohri, H.M. (2025). <a href="https://almohri.io/papers/alohomora.html">Alohomora: Workflow-Aware Authentication and Authorization in Heterogeneous Systems.</a> Network.
+            <a href="papers/network-05-00051.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a>
+          </li> 
+           <li>
+            Almohri, H.M., & Watson, L.T. (2025). <a href="https://almohri.io/papers/fedqp.html">FedQP: Large-Scale Private and Flexible Federated Query Processing</a>. IEEE Access, 13, 92019-92035.
+            <a href="papers/fedqp.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a>
+          </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2024</div>
+          <ul class="pub-list">
+            <li>
+               Chang, T.H., Watson, L.T., Leyffer, S., Lux, T.C., & Almohri, H.M. (2024). Remark on Algorithm 1012: Computing Projections with Large Datasets. ACM Transactions on Mathematical Software, 50, 1 - 8.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2023</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., & Watson, L.T. (2023). Model-Agnostic Federated Learning for Privacy-Preserving Systems. 2023 IEEE Secure Development Conference (SecDev), 99-105.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2022</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Watson, L.T., & Evans, D. (2022). Predictability of IP Address Allocations for Cloud Computing Platforms. IEEE Transactions on Information Forensics and Security, 15, 500-511.
+            </li>
+            <li>
+              Elish, K.O., Elish, M.O., & Almohri, H.M. (2022). Lightweight, Effective Detection and Characterization of Mobile Malware Families. IEEE Transactions on Computers, 71, 2982-2995.
+            </li>
+            <li>
+              Almohri, H.M., Watson, L., Evans, D., & Billups, S.C. (2022). Dynamic System Diversification for Securing Cloud-based IoT Subnetworks. ACM Transactions on Autonomous and Adaptive Systems (TAAS), 17, 1 - 23.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2021</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Watson, L.T., Alemzadeh, H., & AlMutawa, M. (2021). On Parallel Real-Time Security Improvement Using Mixed-Integer Programming. IEEE Access, 9, 58824-58837.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2020</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., AlMutawa, M., Alawadh, M., & Elish, K.O. (2020). A Client Bootstrapping Protocol for DoS Attack Mitigation on Entry Point Services in the Cloud. Secur. Commun. Networks, 2020, 8873258:1-8873258:12.
+            </li>
+            <li>
+              Almohri, H.M., Watson, L.T., & Evans, D.E. (2020). An Attack-Resilient Architecture for the Internet of Things. IEEE Transactions on Information Forensics and Security, 15, 3940-3954.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2019</div>
+          <ul class="pub-list">
+            <li>
+              Blanc, W., Hashem, L.G., Elish, K.O., & Almohri, H.M. (2019). Identifying Android Malware Families Using Android-Oriented Metrics. 2019 IEEE International Conference on Big Data (Big Data), 4708-4713.
+            </li>
+            <li>
+              Vinatzer, B.A., Heath, L.S., Almohri, H.M., Stulberg, M.J., Lowe, C., & Li, S. (2019). Cyberbiosecurity Challenges of Pathogen Genome Databases. Frontiers in Bioengineering and Biotechnology, 7.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2018</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Watson, L.T., & Evans, D. (2018). Misery Digraphs: Delaying Intrusion Attacks in Obscure Clouds. IEEE Transactions on Information Forensics and Security, 13, 1361-1375.
+            </li>
+            <li>
+              Almohri, H.M., & Evans, D. (2018). Fidelius Charm: Isolating Unsafe Rust Code. Proceedings of the Eighth ACM Conference on Data and Application Security and Privacy.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2017</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Cheng, L., Yao, D.D., & Alemzadeh, H. (2017). On Threat Modeling and Mitigation of Medical Cyber-Physical Systems. 2017 IEEE/ACM International Conference on Connected Health: Applications, Systems and Engineering Technologies (CHASE), 114-119.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2016</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Watson, L.T., Yao, D.D., & Ou, X. (2016). Security Optimization of Dynamic Networks with Probabilistic Graph Modeling and Linear Programming. IEEE Transactions on Dependable and Secure Computing, 13, 474-487.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2014</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Yao, D.D., & Kafura, D.G. (2014). DroidBarrier: know what is executing on your android. Conference on Data and Application Security and Privacy.
+            </li>
+            <li>
+              Almohri, H.M., Yao, D.D., & Kafura, D.G. (2014). Process Authentication for High System Assurance. IEEE Transactions on Dependable and Secure Computing, 11, 168-180.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2013</div>
+          <ul class="pub-list">
+            <li>
+              Yao, D.D., & Almohri, H.M. (2013). High Assurance Models for Secure Systems.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year mb-3">
+          <div class="pub-year-header">2012</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., Yao, D.D., & Kafura, D.G. (2012). Identifying native applications with high assurance. Conference on Data and Application Security and Privacy.
+            </li>
+          </ul>
+        </div>
+        <div class="publication-year">
+          <div class="pub-year-header">2010</div>
+          <ul class="pub-list">
+            <li>
+              Almohri, H.M., & Balci, O. (2010). A simulation-based software design framework for network-centric and parallel systems. PSI EtA '10.
+            </li>
+          </ul>
+        </div>
 
-          <li><b>Almohri, H. M. J.</b>, and Layne T. Watson. <a href="https://almohri.io/papers/fedqp.html">“FedQP: Large-Scale Private and Flexible Federated Query Processing.”</a> <i>IEEE Access</i>, vol. 13, pp. 92019-92035, 2025.</li>
-
-          <li>Chang, Tyler H., Layne T. Watson, Sven Leyffer, Thomas C. H. Lux, and <b>Almohri, H. M. j.</b>. <a href="https://almohri.io/papers/acmtoms2024.html">“Remark on Algorithm 1012: Computing Projections with Large Data Sets.”</a> <i>ACM Transactions on Mathematical Software</i>, vol. 50, no. 2, 2024, Article 2, pp. 1–8.
-            <a href="https://dl.acm.org/doi/10.1145/3656581"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, David Evans, and Stephen Billups. <a href="https://almohri.io/papers/acmtaas2022.html">“Dynamic System Diversification for Securing Cloud-Based IoT Subnetworks.”</a> <i>ACM Transactions on Autonomous and Adaptive Systems</i>, vol. 17, nos. 1–2, 2022, Article 2, pp. 1–23.
-            <a href="https://dl.acm.org/doi/abs/10.1145/3547350"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li>Elish, Karim, M. Elish, and <b>Almohri, H. M. j.</b>. <a href="https://almohri.io/papers/android2022.html">“Lightweight, Effective Detection and Characterization of Mobile Malware Families.”</a> <i>IEEE Transactions on Computers</i>, vol. 71, no. 11, 2022, pp. 2982–2995.
-            <a href="https://ieeexplore.ieee.org/document/9682574/"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, Homa Alemzadeh, and Mohammed Almutawa. <a href="https://almohri.io/papers/access2021.html">“On Parallel Real-Time Security Improvement Using Mixed-Integer Programming.”</a> <i>IEEE Access</i>, vol. 9, 2021, pp. 58824–58837.
-            <a href="https://ieeexplore.ieee.org/document/9402746"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Mohammed Almutawa, Mohammed Alawadh, and Karim Elish. “A Client Bootstrapping Protocol for DoS Attack Mitigation on Entry Point Services in the Cloud.” <i>Security and Communication Networks</i>, 2020.
-            <a href="https://www.hindawi.com/journals/scn/2020/8873258/"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, and David Evans. “An Attack-Resilient Architecture for the Internet of Things.” <i>IEEE Transactions on Information Forensics and Security</i>, vol. 15, 2020, pp. 3940–3954.
-            <a href="https://ieeexplore.ieee.org/document/9093828"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li>Qasem, Mohammed, and <b>Almohri, H. M. j.</b>. “An Efficient Deception Architecture for Cloud-Based Virtual Networks.” <i>Kuwait Journal of Science</i>, vol. 46, no. 3, 2019.
-            <a href="https://arxiv.org/abs/2004.06933"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, and David Evans. “Predictability of IP Address Allocations for Cloud Computing Platforms.” <i>IEEE Transactions on Information Forensics and Security</i>, vol. 15, 2019, pp. 500–511.
-            <a href="https://ieeexplore.ieee.org/document/8744277/"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li>Vinatzer, Boris A., Lenwood S. Heath, <b>Almohri, H. M. j.</b>, Michael J. Stulberg, Carl Lowe, and Song Li. “Cyberbiosecurity Challenges of Pathogen Genome Databases.” <i>Frontiers in Bioengineering and Biotechnology</i>, vol. 7, 2019, Article 106.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6529814/"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, and David Evans. “Misery Digraphs: Delaying Intrusion Attacks in Obscure Clouds.” <i>IEEE Transactions on Information Forensics and Security</i>, vol. 13, no. 6, 2017, pp. 1361–1375.
-            <a href="https://ieeexplore.ieee.org/document/8125739"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Layne T. Watson, Danfeng Yao, and Xinming Ou. “Security Optimization of Dynamic Networks with Probabilistic Graph Modeling and Linear Programming.” <i>IEEE Transactions on Dependable and Secure Computing</i>, vol. 13, no. 4, 2015, pp. 474–487.
-            <a href="https://ieeexplore.ieee.org/document/7056435/"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Danfeng Yao, and Dennis Kafura. “Process Authentication for High System Assurance.” <i>IEEE Transactions on Dependable and Secure Computing</i>, vol. 11, no. 2, 2013, pp. 168–180.
-            <a href="https://ieeexplore.ieee.org/document/6560050"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card mt-4">
-      <div class="card-header">Conference Publications</div>
-      <div class="card-body">
-        <ol>
-          <li><b>Almohri, H. M. J.</b>, and Watson, L. T. <a href="https://almohri.io/papers/fedint.html">“Model-Agnostic Federated Learning for Privacy-Preserving Systems.”</a> <i>IEEE Secure Development Conference (SecDev)</i>, Oct. 2023, pp. 99–105.
-            <a href="papers/FI-SecDev2023.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li>Blanc, W., Hashem, L. G., Elish, K. O., and <b>Almohri, H. M. J.</b> “Identifying Android Malware Families Using Android-Oriented Metrics.” <i>IEEE International Conference on Big Data (Big Data)</i>, Dec. 2019, pp. 4708–4713.
-            <a href="https://ieeexplore.ieee.org/document/9005669"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, and Evans, D. <a href="https://almohri.io/papers/fidelius.html">“Fidelius Charm: Isolating Unsafe Rust Code.”</a> <i>ACM Conference on Data and Application Security and Privacy</i>, Mar. 2018, pp. 248–255.
-            <a href="papers/fc.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Cheng, L., Yao, D., and Alemzadeh, H. “On Threat Modeling and Mitigation of Medical Cyber-Physical Systems.” <i>IEEE/ACM CHASE</i>, Jul. 2017, pp. 114–119.
-            <a href="papers/CHASE.2017.69.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, and Almohri, S. A. “Security Evaluation by Arrogance: Saving Time and Money.” <i>IEEE/ACM Workshop on Software Engineering for Startups (SoftStart)</i>, May 2017, pp. 12–16.
-            <a href="papers/arrogance.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Yao, D., and Kafura, D. “DroidBarrier: Know What Is Executing on Your Android.” <i>ACM Conference on Data and Application Security and Privacy</i>, Mar. 2014, pp. 257–264.
-            <a href="papers/droidbarrier.pdf"><img src="images/PDF_24.png" class="pdf-icon"></a></li>
-
-          <li><b>Almohri, H. M. J.</b>, Yao, D., and Kafura, D. “Identifying Native Applications with High Assurance.” <i>ACM Conference on Data and Application Security and Privacy</i>, Feb. 2012, pp. 275–282.</li>
-
-          <li><b>Almohri, H. M. J.</b>, and Balci, O. “A Simulation-Based Software Design Framework for Network-Centric and Parallel Systems.” <i>Programming Support Innovations for Emerging Distributed Applications</i>, 2010, pp. 1–5.</li>
-        </ol>
+        <div class="publication-year">
+          <div class="pub-year-header">2008</div>
+          <ul class="pub-list">
+            <li>
+            Almohri, H.M. (2008). Security risk prioritization for logical attack graphs.
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
