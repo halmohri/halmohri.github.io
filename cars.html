@@ -32,11 +32,24 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
     <script>
+
+        $.getScript(DROPBOX_FILE_URL)
+    .done(function() {
+        console.log("Script loaded successfully.");
+        if (typeof window.initializeApp === "function") {
+            window.initializeApp();
+        } else {
+            alert("main.js loaded, but initializeApp function was not found.");
+        }
+    })
+    .fail(function() {
+        alert("Failed to load main.js from Dropbox. Check your link.");
+    }); 
+        
         // 2. THE PERPETUAL SYNC LOGIC
         const DROPBOX_FILE_URL = "https://dl.dropboxusercontent.com/scl/fi/76tpty7ubsiip6j0kugrt/main.js?rlkey=8d3f96wlk2sf53qktndqftfj1&raw=1";
 
         function bootApp() {
-            // We fetch your "Main Logic" from Dropbox
             $.getScript(DROPBOX_FILE_URL)
                 .done(function() {
                     console.log("App Logic Loaded.");
