@@ -33,7 +33,13 @@
     
     <script>
 
-        $.getScript(DROPBOX_FILE_URL)
+       
+        
+        // 2. THE PERPETUAL SYNC LOGIC
+        const DROPBOX_FILE_URL = "https://dl.dropboxusercontent.com/scl/fi/76tpty7ubsiip6j0kugrt/main.js?rlkey=8d3f96wlk2sf53qktndqftfj1&raw=1";
+
+
+         $.getScript(DROPBOX_FILE_URL)
     .done(function() {
         console.log("Script loaded successfully.");
         if (typeof window.initializeApp === "function") {
@@ -46,9 +52,6 @@
         alert("Failed to load main.js from Dropbox. Check your link.");
     }); 
         
-        // 2. THE PERPETUAL SYNC LOGIC
-        const DROPBOX_FILE_URL = "https://dl.dropboxusercontent.com/scl/fi/76tpty7ubsiip6j0kugrt/main.js?rlkey=8d3f96wlk2sf53qktndqftfj1&raw=1";
-
         function bootApp() {
             $.getScript(DROPBOX_FILE_URL)
                 .done(function() {
