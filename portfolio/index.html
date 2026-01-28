@@ -195,6 +195,7 @@
                                     <th class="sortable" data-type="number">Cost Basis</th>
                                     <th class="sortable" data-type="number">Gain $</th>
                                     <th class="sortable" data-type="number">Gain %</th>
+                                    <th class="sortable" data-type="number">Net Dividends</th>
                                     <th class="sortable">Ratings</th>
                                     <th class="sortable">Reinvest?</th>
                                     <th class="sortable" data-type="number">% of Acct</th>
@@ -202,7 +203,42 @@
                                 </tr>
                             </thead>
                             <tbody id="positionsTable">
-                                <tr><td colspan="14" class="text-center p-3 text-muted">Load CSV files to view data</td></tr>
+                                <tr><td colspan="15" class="text-center p-3 text-muted">Load CSV files to view data</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Transactions</span>
+                    <div class="d-flex gap-2 align-items-center">
+                        <input type="text" class="form-control form-control-sm" id="transactionsSearch" placeholder="Search transactions...">
+                        <small class="text-muted" id="transactionsCount">0</small>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle small" id="transactionsTableEl">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="sortable">Date</th>
+                                    <th class="sortable">Action</th>
+                                    <th class="sortable">Symbol</th>
+                                    <th class="sortable">Description</th>
+                                    <th class="sortable" data-type="number">Quantity</th>
+                                    <th class="sortable" data-type="number">Price</th>
+                                    <th class="sortable" data-type="number">Fees & Comm</th>
+                                    <th class="sortable" data-type="number">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsTable">
+                                <tr><td colspan="8" class="text-center p-3 text-muted">Load CSV files to view data</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -389,7 +425,7 @@ function formatMoney(amount) {
 }
 
 function displayMoney(val) {
-    if (val === undefined || val === null) return '-';
+    if (val === undefined || val === null || val === '') return '-';
     const str = String(val).trim();
     if (!str || str.toUpperCase() === 'N/A') return '-';
     return formatMoney(parseMoney(str));
@@ -410,14 +446,14 @@ function parseNumberCell(text) {
     return Number.isNaN(val) ? null : val;
 }
 
-function sortTableByColumn(tableId, colIndex, type, asc) {
+function sortTableByColumn(tableId, colIndex, type, asc, getValueFn) {
     const tbody = document.querySelector(`${tableId} tbody`);
     if (!tbody) return;
     const rows = Array.from(tbody.querySelectorAll('tr'));
     const validRows = rows.filter(r => r.children.length);
     validRows.sort((a, b) => {
-        const aText = a.children[colIndex]?.innerText ?? '';
-        const bText = b.children[colIndex]?.innerText ?? '';
+        const aText = getValueFn ? getValueFn(a, colIndex) : (a.children[colIndex]?.innerText ?? '');
+        const bText = getValueFn ? getValueFn(b, colIndex) : (b.children[colIndex]?.innerText ?? '');
         if (type === 'number') {
             const av = parseNumberCell(aText);
             const bv = parseNumberCell(bText);
@@ -590,6 +626,8 @@ function processAllData() {
         }
     }
 
+    let dividendNetBySymbol = {};
+
     if (g_transactions) {
         const proc = new TDTransProc(g_transactions);
         const firstTxn = proc.trans.length ? proc.trans[0].date : null;
@@ -678,7 +716,38 @@ function processAllData() {
                 else d.withdrawals += t.amount;
                 d.netCash += t.amount;
             }
+
+            // Net dividends by symbol
+            if (t.symbol && (a.includes('DIVIDEND') || a.includes('WITHHOLDING') || a.includes('NRA TAX ADJ') || a.includes('FOREIGN TAX'))) {
+                dividendNetBySymbol[t.symbol] = (dividendNetBySymbol[t.symbol] || 0) + t.amount;
+            }
         });
+
+        // Transactions Table
+        const tBody = $('#transactionsTable');
+        tBody.empty();
+        const txns = proc.trans;
+        if (!txns.length) {
+            tBody.html('<tr><td colspan="8" class="text-center">No data available. Please load CSVs.</td></tr>');
+        } else {
+            const rowsHtml = txns.map(t => {
+                const dateStr = t.date ? t.date.toLocaleDateString() : '-';
+                return `
+                    <tr>
+                        <td>${dateStr}</td>
+                        <td>${t.action || '-'}</td>
+                        <td>${t.symbol || '-'}</td>
+                        <td>${t.desc || '-'}</td>
+                        <td>${t.quantity ? t.quantity.toLocaleString() : '-'}</td>
+                        <td>${displayMoney(t.price)}</td>
+                        <td>${displayMoney(t.commission)}</td>
+                        <td>${displayMoney(t.amount)}</td>
+                    </tr>
+                `;
+            }).join('');
+            tBody.html(rowsHtml);
+        }
+        $('#transactionsCount').text(txns.length.toLocaleString());
     }
 
     // 2. Process Positions (Current Status)
@@ -728,6 +797,7 @@ function processAllData() {
                 costBasis: row[idxCost],
                 gain: row[idxGain],
                 gainPct: row[idxGainPct],
+                netDiv: dividendNetBySymbol[sym] || 0,
                 ratings: row[idxRatings],
                 reinvest: row[idxReinvest],
                 acctPct: row[idxAcctPct],
@@ -818,7 +888,7 @@ function processAllData() {
     tbody.empty();
     
     if(positionsRows.length === 0) {
-        tbody.html('<tr><td colspan="14" class="text-center">No data available. Please load CSVs.</td></tr>');
+        tbody.html('<tr><td colspan="15" class="text-center">No data available. Please load CSVs.</td></tr>');
     }
 
     positionsRows.forEach(d => {
@@ -834,6 +904,7 @@ function processAllData() {
                 <td>${displayMoney(d.costBasis)}</td>
                 <td>${displayMoney(d.gain)}</td>
                 <td>${d.gainPct || '-'}</td>
+                <td>${displayMoney(d.netDiv)}</td>
                 <td>${d.ratings || '-'}</td>
                 <td>${d.reinvest || '-'}</td>
                 <td>${d.acctPct || '-'}</td>
@@ -865,6 +936,34 @@ $(document).ready(function() {
         th.data('asc', asc);
         const type = th.data('type') || 'string';
         sortTableByColumn('#positionsTableEl', th.index(), type, asc);
+    });
+
+    $('#transactionsTableEl thead').on('click', 'th.sortable', function() {
+        const th = $(this);
+        const asc = th.data('asc') !== true;
+        th.data('asc', asc);
+        const type = th.data('type') || 'string';
+        const idx = th.index();
+        sortTableByColumn('#transactionsTableEl', idx, type, asc, (row, i) => {
+            const raw = row.children[i]?.innerText ?? '';
+            if (i === 0) { // Date
+                const d = new Date(raw);
+                return isNaN(d.getTime()) ? raw : d.getTime().toString();
+            }
+            return raw;
+        });
+    });
+
+    $('#transactionsSearch').on('input', function() {
+        const q = $(this).val().toString().trim().toLowerCase();
+        let visible = 0;
+        $('#transactionsTable tr').each(function() {
+            const text = $(this).text().toLowerCase();
+            const match = !q || text.includes(q);
+            $(this).toggle(match);
+            if (match) visible += 1;
+        });
+        $('#transactionsCount').text(visible.toLocaleString());
     });
 
     applyCurrencyPref();
