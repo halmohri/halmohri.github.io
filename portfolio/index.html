@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f8f9fa; padding-top: 20px; padding-bottom: 50px;}
+        .card { margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e9ecef; }
+        .card-header { background-color: #fff; border-bottom: 1px solid #e9ecef; font-weight: 600; color: #2c3e50; }
+        .stat-card { text-align: center; padding: 15px; }
+        .stat-val { font-size: 1.5rem; font-weight: 700; color: #0d6efd; }
+        .stat-label { color: #6c757d; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; margin-top: 5px;}
+        .table-responsive { max-height: 500px; overflow-y: auto; }
+        .positive { color: #198754; font-weight: 500; }
+        .negative { color: #dc3545; font-weight: 500; }
+        .sub-text { font-size: 0.85rem; color: #6c757d; }
+        th.sortable { cursor: pointer; }
+        th.sortable:after { content: "⇅"; font-size: 0.75rem; color: #adb5bd; margin-left: 6px; }
+        #currencyToggleWrap { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-5">
+            <h2><i class="bi bi-wallet2"></i> Portfolio Dashboard</h2>
+        </div>
+        <div class="col-md-7">
+            <div class="card p-2">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <label class="form-label small mb-1">1. Upload CSVs (transactions / positions / shares)</label>
+                        <input type="file" class="form-control form-control-sm" id="csvFileInput" accept=".csv" multiple>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-primary btn-sm w-100" id="processBtn">Load</button>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-outline-secondary btn-sm w-100" id="clearCacheBtn">Clear Cache</button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 d-flex justify-content-end">
+                        <div id="currencyToggleWrap" class="form-check form-switch small text-muted">
+                            <input class="form-check-input" type="checkbox" id="currencyToggle">
+                            <label class="form-check-label" for="currencyToggle">
+                                Show values in KWD
+                                <span id="fxRateText" class="ms-2"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="statsRow">
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalDeposits">$0.00</div>
+                <div class="stat-label">Total Deposits</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalWithdrawals">$0.00</div>
+                <div class="stat-label">Total Withdrawals</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalCash">$0.00</div>
+                <div class="stat-label">Net Cash Invested</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="statsRow2">
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalMktVal">$0.00</div>
+                <div class="sub-text" id="totalMktValPct"></div>
+                <div class="sub-text" id="totalMktValDate"></div>
+                <div class="stat-label">Current Market Value</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalRealized">$0.00</div>
+                <div class="sub-text" id="totalRealizedPct"></div>
+                <div class="stat-label">Total Gain/Loss</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="stat-val" id="totalDiv">$0.00</div>
+                <div class="sub-text" id="totalDivPct"></div>
+                <div class="stat-label">Total Dividends</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header">Investor Shares (Principal)</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0 small">
+                            <thead><tr><th>Name</th><th>Contributed</th><th>Share %</th><th>Mkt Value Share</th></tr></thead>
+                            <tbody id="investorTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header">Activity Dates</div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span>Since first transaction</span>
+                        <span class="fw-bold" id="sinceFirstTxn">-</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <span>Last transaction date</span>
+                        <span class="fw-bold" id="lastTxnDate">-</span>
+                    </div>
+                    <div class="mt-3 small text-muted">Most active months (last 3 years)</div>
+                    <div class="mt-1" id="activeMonths">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Yearly Performance</span>
+                    <small class="text-muted">Click a column to sort</small>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle small" id="yearlyTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="sortable" data-type="number">Year</th>
+                                    <th class="sortable" data-type="number">Dividends (Net)</th>
+                                    <th class="sortable" data-type="number">Taxes Paid</th>
+                                    <th class="sortable" data-type="number">Total Bought</th>
+                                    <th class="sortable" data-type="number">Total Sold</th>
+                                    <th class="sortable" data-type="number">Net Trading</th>
+                                    <th class="sortable" data-type="number">Total Deposits</th>
+                                    <th class="sortable" data-type="number">Total Withdrawals</th>
+                                    <th class="sortable" data-type="number">Net Cash Flow</th>
+                                    <th class="sortable">Bought Symbols</th>
+                                    <th class="sortable">Sold Symbols</th>
+                                </tr>
+                            </thead>
+                            <tbody id="yearlyTableBody">
+                                <tr><td colspan="11" class="text-center p-3 text-muted">Load CSV files to view data</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Positions</span>
+                    <small class="text-muted" id="dataStatus">Waiting for data...</small>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle small" id="positionsTableEl">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="sortable">Symbol</th>
+                                    <th class="sortable">Description</th>
+                                    <th class="sortable" data-type="number">Qty</th>
+                                    <th class="sortable" data-type="number">Price</th>
+                                    <th class="sortable" data-type="number">Market Value</th>
+                                    <th class="sortable" data-type="number">Day Chng $</th>
+                                    <th class="sortable" data-type="number">Day Chng %</th>
+                                    <th class="sortable" data-type="number">Cost Basis</th>
+                                    <th class="sortable" data-type="number">Gain $</th>
+                                    <th class="sortable" data-type="number">Gain %</th>
+                                    <th class="sortable">Ratings</th>
+                                    <th class="sortable">Reinvest?</th>
+                                    <th class="sortable" data-type="number">% of Acct</th>
+                                    <th class="sortable">Security Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="positionsTable">
+                                <tr><td colspan="14" class="text-center p-3 text-muted">Load CSV files to view data</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+/**
+ * --- CLASSES ---
+ */
+
+class TDTrans {
+    constructor(row) {
+        // Schwab Format: Date,Action,Symbol,Description,Quantity,Price,Fees & Comm,Amount
+        const rawDate = row[0] || "";
+        const m = rawDate.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+        if (m) {
+            const mm = m[1].padStart(2, '0');
+            const dd = m[2].padStart(2, '0');
+            this.date = new Date(`${m[3]}-${mm}-${dd}`);
+        } else {
+            this.date = new Date(rawDate);
+        }
+        this.action = row[1] || "";
+        this.desc = row[3] || "";
+        this.type = this.action;
+        this.quantity = parseMoney(row[4]);
+        this.symbol = row[2] || "";
+        this.price = parseMoney(row[5]);
+        this.commission = row[6];
+        this.amount = parseMoney(row[7]);
+    }
+}
+
+class TDTransProc {
+    constructor(data) {
+        this.trans = [];
+        this.constructTrans(data);
+    }
+    constructTrans(data) {
+        const start = getTransactionsHeaderIndex(data) + 1;
+        for (let i = start; i < data.length; i++) {
+            if (data[i].length > 1) {
+                const t = new TDTrans(data[i]);
+                if (!t.date || isNaN(t.date.getTime())) continue;
+                this.trans.push(t);
+            }
+        }
+        this.trans.sort((a, b) => a.date - b.date);
+    }
+    getItemDesc(item) {
+        return this.trans.filter(t => t.desc.toUpperCase().indexOf(item.toUpperCase()) > -1);
+    }
+    getCashTransfers() {
+        return this.trans.filter(t => {
+            const a = t.action.toUpperCase();
+            const d = t.desc.toUpperCase();
+            return a.includes('MONEYLINK TRANSFER') || d.includes('ELECTRONIC FUNDING');
+        });
+    }
+    getDeposits() { return this.getCashTransfers().filter(t => t.amount > 0); }
+    getWithdrawals() { return this.getCashTransfers().filter(t => t.amount < 0); }
+    getDividends() {
+        return this.trans.filter(t => {
+            const a = t.action.toUpperCase();
+            return a.includes('DIVIDEND') || a.includes('INTEREST') || a.includes('NRA TAX ADJ') || a.includes('FOREIGN TAX');
+        });
+    }
+    getInvestors() {
+        let data = this.getItemDesc('INVEST-1361');
+        let names = new Set();
+        data.forEach(t => {
+            let parts = t.desc.split(' ');
+            if (parts.length > 1) names.add(parts[1]);
+        });
+        return Array.from(names);
+    }
+    getInvestmentTotal(name) {
+        return this.getItemDesc(`INVEST-1361 ${name}`).reduce((sum, t) => sum + t.amount, 0);
+    }
+    
+    // Calculates Realized Gains from SOLD transactions only
+    getRealizedGains() {
+        let symbolGains = {};
+        
+        // Find all symbols ever traded
+        let symbols = new Set();
+        this.trans.forEach(t => { if(t.symbol && t.symbol !== "") symbols.add(t.symbol); });
+        
+        symbols.forEach(sym => {
+            let relevant = this.trans.filter(t => {
+                if (t.symbol !== sym) return false;
+                const a = t.action.toUpperCase();
+                return a.startsWith('BUY') || a.startsWith('BOUGHT') || a.startsWith('SELL') || a.startsWith('SOLD');
+            });
+            relevant.sort((a,b) => a.date - b.date);
+            
+            let quantity = 0;
+            let costPool = 0;
+            let realized = 0;
+
+            relevant.forEach(row => {
+                let isBought = row.action.toUpperCase().startsWith('BUY') || row.action.toUpperCase().startsWith('BOUGHT');
+                let isSold = row.action.toUpperCase().startsWith('SELL') || row.action.toUpperCase().startsWith('SOLD');
+                let q = Math.abs(row.quantity);
+                let amt = Math.abs(row.amount); // Cost or Proceeds
+
+                if (isBought) {
+                    quantity += q;
+                    costPool += amt;
+                } else if (isSold) {
+                    // Sold
+                    // Calculate cost basis for sold portion (Average Cost Method)
+                    let costOfSold = 0;
+                    if (quantity > 0) {
+                        let avgCost = costPool / quantity;
+                        costOfSold = avgCost * q;
+                    }
+                    
+                    let proceeds = amt;
+                    realized += (proceeds - costOfSold);
+
+                    // Update pool
+                    quantity -= q;
+                    costPool -= costOfSold;
+                    
+                    // Tiny float fix
+                    if(quantity < 0.0001) { quantity = 0; costPool = 0; }
+                }
+            });
+            
+            if (Math.abs(realized) > 0.01) {
+                symbolGains[sym] = realized;
+            }
+        });
+        return symbolGains;
+    }
+}
+
+// --- HELPER FUNCTIONS ---
+function parseMoney(str) {
+    if (!str) return 0;
+    return parseFloat(str.replace(/[$,]/g, '')) || 0;
+}
+
+function parseCSV(text) {
+    let lines = text.split('\n');
+    let result = [];
+    const re_value = /(?!\s*$)\s*(?:'([^']*)'|"([^"]*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+    for(let line of lines) {
+        if(!line.trim()) continue;
+        let a = [];
+        line.replace(re_value, function(m0, m1, m2, m3) {
+            if (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+            else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+            else if (m3 !== undefined) a.push(m3);
+            return '';
+        });
+        if (/^\s*,/.test(line)) a.unshift("");
+        if (a.length > 0) result.push(a);
+    }
+    return result;
+}
+
+let g_currency = 'USD';
+let g_fxRate = 1;
+
+function formatMoney(amount) {
+    const isKwd = g_currency === 'KWD' && g_fxRate;
+    const symbol = isKwd ? 'KWD ' : '$';
+    const decimals = isKwd ? 3 : 2;
+    if(amount === undefined || amount === null) {
+        return `<span>${symbol}${(0).toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals})}</span>`;
+    }
+    let cls = amount >= 0 ? 'positive' : 'negative';
+    if(amount === 0) cls = '';
+    const rate = isKwd ? g_fxRate : 1;
+    const val = amount * rate;
+    return `<span class="${cls}">${symbol}${val.toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals})}</span>`;
+}
+
+function displayMoney(val) {
+    if (val === undefined || val === null) return '-';
+    const str = String(val).trim();
+    if (!str || str.toUpperCase() === 'N/A') return '-';
+    return formatMoney(parseMoney(str));
+}
+
+function formatPct(amount, base) {
+    if (!base || Math.abs(base) < 0.0001) return "";
+    let pct = (amount / base) * 100;
+    let cls = pct >= 0 ? 'positive' : 'negative';
+    if (pct === 0) cls = '';
+    return `<span class="${cls}">${pct.toFixed(2)}%</span> of invested cash`;
+}
+
+function parseNumberCell(text) {
+    const cleaned = String(text || '').replace(/[A-Za-z,%$]/g, '').trim();
+    if (!cleaned || cleaned === '-') return null;
+    const val = parseFloat(cleaned);
+    return Number.isNaN(val) ? null : val;
+}
+
+function sortTableByColumn(tableId, colIndex, type, asc) {
+    const tbody = document.querySelector(`${tableId} tbody`);
+    if (!tbody) return;
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const validRows = rows.filter(r => r.children.length);
+    validRows.sort((a, b) => {
+        const aText = a.children[colIndex]?.innerText ?? '';
+        const bText = b.children[colIndex]?.innerText ?? '';
+        if (type === 'number') {
+            const av = parseNumberCell(aText);
+            const bv = parseNumberCell(bText);
+            if (av === null && bv === null) return 0;
+            if (av === null) return 1;
+            if (bv === null) return -1;
+            return asc ? av - bv : bv - av;
+        }
+        return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+    });
+    validRows.forEach(r => tbody.appendChild(r));
+}
+
+async function fetchFxRateUsdToKwd() {
+    const sources = [
+        {
+            name: 'frankfurter',
+            url: 'https://api.frankfurter.dev/v1/latest?base=USD&symbols=KWD',
+            parse: d => d?.rates?.KWD
+        },
+        {
+            name: 'hexarate',
+            url: 'https://hexarate.paikama.co/api/rates/USD/KWD/latest',
+            parse: d => d?.data?.mid
+        },
+        {
+            name: 'moneyconvert',
+            url: 'https://cdn.moneyconvert.net/api/latest.json',
+            parse: d => d?.rates?.KWD
+        }
+    ];
+    for (const src of sources) {
+        try {
+            const res = await fetch(src.url, { cache: 'no-store' });
+            if (!res.ok) continue;
+            const data = await res.json();
+            const rate = src.parse(data);
+            if (rate && rate > 0) return rate;
+        } catch (e) {
+            // Try next source
+        }
+    }
+    return null;
+}
+
+function applyCurrencyPref() {
+    const pref = localStorage.getItem(CACHE_KEYS.currencyPref);
+    if (pref === 'KWD' || pref === 'USD') g_currency = pref;
+    $('#currencyToggle').prop('checked', g_currency === 'KWD');
+}
+
+function updateFxUi() {
+    if (g_fxRate && g_fxRate > 0) {
+        $('#currencyToggleWrap').show();
+        const cachedTs = parseInt(localStorage.getItem(CACHE_KEYS.fxTs) || '', 10);
+        const tsText = cachedTs ? ` (as of ${new Date(cachedTs).toLocaleString()})` : '';
+        $('#fxRateText').text(`1 USD = ${g_fxRate.toFixed(3)} KWD${tsText}`);
+    } else {
+        $('#currencyToggleWrap').hide();
+        $('#fxRateText').text('');
+        g_currency = 'USD';
+        $('#currencyToggle').prop('checked', false);
+    }
+}
+
+async function initFxRate() {
+    const cachedRate = parseFloat(localStorage.getItem(CACHE_KEYS.fxRate) || '');
+    const cachedTs = parseInt(localStorage.getItem(CACHE_KEYS.fxTs) || '', 10);
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    if (cachedRate && cachedTs && (Date.now() - cachedTs) < oneDayMs) {
+        g_fxRate = cachedRate;
+        updateFxUi();
+        return;
+    }
+
+    const rate = await fetchFxRateUsdToKwd();
+    if (rate) {
+        g_fxRate = rate;
+        localStorage.setItem(CACHE_KEYS.fxRate, String(rate));
+        localStorage.setItem(CACHE_KEYS.fxTs, String(Date.now()));
+        updateFxUi();
+    } else {
+        if (cachedRate) {
+            g_fxRate = cachedRate;
+        } else {
+            g_fxRate = 0;
+        }
+        updateFxUi();
+    }
+}
+
+function getTransactionsHeaderRow(data) {
+    if (!data || !data.length) return null;
+    let idx = data.findIndex(r => r.includes("Date") && r.includes("Action"));
+    if (idx < 0) idx = 0;
+    return data[idx];
+}
+
+function getTransactionsHeaderIndex(data) {
+    if (!data || !data.length) return 0;
+    let idx = data.findIndex(r => r.includes("Date") && r.includes("Action"));
+    return idx < 0 ? 0 : idx;
+}
+
+function validateTransactionsFormat(data) {
+    const header = getTransactionsHeaderRow(data);
+    if (!header) return false;
+    const required = ["Date", "Action", "Symbol", "Description", "Quantity", "Price", "Fees & Comm", "Amount"];
+    const lower = header.map(h => String(h).toLowerCase());
+    return required.every(r => lower.includes(r.toLowerCase()));
+}
+
+function diffYMD(start, end) {
+    if (!start || !end) return null;
+    let s = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+    let e = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+    if (e < s) return null;
+    let years = e.getFullYear() - s.getFullYear();
+    let months = e.getMonth() - s.getMonth();
+    let days = e.getDate() - s.getDate();
+    if (days < 0) {
+        months -= 1;
+        const prevMonth = new Date(e.getFullYear(), e.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+    return { years, months, days };
+}
+
+function formatMonthKey(ym) {
+    const parts = ym.split('-');
+    if (parts.length !== 2) return ym;
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    if (isNaN(year) || isNaN(month)) return ym;
+    const dt = new Date(year, month, 1);
+    return dt.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+}
+
+// --- MAIN PROCESS ---
+let g_transactions = null;
+let g_positions = null;
+let g_shares = null;
+let g_positions_asof_date = null;
+const CACHE_KEYS = {
+    transactions: 'td_cache_transactions_csv',
+    positions: 'td_cache_positions_csv',
+    shares: 'td_cache_shares_csv',
+    fxRate: 'td_cache_fx_rate',
+    fxTs: 'td_cache_fx_ts',
+    currencyPref: 'td_currency_pref'
+};
+
+function processAllData() {
+    let cash = 0;
+    let realizedGainsMap = {};
+    let deposits = 0, withdrawals = 0;
+    let yearlyMap = {};
+    let totalMktVal = 0;
+    let positionsRows = [];
+
+    // 1. Process Transactions (History)
+    if (g_transactions) {
+        if (!validateTransactionsFormat(g_transactions)) {
+            alert("transactions.csv format not recognized. Please use the Schwab CSV format (same as 2026.csv).");
+            g_transactions = null;
+        }
+    }
+
+    if (g_transactions) {
+        const proc = new TDTransProc(g_transactions);
+        const firstTxn = proc.trans.length ? proc.trans[0].date : null;
+        const lastTxn = proc.trans.length ? proc.trans[proc.trans.length - 1].date : null;
+        const span = diffYMD(firstTxn, lastTxn);
+        if (span) {
+            $('#sinceFirstTxn').text(`${span.years}y ${span.months}m ${span.days}d`);
+        } else {
+            $('#sinceFirstTxn').text('-');
+        }
+        $('#lastTxnDate').text(lastTxn ? lastTxn.toLocaleDateString() : '-');
+        if (lastTxn) {
+            const lastYear = lastTxn.getFullYear();
+            const minYear = lastYear - 2;
+            const counts = {};
+            proc.trans.forEach(t => {
+                const y = t.date.getFullYear();
+                if (y < minYear || y > lastYear) return;
+                const m = String(t.date.getMonth() + 1).padStart(2, '0');
+                const key = `${y}-${m}`;
+                counts[key] = (counts[key] || 0) + 1;
+            });
+            const topMonths = Object.entries(counts)
+                .sort((a,b) => b[1] - a[1])
+                .slice(0, 3)
+                .map(([k,v]) => `${formatMonthKey(k)} (${v})`);
+            $('#activeMonths').text(topMonths.length ? topMonths.join(', ') : '-');
+        } else {
+            $('#activeMonths').text('-');
+        }
+        
+        // Cash Flow
+        const depList = proc.getDeposits();
+        const withList = proc.getWithdrawals();
+        deposits = depList.reduce((a,b)=>a+b.amount,0);
+        withdrawals = withList.reduce((a,b)=>a+b.amount,0);
+        cash = deposits + withdrawals; // Net Invested Cash
+
+        $('#totalDeposits').html(formatMoney(deposits));
+        $('#totalWithdrawals').html(formatMoney(withdrawals));
+        $('#totalCash').html(formatMoney(cash));
+
+        // Dividends
+        const divs = proc.getDividends();
+        const sumDiv = divs.reduce((a,b)=>a+b.amount,0);
+        $('#totalDiv').html(formatMoney(sumDiv));
+        $('#totalDivPct').html(formatPct(sumDiv, cash));
+
+        // Realized Gains Calculation
+        realizedGainsMap = proc.getRealizedGains();
+
+        // Yearly summary
+        proc.trans.forEach(t => {
+            const yr = t.date.getFullYear();
+            if (!yearlyMap[yr]) {
+                yearlyMap[yr] = {
+                    divNet: 0,
+                    taxesPaid: 0,
+                    bought: 0,
+                    sold: 0,
+                    deposits: 0,
+                    withdrawals: 0,
+                    netCash: 0,
+                    boughtSyms: new Set(),
+                    soldSyms: new Set()
+                };
+            }
+            const d = yearlyMap[yr];
+            const a = t.action.toUpperCase();
+            if (a.includes('DIVIDEND') || a.includes('WITHHOLDING') || a.includes('INTEREST') || a.includes('NRA TAX ADJ') || a.includes('FOREIGN TAX')) {
+                d.divNet += t.amount;
+            }
+            if (a.includes('WITHHOLDING') || a.includes('NRA TAX ADJ') || a.includes('FOREIGN TAX')) {
+                d.taxesPaid += Math.abs(t.amount);
+            }
+            if (a.startsWith('BUY') || a.startsWith('BOUGHT')) {
+                d.bought += Math.abs(t.amount);
+                if (t.symbol) d.boughtSyms.add(t.symbol);
+            }
+            if (a.startsWith('SELL') || a.startsWith('SOLD')) {
+                d.sold += Math.abs(t.amount);
+                if (t.symbol) d.soldSyms.add(t.symbol);
+            }
+            if (a.includes('MONEYLINK TRANSFER')) {
+                if (t.amount >= 0) d.deposits += t.amount;
+                else d.withdrawals += t.amount;
+                d.netCash += t.amount;
+            }
+        });
+    }
+
+    // 2. Process Positions (Current Status)
+    if (g_positions) {
+        g_positions_asof_date = null;
+        if (g_positions[0] && g_positions[0][0]) {
+            const m = String(g_positions[0][0]).match(/(\d{4}[\/-]\d{2}[\/-]\d{2})/);
+            if (m) g_positions_asof_date = m[1];
+        }
+        // Find the header row (some exports include a title line and a blank line)
+        let headerRowIndex = g_positions.findIndex(r => r.includes("Symbol") && r.includes("Description"));
+        if (headerRowIndex < 0) headerRowIndex = 0;
+
+        let header = g_positions[headerRowIndex];
+        let idxSym = header.indexOf("Symbol");
+        let idxDesc = header.indexOf("Description");
+        let idxQty = header.findIndex(h => h.includes("Qty"));
+        let idxPrice = header.indexOf("Price");
+        let idxMktVal = header.findIndex(h => h.includes("Mkt Val"));
+        let idxDayChg = header.findIndex(h => h.includes("Day Chng $"));
+        let idxDayChgPct = header.findIndex(h => h.includes("Day Chng %"));
+        let idxCost = header.findIndex(h => h.includes("Cost Basis"));
+        let idxGain = header.findIndex(h => h.includes("Gain $"));
+        let idxGainPct = header.findIndex(h => h.includes("Gain %"));
+        let idxRatings = header.indexOf("Ratings");
+        let idxReinvest = header.findIndex(h => h.includes("Reinvest?"));
+        let idxAcctPct = header.findIndex(h => h.includes("% of Acct"));
+        let idxSecType = header.findIndex(h => h.includes("Security Type"));
+
+        for(let i=headerRowIndex + 1; i<g_positions.length; i++) {
+            let row = g_positions[i];
+            if(row.length < 2) continue; // Skip empty
+            let sym = row[idxSym];
+            if(!sym || String(sym).toLowerCase().includes('account total')) continue;
+
+            let mktVal = parseMoney(row[idxMktVal]);
+            totalMktVal += mktVal;
+
+            positionsRows.push({
+                sym: sym,
+                desc: row[idxDesc],
+                qty: row[idxQty],
+                price: row[idxPrice],
+                mktVal: row[idxMktVal],
+                dayChg: row[idxDayChg],
+                dayChgPct: row[idxDayChgPct],
+                costBasis: row[idxCost],
+                gain: row[idxGain],
+                gainPct: row[idxGainPct],
+                ratings: row[idxRatings],
+                reinvest: row[idxReinvest],
+                acctPct: row[idxAcctPct],
+                secType: row[idxSecType]
+            });
+        }
+        $('#totalMktVal').html(formatMoney(totalMktVal));
+    }
+
+    // Investors (from shares.csv if available, otherwise infer from transactions)
+    const invTable = $('#investorTable');
+    invTable.empty();
+    if (g_shares && g_shares.length > 0) {
+        let headerRowIndex = g_shares.findIndex(r => r.includes("name") && r.includes("share"));
+        if (headerRowIndex < 0) headerRowIndex = 0;
+        let header = g_shares[headerRowIndex];
+        let idxName = header.findIndex(h => h.toLowerCase() === "name");
+        let idxShare = header.findIndex(h => h.toLowerCase() === "share");
+
+        for (let i = headerRowIndex + 1; i < g_shares.length; i++) {
+            let row = g_shares[i];
+            if (row.length < 2) continue;
+            let name = row[idxName];
+            let share = parseFloat(row[idxShare]);
+            if (!name || isNaN(share)) continue;
+            let contributed = cash ? (share * cash) : null;
+            let mktShare = totalMktVal ? (share * totalMktVal) : null;
+            invTable.append(
+                `<tr><td>${name}</td><td>${contributed === null ? '-' : formatMoney(contributed)}</td><td>${(share*100).toFixed(2)}%</td><td>${mktShare === null ? '-' : formatMoney(mktShare)}</td></tr>`
+            );
+        }
+    } else if (g_transactions) {
+        const proc = new TDTransProc(g_transactions);
+        const investors = proc.getInvestors();
+        let totalInv = 0;
+        investors.forEach(invName => {
+            let total = proc.getInvestmentTotal(invName);
+            let perc = cash !== 0 ? (total / cash) * 100 : 0;
+            totalInv += total;
+            let mktShare = totalMktVal ? (totalMktVal * (perc / 100)) : null;
+            invTable.append(`<tr><td>${invName}</td><td>${formatMoney(total)}</td><td>${perc.toFixed(2)}%</td><td>${mktShare === null ? '-' : formatMoney(mktShare)}</td></tr>`);
+        });
+        let remaining = cash - totalInv;
+        let remPerc = cash !== 0 ? (remaining / cash) * 100 : 0;
+        let remMktShare = totalMktVal ? (totalMktVal * (remPerc / 100)) : null;
+        invTable.append(`<tr class="table-info"><td><strong>Founder</strong></td><td>${formatMoney(remaining)}</td><td>${remPerc.toFixed(2)}%</td><td>${remMktShare === null ? '-' : formatMoney(remMktShare)}</td></tr>`);
+    }
+
+    // Realized gains from transactions
+    let totalRealized = 0;
+    for (let val of Object.values(realizedGainsMap)) totalRealized += val;
+    $('#totalRealized').html(formatMoney(totalRealized));
+    $('#totalMktValPct').html(formatPct(totalMktVal, cash));
+    $('#totalRealizedPct').html(formatPct(totalRealized, cash));
+    $('#totalMktValDate').text(g_positions_asof_date ? `As of ${g_positions_asof_date}` : '');
+
+    // 3. Render Yearly Table
+    const ytbody = $('#yearlyTableBody');
+    ytbody.empty();
+    const years = Object.keys(yearlyMap).map(y => parseInt(y, 10)).sort((a,b)=>b-a);
+    if (years.length === 0) {
+        ytbody.html('<tr><td colspan="11" class="text-center">No data available. Please load CSVs.</td></tr>');
+    }
+    years.forEach(yr => {
+        const d = yearlyMap[yr];
+        const netTrading = d.sold - d.bought;
+        const boughtSyms = Array.from(d.boughtSyms).sort().join(', ') || '-';
+        const soldSyms = Array.from(d.soldSyms).sort().join(', ') || '-';
+        ytbody.append(`
+            <tr>
+                <td class="fw-bold">${yr}</td>
+                <td>${formatMoney(d.divNet)}</td>
+                <td>${formatMoney(d.taxesPaid)}</td>
+                <td>${formatMoney(d.bought)}</td>
+                <td>${formatMoney(d.sold)}</td>
+                <td>${formatMoney(netTrading)}</td>
+                <td>${formatMoney(d.deposits)}</td>
+                <td>${formatMoney(d.withdrawals)}</td>
+                <td>${formatMoney(d.netCash)}</td>
+                <td>${boughtSyms}</td>
+                <td>${soldSyms}</td>
+            </tr>
+        `);
+    });
+
+    // 4. Render Positions Table
+    const tbody = $('#positionsTable');
+    tbody.empty();
+    
+    if(positionsRows.length === 0) {
+        tbody.html('<tr><td colspan="14" class="text-center">No data available. Please load CSVs.</td></tr>');
+    }
+
+    positionsRows.forEach(d => {
+        tbody.append(`
+            <tr>
+                <td class="fw-bold">${d.sym}</td>
+                <td>${d.desc || '-'}</td>
+                <td>${parseMoney(d.qty).toLocaleString()}</td>
+                <td>${displayMoney(d.price)}</td>
+                <td>${displayMoney(d.mktVal)}</td>
+                <td>${displayMoney(d.dayChg)}</td>
+                <td>${d.dayChgPct || '-'}</td>
+                <td>${displayMoney(d.costBasis)}</td>
+                <td>${displayMoney(d.gain)}</td>
+                <td>${d.gainPct || '-'}</td>
+                <td>${d.ratings || '-'}</td>
+                <td>${d.reinvest || '-'}</td>
+                <td>${d.acctPct || '-'}</td>
+                <td>${d.secType || '-'}</td>
+            </tr>
+        `);
+    });
+
+    // Update Status
+    let status = [];
+    if(g_transactions) status.push("Transactions Loaded");
+    if(g_positions) status.push("Positions Loaded");
+    $('#dataStatus').text(status.join(" + ") || "Waiting...");
+}
+
+// --- EVENTS ---
+$(document).ready(function() {
+    $('#yearlyTable thead').on('click', 'th.sortable', function() {
+        const th = $(this);
+        const asc = th.data('asc') !== true;
+        th.data('asc', asc);
+        const type = th.data('type') || 'string';
+        sortTableByColumn('#yearlyTable', th.index(), type, asc);
+    });
+
+    $('#positionsTableEl thead').on('click', 'th.sortable', function() {
+        const th = $(this);
+        const asc = th.data('asc') !== true;
+        th.data('asc', asc);
+        const type = th.data('type') || 'string';
+        sortTableByColumn('#positionsTableEl', th.index(), type, asc);
+    });
+
+    applyCurrencyPref();
+    initFxRate().then(() => {
+        if (g_transactions || g_positions || g_shares) processAllData();
+    });
+
+    $('#currencyToggle').on('change', function() {
+        if (!g_fxRate || g_fxRate <= 0) {
+            $(this).prop('checked', false);
+            return;
+        }
+        g_currency = $(this).is(':checked') ? 'KWD' : 'USD';
+        localStorage.setItem(CACHE_KEYS.currencyPref, g_currency);
+        processAllData();
+    });
+    
+    $('#processBtn').click(function() {
+        const files = Array.from(document.getElementById('csvFileInput').files || []);
+        
+        if(files.length === 0) { alert("Please select at least one file."); return; }
+
+        let p1 = Promise.resolve();
+        let p2 = Promise.resolve();
+        let p3 = Promise.resolve();
+        let hasMatch = false;
+
+        files.forEach(file => {
+            const name = (file.name || "").toLowerCase();
+            if (name.includes('transactions')) {
+                hasMatch = true;
+                p1 = new Promise((resolve) => {
+                    const r = new FileReader();
+                    r.onload = e => { 
+                        const text = e.target.result;
+                        g_transactions = parseCSV(text);
+                        localStorage.setItem(CACHE_KEYS.transactions, text);
+                        resolve(); 
+                    };
+                    r.readAsText(file);
+                });
+            } else if (name.includes('positions')) {
+                hasMatch = true;
+                p2 = new Promise((resolve) => {
+                    const r = new FileReader();
+                    r.onload = e => { 
+                        const text = e.target.result;
+                        g_positions = parseCSV(text);
+                        localStorage.setItem(CACHE_KEYS.positions, text);
+                        resolve(); 
+                    };
+                    r.readAsText(file);
+                });
+            } else if (name.includes('shares') || name.includes('shareholders')) {
+                hasMatch = true;
+                p3 = new Promise((resolve) => {
+                    const r = new FileReader();
+                    r.onload = e => { 
+                        const text = e.target.result;
+                        g_shares = parseCSV(text);
+                        localStorage.setItem(CACHE_KEYS.shares, text);
+                        resolve(); 
+                    };
+                    r.readAsText(file);
+                });
+            }
+        });
+
+        if (!hasMatch) { alert("Please include transactions, positions, or shares CSV."); return; }
+
+        Promise.all([p1, p2, p3]).then(() => { processAllData(); });
+    });
+
+    $('#clearCacheBtn').click(function() {
+        localStorage.removeItem(CACHE_KEYS.transactions);
+        localStorage.removeItem(CACHE_KEYS.positions);
+        localStorage.removeItem(CACHE_KEYS.shares);
+        g_transactions = null;
+        g_positions = null;
+        g_shares = null;
+        $('#csvFileInput').val('');
+        processAllData();
+        $('#dataStatus').text('Cache cleared');
+    });
+
+    // Load cached files first (if available)
+    const cachedTrans = localStorage.getItem(CACHE_KEYS.transactions);
+    const cachedPos = localStorage.getItem(CACHE_KEYS.positions);
+    const cachedShares = localStorage.getItem(CACHE_KEYS.shares);
+    if (cachedTrans) g_transactions = parseCSV(cachedTrans);
+    if (cachedPos) g_positions = parseCSV(cachedPos);
+    if (cachedShares) g_shares = parseCSV(cachedShares);
+    if (cachedTrans || cachedPos || cachedShares) processAllData();
+
+    // Auto-load if files exist in directory (dev convenience)
+    Promise.all([
+        fetch('transactions.csv').then(r => r.ok ? r.text() : null),
+        fetch('positions.csv').then(r => r.ok ? r.text() : null),
+        fetch('shares.csv').then(r => r.ok ? r.text() : null)
+    ]).then(([tText, pText, sText]) => {
+        if(tText) { g_transactions = parseCSV(tText); localStorage.setItem(CACHE_KEYS.transactions, tText); }
+        if(pText) { g_positions = parseCSV(pText); localStorage.setItem(CACHE_KEYS.positions, pText); }
+        if(sText) { g_shares = parseCSV(sText); localStorage.setItem(CACHE_KEYS.shares, sText); }
+        if(tText || pText || sText) processAllData();
+    });
+});
+</script>
+</body>
+</html>
