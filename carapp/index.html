@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Fleet Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f4f7f6; color: #2d3436; padding: 40px; }
+        .car-card { background: #fff; border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-bottom: 4px solid #007bff; }
+        .table-container { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; }
+        .search-container { background: #fff; padding: 20px; border-bottom: 1px solid #eee; }
+        .stat-label { font-size: 0.65rem; text-transform: uppercase; color: #6c757d; font-weight: bold; }
+        .cat-badge { background: #e3f2fd; color: #1976d2; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-right: 4px; font-weight: 600; }
+        th.sortable { cursor: pointer; position: relative; }
+        th.sortable:hover { background-color: #e9ecef !important; }
+        th.sortable::after { content: ' \21C5'; font-size: 0.8em; color: #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="fw-bold mb-4 text-primary text-center">Fleet Intelligence</h1>
+        <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between mb-3">
+            <div class="d-flex gap-2 align-items-center">
+                <input type="file" id="dataFileInput" class="form-control form-control-sm" accept=".json">
+                <button class="btn btn-sm btn-outline-primary" id="loadFileBtn" type="button">Load File</button>
+                <button class="btn btn-sm btn-outline-danger" id="clearCacheBtn" type="button">Clear Cache</button>
+            </div>
+            <div class="small text-muted">Last cache: <span id="cacheInfo">None</span></div>
+        </div>
+        <div class="row g-4 mb-5">
+            <div class="col-lg-4">
+                <div class="card h-100 p-3 shadow-sm border-0 text-center">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0">Expenditure Distribution</h6>
+                        <select id="yearSelect" class="form-select form-select-sm w-auto"></select>
+                    </div>
+                    <canvas id="expenseChart" style="max-height: 250px;"></canvas>
+                    <div id="yearTotal" class="mt-3 fw-bold text-success h5"></div>
+                </div>
+            </div>
+            <div id="carGallery" class="col-lg-8 row g-3"></div>
+        </div>
+        <div class="table-container">
+            <div class="search-container"><input type="text" id="searchInput" class="form-control form-control-lg border-light shadow-sm" placeholder="Search service history..."></div>
+            <table class="table table-hover align-middle mb-0" id="serviceTable">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4 sortable" onclick="sortTable(0)">Date</th>
+                        <th class="sortable" onclick="sortTable(1)">Vehicle</th>
+                        <th class="sortable" onclick="sortTable(2)">ODO</th>
+                        <th class="sortable" onclick="sortTable(3)">Cost</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="logTable"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let appData = {}, myChart = null;
+        let sortDirections = [false, true, true, true]; // Default: Date descending
+        const CACHE_KEY = 'carServiceCache';
+        const CACHE_AT_KEY = 'carServiceCacheAt';
+
+        function setCacheInfo() {
+            const cachedAt = localStorage.getItem(CACHE_AT_KEY);
+            document.getElementById('cacheInfo').innerText = cachedAt ? new Date(cachedAt).toLocaleString() : 'None';
+        }
+
+        function loadFromData(data) {
+            appData = data;
+            const years = [...new Set(data.entries.map(e => e.iso_date.split('-')[0]))].filter(y => y && y !== "9999").sort().reverse();
+            const yearSelect = document.getElementById('yearSelect');
+            yearSelect.innerHTML = `<option value="All">All Years</option>`;
+            years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
+            updateDashboard("All");
+            yearSelect.addEventListener('change', (e) => updateDashboard(e.target.value));
+            document.getElementById('searchInput').addEventListener('input', (ev) => {
+                const term = ev.target.value.toLowerCase();
+                document.querySelectorAll('#logTable tr').forEach(row => row.style.display = row.innerText.toLowerCase().includes(term) ? '' : 'none');
+            });
+        }
+
+        function loadFromCacheOrFetch() {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                try {
+                    loadFromData(JSON.parse(cached));
+                    setCacheInfo();
+                    return;
+                } catch (err) {
+                    localStorage.removeItem(CACHE_KEY);
+                    localStorage.removeItem(CACHE_AT_KEY);
+                }
+            }
+            fetch('car_service.json').then(r => r.json()).then(data => {
+                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                localStorage.setItem(CACHE_AT_KEY, new Date().toISOString());
+                loadFromData(data);
+                setCacheInfo();
+            });
+        }
+
+        document.getElementById('clearCacheBtn').addEventListener('click', () => {
+            localStorage.removeItem(CACHE_KEY);
+            localStorage.removeItem(CACHE_AT_KEY);
+            setCacheInfo();
+            loadFromCacheOrFetch();
+        });
+
+        document.getElementById('loadFileBtn').addEventListener('click', () => {
+            const fileInput = document.getElementById('dataFileInput');
+            if (!fileInput.files.length) {
+                return;
+            }
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const data = JSON.parse(reader.result);
+                    localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                    localStorage.setItem(CACHE_AT_KEY, new Date().toISOString());
+                    loadFromData(data);
+                    setCacheInfo();
+                } catch (err) {
+                    alert('Invalid JSON file.');
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        setCacheInfo();
+        loadFromCacheOrFetch();
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById("logTable");
+            const rows = Array.from(table.rows);
+            const isAscending = sortDirections[columnIndex];
+            
+            rows.sort((a, b) => {
+                let valA = a.cells[columnIndex].getAttribute('data-sort') || a.cells[columnIndex].innerText.trim();
+                let valB = b.cells[columnIndex].getAttribute('data-sort') || b.cells[columnIndex].innerText.trim();
+
+                if (columnIndex === 2 || columnIndex === 3) {
+                    valA = parseFloat(valA.replace(/[^0-9.]/g, '')) || 0;
+                    valB = parseFloat(valB.replace(/[^0-9.]/g, '')) || 0;
+                }
+
+                if (valA < valB) return isAscending ? -1 : 1;
+                if (valA > valB) return isAscending ? 1 : -1;
+                return 0;
+            });
+
+            rows.forEach(row => table.appendChild(row));
+            sortDirections[columnIndex] = !isAscending;
+        }
+
+        function updateDashboard(year) {
+            const filtered = year === "All" ? appData.entries : appData.entries.filter(e => e.iso_date.startsWith(year));
+            const carStats = {}; let total = 0;
+            filtered.forEach(e => { total += e.cost.amount; carStats[e.car] = (carStats[e.car] || 0) + e.cost.amount; });
+            document.getElementById('yearTotal').innerText = `Total: ${total.toLocaleString()} KWD`;
+            if (myChart) myChart.destroy();
+            myChart = new Chart(document.getElementById('expenseChart'), {
+                type: 'pie', data: { labels: Object.keys(carStats), datasets: [{ data: Object.values(carStats), backgroundColor: ['#007bff','#28a745','#ffc107','#dc3545','#17a2b8','#6610f2'] }]},
+                options: { plugins: { legend: { position: 'bottom' } }, responsive: true }
+            });
+            const fleetStats = {};
+            appData.entries.forEach(e => {
+                if(!fleetStats[e.car]) {
+                    const info = appData.car_info[e.car] || {};
+                    fleetStats[e.car] = { jobs:0, spend:0, vin:info.vin || "N/A", price:info.purchase_price || "N/A", age:info.age || "N/A", year:info.model_year || "N/A", tire:info.avg_tire || "N/A" };
+                }
+                fleetStats[e.car].jobs++; fleetStats[e.car].spend += e.cost.amount;
+            });
+            document.getElementById('carGallery').innerHTML = Object.entries(fleetStats).map(([name, s]) => `
+                <div class="col-md-6 col-xl-4"><div class="card car-card h-100 p-2 shadow-sm"><div class="card-body">
+                <h6 class="fw-bold mb-1">${name} <small class="text-muted fw-normal">${s.age !== "N/A" ? s.age + ' yrs' : ''} (${s.year})</small></h6>
+                <div class="small text-muted font-monospace mb-2" style="font-size:0.6rem">${s.vin}</div>
+                <div class="row pt-2 border-top g-2">
+                    <div class="col-6"><div class="stat-label">Purchase</div><div class="small fw-bold">${s.price}</div></div>
+                    <div class="col-6 text-end"><div class="stat-label">Avg Tire Cost</div><div class="small fw-bold">${s.tire}</div></div>
+                    <div class="col-12 text-center mt-2 border-top pt-1 small text-muted">Maint: <strong class="text-success">${s.spend.toLocaleString()} KD</strong> | Jobs: <strong>${s.jobs}</strong></div>
+                </div></div></div></div>
+            `).join('');
+            document.getElementById('logTable').innerHTML = filtered.map(e => `
+                <tr>
+                    <td class="ps-4 small" data-sort="${e.iso_date}">${e.date}</td>
+                    <td><strong>${e.car}</strong></td>
+                    <td data-sort="${e.odo}">${e.odo ? parseFloat(e.odo.replace(/,/g, '')).toLocaleString() : ''}</td>
+                    <td class="text-success fw-bold" data-sort="${e.cost.amount}">${e.cost.amount} KD</td>
+                    <td><div>${e.categories.map(c => `<span class="cat-badge">${c}</span>`).join('')}</div><div class="small text-muted">${e.notes}</div></td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
