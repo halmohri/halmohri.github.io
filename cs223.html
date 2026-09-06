@@ -141,8 +141,13 @@
       <div class="col-md-4 text-md-end">
         <p class="eyebrow mb-0">Semester</p>
         <p class="mb-0">Sep 13 – Dec 21, 2026</p>
+        <p class="mt-1 mb-0" style="font-size:.85rem;" id="sem-countdown"></p>
         <p class="eyebrow mt-3 mb-0">Final Exam</p>
         <p class="mb-0">Sat, Dec 26 · 12:00–14:00</p>
+        <p class="mt-2 mb-0" style="font-size:.85rem;" id="exam-countdown"></p>
+        <p class="eyebrow mt-3 mb-0">Project</p>
+        <p class="mb-0">Phase 1 due Dec 2 · Phase 2 due Dec 16</p>
+        <p class="mt-2 mb-0" style="font-size:.85rem;" id="project-countdown"></p>
       </div>
     </div>
   </div>
@@ -451,6 +456,32 @@
     <span>Plan is tentative.</span>
   </div>
 </footer>
+
+<script>
+(function () {
+  var midterm = new Date(2026, 10, 18, 11, 0);
+  var finalExam = new Date(2026, 11, 26, 12, 0);
+  function label(then) {
+    var days = Math.ceil((then - new Date()) / 86400000);
+    if (days > 0) return "in " + days + " day" + (days === 1 ? "" : "s");
+    if (days === 0) return "today";
+    return "passed";
+  }
+  var el = document.getElementById("exam-countdown");
+  if (el) el.textContent = "Midterm · Nov 18 — " + label(midterm) + " · Final · Dec 26 — " + label(finalExam);
+  var se = document.getElementById("sem-countdown");
+  if (se) {
+    var classesEnd = new Date(2026, 11, 21, 23, 59);
+    se.textContent = "Classes end Dec 21 — " + label(classesEnd);
+  }
+  var pe = document.getElementById("project-countdown");
+  if (pe) {
+    var ph1 = new Date(2026, 11, 2, 23, 59);
+    var ph2 = new Date(2026, 11, 16, 23, 59);
+    pe.textContent = "Phase 1 · Dec 2 — " + label(ph1) + " · Phase 2 · Dec 16 — " + label(ph2);
+  }
+})();
+</script>
 
 </body>
 </html>
