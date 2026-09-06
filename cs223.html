@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>223/320 — Principles of Computer Systems · Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  :root {
+    --ink: #17181c;
+    --muted: #6b7078;
+    --hairline: #e6e8eb;
+    --accent: #b3623a;
+    --rail: #d9dce1;
+  }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .eyebrow {
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .tech {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 500;
+    letter-spacing: -.01em;
+  }
+  .hairline-b { border-bottom: 1px solid var(--hairline); }
+  .hairline-b2 { border-bottom: 2px solid var(--ink); }
+  .nav-slim { letter-spacing: .14em; font-size: .78rem; text-transform: uppercase; }
+  .accent-dot { color: var(--accent); font-weight: 600; }
+
+  .timeline { position: relative; padding-left: 1.25rem; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .25rem;
+    bottom: .25rem;
+    width: 1px;
+    background: var(--rail);
+  }
+  .tl-item { position: relative; }
+  .tl-item:not(:last-child) { border-bottom: 1px solid var(--hairline); }
+  .tl-dot {
+    position: absolute;
+    left: -1.25rem;
+    top: 1.5rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ink);
+    transform: translateX(-50%);
+  }
+  .tl-dot.exam { background: var(--accent); }
+  .tl-dot.review { background: var(--ink); box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--rail); }
+
+  .week-tag {
+    display: inline-block;
+    min-width: 2.6rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    border: 1px solid var(--rail);
+    border-radius: 999px;
+    padding: .1rem .65rem;
+    color: var(--muted);
+  }
+  .topic { font-weight: 500; font-size: 1rem; line-height: 1.4; }
+  .lab, .ref { font-size: .86rem; color: var(--muted); }
+  .ref { font-size: .78rem; letter-spacing: .02em; }
+  .exam-label {
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .p-tag {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: .05rem .6rem;
+    white-space: nowrap;
+  }
+  .cards .card { border: 1px solid var(--hairline); border-radius: .5rem; box-shadow: none; }
+  .cards .num { font-size: 1.6rem; font-weight: 500; font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  footer { font-size: .8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand py-3 hairline-b">
+  <div class="container">
+    <span class="navbar-brand fw-semibold">223/320<span class="tech">&thinsp;Principles of Computer Systems</span></span>
+    <span class="nav-slim text-body-secondary">Fall 2026</span>
+  </div>
+</nav>
+
+<header class="pt-5 pb-4">
+  <div class="container">
+    <p class="eyebrow mb-2">CS 223 / 320 &nbsp;·&nbsp; Fall 2026</p>
+    <h1 class="display-5 fw-medium mb-1" style="font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:-.02em;">
+      Principles of Computer Systems
+    </h1>
+    <p class="text-body-secondary mt-3 mb-0" style="font-size:.95rem; max-width:52rem; line-height:1.6;">
+      This course serves as the foundation for courses on networks and operating systems, where a deeper
+      understanding of systems-level issues is a necessity. Topics covered include: linking, exceptional
+      control flow, virtual memory, system-level I/O, network programming, and concurrent computations.
+    </p>
+    <p class="mb-0 mt-2 text-body-secondary" style="font-size:.85rem;">
+      <strong>Credits</strong> &nbsp;4 (3:3:4) &nbsp;<span class="accent-dot">·</span>&nbsp;
+      <strong>Prerequisite</strong> &nbsp;CS221
+    </p>
+    <div class="row g-3 mt-2">
+      <div class="col-md-8">
+        <p class="mb-1 text-body-secondary" style="font-size:.95rem;">
+          <strong>Class</strong> &nbsp;Mon &amp; Wed · 11:00–12:15 &nbsp;<span class="accent-dot">·</span>&nbsp; N01B1086
+        </p>
+        <p class="mb-1 text-body-secondary" style="font-size:.95rem;">
+          <strong>Lab</strong> &nbsp;Tue · 15:30–18:30 &nbsp;<span class="accent-dot">·</span>&nbsp; N01B1088
+        </p>
+        <p class="mb-0 text-body-secondary" style="font-size:.95rem;">
+          <strong>Instructor</strong> &nbsp;Dr. Hussain Almohri &nbsp;<span class="accent-dot">·</span>&nbsp; <strong>T.A.</strong> &nbsp;<a href="mailto:lulwa@cs.ku.edu.kw">Lulwa Aldheferi</a>
+        </p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <p class="eyebrow mb-0">Semester</p>
+        <p class="mb-0">Sep 13 – Dec 21, 2026</p>
+        <p class="eyebrow mt-3 mb-0">Final Exam</p>
+        <p class="mb-0">Sat, Dec 26 · 12:00–14:00</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="py-4 hairline-b">
+  <div class="container">
+    <div class="row g-3 cards">
+      <div class="col-6 col-md">
+        <div class="card p-3 h-100">
+          <span class="num">25%</span>
+          <span class="eyebrow mt-1">Midterm 1</span>
+        </div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="card p-3 h-100">
+          <span class="num">40%</span>
+          <span class="eyebrow mt-1">Final Exam</span>
+        </div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="card p-3 h-100">
+          <span class="num">15%</span>
+          <span class="eyebrow mt-1">Labs</span>
+        </div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="card p-3 h-100">
+          <span class="num">10%</span>
+          <span class="eyebrow mt-1">Quizzes</span>
+        </div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="card p-3 h-100">
+          <span class="num">10%</span>
+          <span class="eyebrow mt-1">Project</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex align-items-baseline gap-3 mb-1 hairline-b2 pb-2">
+      <h2 class="h5 fw-medium mb-0">Course Plan</h2>
+      <span class="eyebrow">Subject to change</span>
+    </div>
+    <p class="text-body-secondary mb-4" style="font-size:.85rem;">
+      Classes: Mon &amp; Wed 11:00–12:15 (N01B1086) · Labs: Tue 15:30–18:30 (N01B1088, Lulwa Aldheferi). &nbsp;
+      <span class="p-tag">Project Phase 1 · Dec 2</span>&nbsp; <span class="p-tag">Project Phase 2 · Dec 16</span>
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 1</span>
+            <div class="lab mt-2 pt-1">Sep 14 · 16</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Review of C and Pointers</div>
+            <div class="lab mt-1">Types, pointers &amp; arrays, structs, heap allocation, build &amp; debug tooling.</div>
+            <div class="ref mt-1">Lab 1 — Review of C: pointers, memory, gcc/make/gdb</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 2</span>
+            <div class="lab mt-2 pt-1">Sep 21 · 23</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Linking</div>
+            <div class="lab mt-1">Object files, symbol table &amp; resolution, relocation, executable object files, static &amp; dynamic linking.</div>
+            <div class="ref mt-1">Lab 2 — Object files, symbol resolution, relocation; static &amp; dynamic linking · CS:APP Ch 7</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 3</span>
+            <div class="lab mt-2 pt-1">Sep 28 · 30</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Exceptional Control Flow</div>
+            <div class="lab mt-1">Exceptions, processes, system call error handling.</div>
+            <div class="ref mt-1">Lab 3 — Exceptions, processes &amp; system call error handling · CS:APP Ch 8</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 4</span>
+            <div class="lab mt-2 pt-1">Oct 05 · 07</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Process Control, Signals &amp; Nonlocal Jumps</div>
+            <div class="lab mt-1">Fork, exec, wait; signal handling &amp; blocking; sigsetjmp / siglongjmp.</div>
+            <div class="ref mt-1">Lab 4 — Process control, signals &amp; nonlocal jumps (block/unblock) · CS:APP Ch 8</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 5</span>
+            <div class="lab mt-2 pt-1">Oct 12 · 14</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Virtual Memory</div>
+            <div class="lab mt-1">Physical &amp; virtual addressing, address spaces, address translation, memory mapping.</div>
+            <div class="ref mt-1">Lab 5 — Virtual memory &amp; memory mapping · CS:APP Ch 9</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 6</span>
+            <div class="lab mt-2 pt-1">Oct 19 · 21</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Dynamic Memory Allocation &amp; Garbage Collection</div>
+            <div class="lab mt-1">malloc / free, allocator design, mark-and-sweep collectors.</div>
+            <div class="ref mt-1">Lab 6 — malloc/free, mark-and-sweep · CS:APP Ch 9</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 7</span>
+            <div class="lab mt-2 pt-1">Oct 26 · 28</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">System-Level I/O</div>
+            <div class="lab mt-1">UNIX I/O, files, robust reading &amp; writing, sharing files, redirection, standard I/O.</div>
+            <div class="ref mt-1">Lab 7 — Files, directories, meta-files · CS:APP Ch 10</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 8</span>
+            <div class="lab mt-2 pt-1">Nov 02 · 04</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Network Programming</div>
+            <div class="lab mt-1">Client–server model, IP Internet, UNIX socket interface, simple client/server.</div>
+            <div class="ref mt-1">Lab 8 — IP/domain-name conversion, sockets, simple client/server · CS:APP Ch 11</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 9</span>
+            <div class="lab mt-2 pt-1">Nov 09 · 11</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Network Programming — Web Servers</div>
+            <div class="lab mt-1">HTTP and the architecture of a tiny web server.</div>
+            <div class="ref mt-1">Lab 9 — Tiny web server · CS:APP Ch 12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot exam"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 10</span>
+            <div class="lab mt-2 pt-1">Nov 16 · 18</div>
+          </div>
+          <div class="col-lg-9">
+            <span class="exam-label">Midterm 1 — Wed, Nov 18 · 11:00–12:15</span>
+            <span class="p-tag mb-1 ms-2 d-inline-block">Project Phase 1 · assigned</span>
+            <div class="topic mt-1">Review &amp; Midterm</div>
+            <div class="lab mt-1">Mon, Nov 16 — review session. Wed, Nov 18 — Midterm 1, covering Weeks 1–9.</div>
+            <div class="ref mt-1">Lab 10 — Concurrency with processes · CS:APP Ch 12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 11</span>
+            <div class="lab mt-2 pt-1">Nov 23 · 25</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Concurrent Programming</div>
+            <div class="lab mt-1">Concurrency with processes and I/O multiplexing; shared variables.</div>
+            <div class="ref mt-1">Lab 11 — Concurrency with threads · CS:APP Ch 12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 12</span>
+            <div class="lab mt-2 pt-1">Nov 30 · Dec 02</div>
+          </div>
+          <div class="col-lg-9">
+            <span class="p-tag mb-1 d-inline-block">Project Phase 1 · due Dec 2</span>
+            <span class="p-tag mb-1 ms-2 d-inline-block">Project Phase 2 · assigned</span>
+            <div class="topic">Concurrency with Threads &amp; Synchronization</div>
+            <div class="lab mt-1">Threads, shared variables, semaphores, mutual exclusion, race conditions.</div>
+            <div class="ref mt-1">Lab 12 — Concurrency with I/O multiplexing · CS:APP Ch 12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 13</span>
+            <div class="lab mt-2 pt-1">Dec 07 · 09</div>
+          </div>
+          <div class="col-lg-9">
+            <div class="topic">Parallel Computation</div>
+            <div class="lab mt-1">Fork-join parallelism, synchronization hardware, ABA problem, work efficiency, granularity control, threshold determination.</div>
+            <div class="ref mt-1">Lab 13 — Synchronization: semaphores, race conditions · PASL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Week 14</span>
+            <div class="lab mt-2 pt-1">Dec 14 · 16</div>
+          </div>
+          <div class="col-lg-9">
+            <span class="p-tag mb-1 d-inline-block">Project Phase 2 · due Dec 16</span>
+            <div class="topic">Project Presentations &amp; Wrap-up</div>
+            <div class="lab mt-1">Team demos of Phase 2. Course wrap-up and final-exam logistics.</div>
+            <div class="ref mt-1">Lab 14 — Experimenting with PASL · Project Phase 2 due Dec 16</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item py-3">
+        <span class="tl-dot review"></span>
+        <div class="row align-items-start">
+          <div class="col-12 col-lg-3 order-lg-2 mb-2 mb-lg-0 text-lg-end">
+            <span class="week-tag">Finals</span>
+            <div class="lab mt-2 pt-1">Week of Dec 21</div>
+          </div>
+          <div class="col-lg-9">
+            <span class="exam-label">Final Exam</span>
+            <div class="topic mt-1">Comprehensive · Sat, Dec 26 · 12:00–14:00</div>
+            <div class="lab mt-1">Classes end Dec 21. Final during the exam period.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 hairline-b">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <p class="eyebrow mb-2">Textbook</p>
+        <p class="mb-1">Bryant &amp; O’Hallaron — <em>Computer Systems: A Programmer’s Perspective</em>, Pearson 3rd ed., 2015.</p>
+      </div>
+      <div class="col-md-6">
+        <p class="eyebrow mb-2">Parallel Reference</p>
+        <p class="mb-1">Acar, Charguéraud &amp; Rainey — <em>An Introduction to Parallel Computing in C++</em> (PASL), CMU v1.2 · <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15210-f15/www/pasl.html">cs.cmu.edu/afs/cs/academic/class/15210-f15/www/pasl.html</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-4">
+  <div class="container d-flex flex-wrap justify-content-between gap-2">
+    <span>223/320 · Principles of Computer Systems — Fall 2026</span>
+    <span>Plan is tentative.</span>
+  </div>
+</footer>
+
+</body>
+</html>
