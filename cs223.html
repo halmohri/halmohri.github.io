@@ -33,6 +33,7 @@
     font-weight: 500;
     letter-spacing: -.01em;
   }
+  .ics-link { font-size: .8rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
   .hairline-b { border-bottom: 1px solid var(--hairline); }
   .hairline-b2 { border-bottom: 2px solid var(--ink); }
   .nav-slim { letter-spacing: .14em; font-size: .78rem; text-transform: uppercase; }
@@ -148,6 +149,9 @@
         <p class="eyebrow mt-3 mb-0">Project</p>
         <p class="mb-0">Phase 1 due Dec 2 · Phase 2 due Dec 16</p>
         <p class="mt-2 mb-0" style="font-size:.85rem;" id="project-countdown"></p>
+        <p class="mt-3 mb-0">
+          <a href="#" data-ics="all" class="ics-link">Add all events to calendar</a>
+        </p>
       </div>
     </div>
   </div>
@@ -478,6 +482,76 @@
     var ph2 = new Date(2026, 11, 16, 23, 59);
     pe.textContent = "Phase 1 · Dec 2 — " + label(ph1) + " · Phase 2 · Dec 16 — " + label(ph2);
   }
+
+  var EVENTS = {
+    midterm: { title: "CS223 Midterm", start: new Date(2026, 10, 18, 11, 0), end: new Date(2026, 10, 18, 12, 15), allDay: false },
+    ph1:     { title: "CS223 Project Phase 1 due", start: new Date(2026, 11, 2, 23, 59), end: new Date(2026, 11, 3, 23, 59), allDay: true },
+    ph2:     { title: "CS223 Project Phase 2 due", start: new Date(2026, 11, 16, 23, 59), end: new Date(2026, 11, 17, 23, 59), allDay: true },
+    final:   { title: "CS223 Final Exam", start: new Date(2026, 11, 26, 12, 0), end: new Date(2026, 11, 26, 14, 0), allDay: false }
+  };
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function icsStamp(d) {
+    return "" + d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()) + "T" +
+      pad2(d.getHours()) + pad2(d.getMinutes()) + "00";
+  }
+  function icsDate(d) {
+    return "" + d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate());
+  }
+  function buildICS(keys) {
+    var cal = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//CS223//Site//EN"];
+    keys.forEach(function (key) {
+      var ev = EVENTS[key];
+      if (!ev) return;
+      var dtstart = ev.allDay ? icsDate(ev.start) : icsStamp(ev.start);
+      var dtend = ev.allDay ? icsDate(ev.end) : icsStamp(ev.end);
+      var vevent = [
+        "BEGIN:VEVENT",
+        "UID:" + key + "@cs223-" + icsDate(ev.start),
+        "DTSTAMP:" + icsStamp(new Date()),
+        "SUMMARY:" + ev.title
+      ];
+      if (ev.allDay) {
+        vevent.push("DTSTART;VALUE=DATE:" + dtstart);
+        vevent.push("DTEND;VALUE=DATE:" + dtend);
+      } else {
+        vevent.push("DTSTART:" + dtstart);
+        vevent.push("DTEND:" + dtend);
+      }
+      vevent.push("BEGIN:VALARM");
+      vevent.push("ACTION:DISPLAY");
+      vevent.push("DESCRIPTION:One day before");
+      vevent.push("TRIGGER:-P1D");
+      vevent.push("END:VALARM");
+      vevent.push("BEGIN:VALARM");
+      vevent.push("ACTION:DISPLAY");
+      vevent.push("DESCRIPTION:One hour before");
+      vevent.push("TRIGGER:-PT1H");
+      vevent.push("END:VALARM");
+      vevent.push("END:VEVENT");
+      cal = cal.concat(vevent);
+    });
+    cal.push("END:VCALENDAR");
+    return cal.join("\r\n") + "\r\n";
+  }
+  function dlICS(keys, filename) {
+    var blob = new Blob([buildICS(keys)], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+  var KEY_SETS = { all: ["midterm", "ph1", "ph2", "final"] };
+  document.querySelectorAll("a.ics-link").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var keys = KEY_SETS[a.dataset.ics];
+      if (keys && keys.length) dlICS(keys, a.dataset.ics + ".ics");
+    });
+  });
 })();
 </script>
 
